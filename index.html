@@ -1439,25 +1439,61 @@
             }
             
             const selectedMethod = document.querySelector('.payment-method.selected').getAttribute('data-method');
-            const methodName = selectedMethod === 'momo' ? 'Mobile Money' : 'Airtel Money';
+            const methodName = selectedMethod === 'momo' ? 'MTN Mobile Money' : 'Airtel Money';
             
-            let message = `Bonjour KWAD, je souhaite commander les articles suivants:%0A%0A`;
+            // Obtenir la date et l'heure actuelles
+            const now = new Date();
+            const orderDate = now.toLocaleDateString('fr-FR');
+            const orderTime = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
             
-            cart.forEach(item => {
-                message += `• ${item.name} - ${item.quantity} x ${item.price.toLocaleString()} FCFA%0A`;
+            // Générer un numéro de commande simple
+            const orderNumber = 'CMD' + now.getTime().toString().slice(-6);
+            
+            let message = `🛒 *NOUVELLE COMMANDE KWAD* 🛒%0A%0A`;
+            message += `*Numéro de commande:* ${orderNumber}%0A`;
+            message += `*Date:* ${orderDate} à ${orderTime}%0A%0A`;
+            message += `*DÉTAILS DE LA COMMANDE:*%0A`;
+            message += `═════════════════════%0A%0A`;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                message += `*${index + 1}. ${item.name}*%0A`;
+                message += `   Quantité: ${item.quantity}%0A`;
+                message += `   Prix unitaire: ${item.price.toLocaleString()} FCFA%0A`;
+                message += `   Sous-total: ${itemTotal.toLocaleString()} FCFA%0A%0A`;
             });
             
             const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            const total = subtotal + 1500;
+            const shipping = 1500;
+            const total = subtotal + shipping;
             
-            message += `%0ASous-total: ${subtotal.toLocaleString()} FCFA%0A`;
-            message += `Livraison: 1 500 FCFA%0A`;
-            message += `Total: ${total.toLocaleString()} FCFA%0A%0A`;
-            message += `Méthode de paiement: ${methodName}%0A%0A`;
-            message += `Merci de me contacter pour finaliser ma commande.`;
+            message += `*RÉCAPITULATIF DE PAIEMENT:*%0A`;
+            message += `═════════════════════%0A`;
+            message += `Sous-total: ${subtotal.toLocaleString()} FCFA%0A`;
+            message += `Frais de livraison: ${shipping.toLocaleString()} FCFA%0A`;
+            message += `*TOTAL: ${total.toLocaleString()} FCFA*%0A%0A`;
+            
+            message += `*INFORMATIONS DE PAIEMENT:*%0A`;
+            message += `═════════════════════%0A`;
+            message += `Méthode: ${methodName}%0A%0A`;
+            
+            message += `*INSTRUCTIONS:*%0A`;
+            message += `═════════════════════%0A`;
+            message += `1. Confirmez ma commande%0A`;
+            message += `2. Donnez-moi les détails pour le paiement ${methodName}%0A`;
+            message += `3. Indiquez le délai de livraison%0A%0A`;
+            
+            message += `_Merci de me recontacter rapidement pour finaliser cette commande._%0A%0A`;
+            message += `📞 *Service Client KWAD*`;
             
             const phoneNumber = '+242068448698'; // Remplacez par votre numéro WhatsApp Business
             const url = `https://wa.me/${phoneNumber}?text=${message}`;
+            
+            // Optionnel: Vider le panier après la commande
+            // cart = [];
+            // updateCartCount();
+            // updateCartDisplay();
+            // closeCart();
             
             window.open(url, '_blank');
         }

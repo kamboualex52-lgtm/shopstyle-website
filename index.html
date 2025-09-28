@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopStyle - Votre boutique en ligne</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Reset et styles de base */
         * {
@@ -50,6 +51,22 @@
             background: #0056b3;
         }
         
+        .btn-whatsapp {
+            background: #25D366;
+        }
+        
+        .btn-whatsapp:hover {
+            background: #1da851;
+        }
+        
+        .btn-momo {
+            background: #8A2BE2;
+        }
+        
+        .btn-momo:hover {
+            background: #7a1fd1;
+        }
+
         /* Header */
         header {
             background-color: white;
@@ -152,6 +169,81 @@
             padding: 10px 15px;
             border-bottom: 1px solid #eee;
         }
+
+        /* Carousel Catégories */
+        .categories-section {
+            padding: 40px 0;
+        }
+        
+        .categories-carousel {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+            gap: 20px;
+        }
+        
+        .category-card {
+            min-width: 250px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-image {
+            height: 150px;
+            overflow: hidden;
+        }
+        
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-info {
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .category-info h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 2;
+        }
+        
+        .carousel-btn.prev {
+            left: 10px;
+        }
+        
+        .carousel-btn.next {
+            right: 10px;
+        }
         
         /* Bannière principale */
         .hero {
@@ -208,6 +300,7 @@
         .product-image {
             height: 200px;
             overflow: hidden;
+            position: relative;
         }
         
         .product-image img {
@@ -219,6 +312,25 @@
         
         .product-card:hover .product-image img {
             transform: scale(1.05);
+        }
+        
+        .add-to-cart-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .product-card:hover .add-to-cart-btn {
+            opacity: 1;
         }
         
         .product-info {
@@ -245,6 +357,135 @@
             margin-bottom: 15px;
         }
         
+        /* Panier */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .cart-sidebar.active {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-right: 15px;
+        }
+        
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cart-item-details {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #007bff;
+            font-weight: bold;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+        
+        .quantity-btn {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            width: 25px;
+            height: 25px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        
+        .remove-item {
+            color: #ff4757;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .cart-total {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        .payment-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+
         /* Newsletter */
         .newsletter {
             background: #007bff;
@@ -367,6 +608,11 @@
                 font-size: 18px;
             }
             
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
             .newsletter-form {
                 flex-direction: column;
             }
@@ -394,9 +640,12 @@
                     <button>🔍</button>
                 </div>
                 <div class="user-actions">
-                    <a href="#"><i>👤</i> Mon compte</a>
-                    <a href="#"><i>❤️</i> Favoris</a>
-                    <a href="#"><i>🛒</i> Panier <span class="cart-count">3</span></a>
+                    <a href="#"><i class="fas fa-user"></i> Mon compte</a>
+                    <a href="#"><i class="fas fa-heart"></i> Favoris</a>
+                    <a href="#" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i> Panier 
+                        <span class="cart-count">0</span>
+                    </a>
                 </div>
             </div>
             <nav>
@@ -436,111 +685,25 @@
         </div>
     </section>
 
-    <!-- Section produits populaires -->
-    <section class="container">
-        <h2 class="section-title">Produits populaires</h2>
-        <div class="products-grid">
-            <!-- Produit 1 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/300x300" alt="Produit 1">
+    <!-- Carousel Catégories -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">Nos Catégories</h2>
+            <div class="categories-carousel">
+                <button class="carousel-btn prev">‹</button>
+                <div class="carousel-container" id="categoriesCarousel">
+                    <!-- Les catégories seront générées par JavaScript -->
                 </div>
-                <div class="product-info">
-                    <h3 class="product-title">T-shirt basique coton</h3>
-                    <div class="product-rating">★★★★☆</div>
-                    <div class="product-price">24,99 €</div>
-                    <a href="#" class="btn">Ajouter au panier</a>
-                </div>
-            </div>
-            
-            <!-- Produit 2 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/300x300" alt="Produit 2">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Chaussures de sport confortables</h3>
-                    <div class="product-rating">★★★★★</div>
-                    <div class="product-price">79,99 €</div>
-                    <a href="#" class="btn">Ajouter au panier</a>
-                </div>
-            </div>
-            
-            <!-- Produit 3 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/300x300" alt="Produit 3">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Sac à dos urbain</h3>
-                    <div class="product-rating">★★★★☆</div>
-                    <div class="product-price">45,50 €</div>
-                    <a href="#" class="btn">Ajouter au panier</a>
-                </div>
-            </div>
-            
-            <!-- Produit 4 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/300x300" alt="Produit 4">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Montre élégante</h3>
-                    <div class="product-rating">★★★☆☆</div>
-                    <div class="product-price">129,99 €</div>
-                    <a href="#" class="btn">Ajouter au panier</a>
-                </div>
+                <button class="carousel-btn next">›</button>
             </div>
         </div>
     </section>
 
-    <!-- Section catégories -->
+    <!-- Section produits populaires -->
     <section class="container">
-        <h2 class="section-title">Catégories populaires</h2>
-        <div class="products-grid">
-            <!-- Catégorie 1 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/300x300" alt="Mode Femme">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Mode Femme</h3>
-                    <a href="#" class="btn">Voir la collection</a>
-                </div>
-            </div>
-            
-            <!-- Catégorie 2 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/300x300" alt="Électronique">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Électronique</h3>
-                    <a href="#" class="btn">Voir la collection</a>
-                </div>
-            </div>
-            
-            <!-- Catégorie 3 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/300x300" alt="Maison">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Maison & Déco</h3>
-                    <a href="#" class="btn">Voir la collection</a>
-                </div>
-            </div>
-            
-            <!-- Catégorie 4 -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://via.placeholder.com/300x300" alt="Sport">
-                </div>
-                <div class="product-info">
-                    <h3 class="product-title">Sport & Loisirs</h3>
-                    <a href="#" class="btn">Voir la collection</a>
-                </div>
-            </div>
+        <h2 class="section-title">Produits populaires</h2>
+        <div class="products-grid" id="productsGrid">
+            <!-- Les produits seront générés par JavaScript -->
         </div>
     </section>
 
@@ -564,10 +727,10 @@
                     <h3>ShopStyle</h3>
                     <p>Votre boutique en ligne préférée pour tous vos besoins. Qualité, prix et service au rendez-vous.</p>
                     <div class="social-icons">
-                        <a href="#"><i>f</i></a>
-                        <a href="#"><i>t</i></a>
-                        <a href="#"><i>i</i></a>
-                        <a href="#"><i>y</i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
@@ -592,9 +755,9 @@
                 <div class="footer-column">
                     <h3>Contact</h3>
                     <ul>
-                        <li>📞 01 23 45 67 89</li>
-                        <li>✉️ contact@shopstyle.fr</li>
-                        <li>📍 123 Rue du Commerce, 75001 Paris</li>
+                        <li><i class="fas fa-phone"></i> 01 23 45 67 89</li>
+                        <li><i class="fas fa-envelope"></i> contact@shopstyle.fr</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Rue du Commerce, 75001 Paris</li>
                     </ul>
                 </div>
             </div>
@@ -603,5 +766,273 @@
             </div>
         </div>
     </footer>
+
+    <!-- Panier Sidebar -->
+    <div class="overlay" id="overlay"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Votre Panier</h3>
+            <button class="close-cart" id="closeCart">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Les articles du panier seront ajoutés ici -->
+        </div>
+        <div class="cart-total" id="cartTotal">
+            Total: 0,00 €
+        </div>
+        <div class="payment-buttons">
+            <button class="btn btn-momo" id="payMomo">
+                <i class="fas fa-mobile-alt"></i> Payer par Mobile Money
+            </button>
+            <button class="btn btn-whatsapp" id="whatsappOrder">
+                <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Données des catégories
+        const categories = [
+            { id: 1, name: "Vêtements Femme", image: "https://via.placeholder.com/300x200/007bff/ffffff?text=Vêtements+Femme" },
+            { id: 2, name: "Vêtements Homme", image: "https://via.placeholder.com/300x200/28a745/ffffff?text=Vêtements+Homme" },
+            { id: 3, name: "Électronique", image: "https://via.placeholder.com/300x200/dc3545/ffffff?text=Électronique" },
+            { id: 4, name: "Maison & Déco", image: "https://via.placeholder.com/300x200/ffc107/000000?text=Maison+%26+Déco" },
+            { id: 5, name: "Sport & Loisirs", image: "https://via.placeholder.com/300x200/6f42c1/ffffff?text=Sport+%26+Loisirs" },
+            { id: 6, name: "Beauté", image: "https://via.placeholder.com/300x200/fd7e14/ffffff?text=Beauté" },
+            { id: 7, name: "Enfants", image: "https://via.placeholder.com/300x200/20c997/ffffff?text=Enfants" },
+            { id: 8, name: "Accessoires", image: "https://via.placeholder.com/300x200/e83e8c/ffffff?text=Accessoires" }
+        ];
+
+        // Données des produits
+        const products = [
+            { id: 1, name: "T-shirt basique coton", price: 24.99, category: "Vêtements Femme", image: "https://via.placeholder.com/300x300", rating: 4 },
+            { id: 2, name: "Chaussures de sport", price: 79.99, category: "Sport & Loisirs", image: "https://via.placeholder.com/300x300", rating: 5 },
+            { id: 3, name: "Sac à dos urbain", price: 45.50, category: "Accessoires", image: "https://via.placeholder.com/300x300", rating: 4 },
+            { id: 4, name: "Montre élégante", price: 129.99, category: "Accessoires", image: "https://via.placeholder.com/300x300", rating: 3 },
+            { id: 5, name: "Smartphone Android", price: 299.99, category: "Électronique", image: "https://via.placeholder.com/300x300", rating: 4 },
+            { id: 6, name: "Coussin décoratif", price: 19.99, category: "Maison & Déco", image: "https://via.placeholder.com/300x300", rating: 5 }
+        ];
+
+        // Panier
+        let cart = [];
+        let currentCategoryIndex = 0;
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            initCategories();
+            initProducts();
+            initEventListeners();
+        });
+
+        // Initialiser le carousel des catégories
+        function initCategories() {
+            const carousel = document.getElementById('categoriesCarousel');
+            categories.forEach(category => {
+                const categoryCard = document.createElement('div');
+                categoryCard.className = 'category-card';
+                categoryCard.innerHTML = `
+                    <div class="category-image">
+                        <img src="${category.image}" alt="${category.name}">
+                    </div>
+                    <div class="category-info">
+                        <h3>${category.name}</h3>
+                        <button class="btn" onclick="viewCategory('${category.name}')">Voir les articles</button>
+                    </div>
+                `;
+                carousel.appendChild(categoryCard);
+            });
+        }
+
+        // Initialiser les produits
+        function initProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.name}">
+                        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                            <i class="fas fa-cart-plus"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-rating">${'★'.repeat(product.rating)}${'☆'.repeat(5-product.rating)}</div>
+                        <div class="product-price">${product.price.toFixed(2)} €</div>
+                        <button class="btn" onclick="addToCart(${product.id})">Ajouter au panier</button>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Initialiser les événements
+        function initEventListeners() {
+            // Carousel
+            document.querySelector('.carousel-btn.prev').addEventListener('click', () => moveCarousel(-1));
+            document.querySelector('.carousel-btn.next').addEventListener('click', () => moveCarousel(1));
+
+            // Panier
+            document.getElementById('cart-icon').addEventListener('click', toggleCart);
+            document.getElementById('closeCart').addEventListener('click', toggleCart);
+            document.getElementById('overlay').addEventListener('click', toggleCart);
+
+            // Paiement
+            document.getElementById('payMomo').addEventListener('click', processMomoPayment);
+            document.getElementById('whatsappOrder').addEventListener('click', sendWhatsAppOrder);
+        }
+
+        // Carousel functions
+        function moveCarousel(direction) {
+            const carousel = document.getElementById('categoriesCarousel');
+            const cardWidth = 270; // 250px + 20px gap
+            const maxIndex = categories.length - 3; // Afficher 3 catégories à la fois
+            
+            currentCategoryIndex += direction;
+            
+            if (currentCategoryIndex < 0) currentCategoryIndex = 0;
+            if (currentCategoryIndex > maxIndex) currentCategoryIndex = maxIndex;
+            
+            carousel.style.transform = `translateX(-${currentCategoryIndex * cardWidth}px)`;
+        }
+
+        // Voir les articles d'une catégorie
+        function viewCategory(categoryName) {
+            const filteredProducts = products.filter(product => product.category === categoryName);
+            // Ici vous pouvez rediriger vers une page dédiée ou filtrer les produits affichés
+            alert(`Affichage des produits de la catégorie: ${categoryName}`);
+        }
+
+        // Fonctions du panier
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showCartNotification();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.querySelector('.cart-count');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            // Mettre à jour le compteur
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Mettre à jour les articles
+            cartItems.innerHTML = '';
+            let totalPrice = 0;
+            
+            cart.forEach(item => {
+                totalPrice += item.price * item.quantity;
+                
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <div class="cart-item-image">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">${item.price.toFixed(2)} €</div>
+                        <div class="cart-item-quantity">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                            <button class="remove-item" onclick="removeFromCart(${item.id})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(cartItem);
+            });
+            
+            // Mettre à jour le total
+            cartTotal.textContent = `Total: ${totalPrice.toFixed(2)} €`;
+        }
+
+        function toggleCart() {
+            const cartSidebar = document.getElementById('cartSidebar');
+            const overlay = document.getElementById('overlay');
+            
+            cartSidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        function showCartNotification() {
+            // Animation d'ajout au panier
+            const cartIcon = document.getElementById('cart-icon');
+            cartIcon.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                cartIcon.style.transform = 'scale(1)';
+            }, 300);
+        }
+
+        // Fonctions de paiement
+        function processMomoPayment() {
+            if (cart.length === 0) {
+                alert('Votre panier est vide !');
+                return;
+            }
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`Paiement Mobile Money de ${total.toFixed(2)} € initié !\n\nVeuillez compléter le paiement sur votre application Mobile Money.`);
+            
+            // Ici vous intégreriez l'API Mobile Money de votre fournisseur
+        }
+
+        function sendWhatsAppOrder() {
+            if (cart.length === 0) {
+                alert('Votre panier est vide !');
+                return;
+            }
+            
+            const phoneNumber = "229XXXXXXXX"; // Remplacez par votre numéro WhatsApp
+            let message = "Bonjour, je souhaite commander les articles suivants :\n\n";
+            
+            cart.forEach(item => {
+                message += `• ${item.name} - ${item.quantity}x - ${(item.price * item.quantity).toFixed(2)} €\n`;
+            });
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\nTotal: ${total.toFixed(2)} €`;
+            message += `\n\nNom: [Votre Nom]\nAdresse: [Votre Adresse]\nTéléphone: [Votre Téléphone]`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 </body>
 </html>

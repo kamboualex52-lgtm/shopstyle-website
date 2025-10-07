@@ -19,7 +19,23 @@ const products = [
     { id: 5, name: 'Sac à main cuir véritable', price: 22000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null },
     { id: 6, name: 'Kit soins visage complet', price: 12000, category: 'beaute', image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null },
     { id: 7, name: 'Vitamines et minéraux', price: 8000, category: 'complement', image: 'Image/came.jpeg', rating: 3, badge: null },
-    { id: 8, name: 'Tapis de yoga premium', price: 15000, category: 'fitness', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null }
+    { id: 8, name: 'Tapis de yoga premium', price: 15000, category: 'fitness', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null }?
+    
+    { id: 9, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image1.jpeg', rating: 4, badge: null },
+    { id: 10, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image2.jpeg', rating: 4, badge: null },
+    { id: 11, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image3.jpeg', rating: 4, badge: null },
+    { id: 12, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image4.jpeg', rating: 4, badge: null },
+    { id: 13, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image5.jpeg', rating: 4, badge: null },
+    { id: 14, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image6.jpeg', rating: 4, badge: null },
+    { id: 15, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image7.jpeg', rating: 4, badge: null },
+    { id: 16, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image8.jpeg', rating: 4, badge: null },
+    { id: 17, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image9.jpeg', rating: 4, badge: null },
+    { id: 18, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image10.jpeg', rating: 4, badge: null },
+    { id: 19, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image11.jpeg', rating: 4, badge: null },
+    { id: 20, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image12.jpeg', rating: 4, badge: null }
+        
+        
+    
 ];
 
 // Variables globales

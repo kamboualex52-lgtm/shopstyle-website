@@ -18,7 +18,7 @@ const products = [
     { id: 4, name: 'Chaussures de sport Nike', price: 35000, category: 'chaussures', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 5, badge: 'Promo' },
     { id: 5, name: 'Sac à main cuir véritable', price: 22000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null },
     { id: 6, name: 'Kit soins visage complet', price: 12000, category: 'beaute', image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null },
-    { id: 7, name: 'Vitamines et minéraux', price: 8000, category: 'complement', image: 'https://images.unsplash.com/photo-1585435557343-3b092031d5ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 3, badge: null },
+    { id: 7, name: 'Vitamines et minéraux', price: 8000, category: 'complement', image: 'Image/came.jpeg', rating: 3, badge: null },
     { id: 8, name: 'Tapis de yoga premium', price: 15000, category: 'fitness', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null }
 ];
 

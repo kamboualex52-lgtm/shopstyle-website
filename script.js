@@ -43,7 +43,8 @@ const products = [
 
 
     //Electricité
-    { id: 20, name: 'Caisse à outils (électricien)', price: 120000, category: 'electricite', image: 'Image/Electricité/Caisse à outils (électricien).jpg', rating: 5, badge: 'Nouveau' }
+    { id: 20, name: 'Caisse à outils (électricien)', price: 120000, category: 'electricite', image: 'Image/Electricité/Caisse à outils (électricien).jpg', rating: 5, badge: 'Nouveau' },
+    { id: 25, name: 'Caisse à outils (élctro-technicien)', price: 25000, category: 'electricite', image: 'Image/Electricité/Caisse élctro-technicien.jpg', rating: 5, badge: 'Nouveau' }
     
 ];
 

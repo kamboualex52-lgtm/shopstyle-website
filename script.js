@@ -10,32 +10,25 @@ const categories = [
     { id: 'fitness', name: 'Fitness', count: 22, image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
 ];
 
-// Données des produits
+// Données des produits - VERSION CORRIGÉE
 const products = [
     { id: 1, name: 'Mixeur électrique 500W', price: 25000, category: 'electromenager', image: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: 'Nouveau' },
     { id: 2, name: 'Lampadaire LED moderne', price: 18000, category: 'electricite', image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 5, badge: 'Populaire' },
-    // { id: 3, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null },
     { id: 4, name: 'Chaussures de sport Nike', price: 35000, category: 'chaussures', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 5, badge: 'Promo' },
     { id: 5, name: 'Sac à main cuir véritable', price: 22000, category: 'accessoires', image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null },
     { id: 6, name: 'Kit soins visage complet', price: 12000, category: 'beaute', image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null },
     { id: 7, name: 'Vitamines et minéraux', price: 8000, category: 'complement', image: 'Image/came.jpeg', rating: 3, badge: null },
-    { id: 8, name: 'Tapis de yoga premium', price: 15000, category: 'fitness', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null }?
+    { id: 8, name: 'Tapis de yoga premium', price: 15000, category: 'fitness', image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', rating: 4, badge: null },
     
-    { id: 9, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image1.jpeg', rating: 4, badge: null },
-    // { id: 10, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image2.jpeg', rating: 4, badge: null },
-    // { id: 11, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image3.jpeg', rating: 4, badge: null },
-    // { id: 12, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image4.jpeg', rating: 4, badge: null },
-    // { id: 13, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image5.jpeg', rating: 4, badge: null },
-    // { id: 14, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image6.jpeg', rating: 4, badge: null },
-    // { id: 15, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image7.jpeg', rating: 4, badge: null },
-    // { id: 16, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image8.jpeg', rating: 4, badge: null },
-    // { id: 17, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image9.jpeg', rating: 4, badge: null },
-    // { id: 18, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image10.jpeg', rating: 4, badge: null },
-    // { id: 19, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image11.jpeg', rating: 4, badge: null },
-    // { id: 20, name: 'Robe africaine élégante', price: 15000, category: 'vetements', image: 'Image/Vetement/Image12.jpeg', rating: 4, badge: null }
-        
-        
-    
+    // Vos produits vêtements avec images locales
+    { id: 9, name: 'Robe africaine élégante - Modèle 1', price: 15000, category: 'vetements', image: 'Image/Vetement/Image1.jpeg', rating: 4, badge: null },
+    { id: 10, name: 'Robe africaine élégante - Modèle 2', price: 18000, category: 'vetements', image: 'Image/Vetement/Image2.jpeg', rating: 5, badge: 'Nouveau' },
+    { id: 11, name: 'Robe africaine élégante - Modèle 3', price: 22000, category: 'vetements', image: 'Image/Vetement/Image3.jpeg', rating: 4, badge: null },
+    { id: 12, name: 'Robe africaine élégante - Modèle 4', price: 19000, category: 'vetements', image: 'Image/Vetement/Image4.jpeg', rating: 4, badge: null },
+    { id: 13, name: 'Robe africaine élégante - Modèle 5', price: 25000, category: 'vetements', image: 'Image/Vetement/Image5.jpeg', rating: 5, badge: 'Populaire' },
+    { id: 14, name: 'Robe africaine élégante - Modèle 6', price: 17000, category: 'vetements', image: 'Image/Vetement/Image6.jpeg', rating: 4, badge: null },
+    { id: 15, name: 'Robe africaine élégante - Modèle 7', price: 21000, category: 'vetements', image: 'Image/Vetement/Image7.jpeg', rating: 4, badge: null },
+    { id: 16, name: 'Robe africaine élégante - Modèle 8', price: 23000, category: 'vetements', image: 'Image/Vetement/Image8.jpeg', rating: 5, badge: 'Promo' }
 ];
 
 // Variables globales
@@ -62,7 +55,7 @@ function initCategories() {
         categoryCard.className = 'category-card';
         categoryCard.innerHTML = `
             <div class="category-image">
-                <img src="${category.image}" alt="${category.name}">
+                <img src="${category.image}" alt="${category.name}" onerror="handleImageError(this)">
             </div>
             <div class="category-info">
                 <h3 class="category-title">${category.name}</h3>
@@ -85,6 +78,7 @@ function initCategories() {
 // Initialiser les produits
 function initProducts() {
     const grid = document.getElementById('products-grid');
+    grid.innerHTML = ''; // Vider la grille d'abord
     
     products.forEach(product => {
         const productCard = document.createElement('div');
@@ -92,7 +86,7 @@ function initProducts() {
         productCard.innerHTML = `
             ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
             <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${product.image}" alt="${product.name}" onerror="handleImageError(this)">
                 <div class="product-actions">
                     <button class="add-to-cart" data-id="${product.id}"><i class="fas fa-cart-plus"></i></button>
                     <button><i class="fas fa-heart"></i></button>
@@ -115,6 +109,14 @@ function initProducts() {
             addToCart(productId);
         });
     });
+}
+
+// Gestion des erreurs d'images
+function handleImageError(img) {
+    console.log('Image non trouvée:', img.src);
+    img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><rect width="24" height="24" fill="%23f0f0f0"/><text x="12" y="12" font-family="Arial" font-size="12" text-anchor="middle" alignment-baseline="middle" fill="%23999">Image</text></svg>';
+    img.alt = 'Image non disponible';
+    img.style.backgroundColor = '#f9f9f9';
 }
 
 // Initialiser les événements
@@ -166,7 +168,7 @@ function filterProducts(categoryId) {
         productCard.innerHTML = `
             ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
             <div class="product-image">
-                <img src="${product.image}" alt="${product.name}">
+                <img src="${product.image}" alt="${product.name}" onerror="handleImageError(this)">
                 <div class="product-actions">
                     <button class="add-to-cart" data-id="${product.id}"><i class="fas fa-cart-plus"></i></button>
                     <button><i class="fas fa-heart"></i></button>
@@ -244,7 +246,7 @@ function updateCartDisplay() {
         cartItem.className = 'cart-item';
         cartItem.innerHTML = `
             <div class="cart-item-image">
-                <img src="${item.image}" alt="${item.name}">
+                <img src="${item.image}" alt="${item.name}" onerror="handleImageError(this)">
             </div>
             <div class="cart-item-details">
                 <div class="cart-item-title">${item.name}</div>

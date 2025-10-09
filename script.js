@@ -34,7 +34,12 @@ const products = [
     // Electro_menager
     { id: 17, name: 'Ouvre bière automatique', price: 2500, category: 'electromenager', image: 'Image/Electro_menager/Ouvre bière automatique.jpg', rating: 5, badge: 'Nouveau' },
     { id: 18, name: 'Tire bouchon rechargeable', price: 12000, category: 'electromenager', image: 'Image/Electro_menager/Tire bouchon.jpg', rating: 5, badge: 'Nouveau' },
-    { id: 19, name: 'Thermos LED 1L', price: 10000, category: 'electromenager', image: 'Image/Electro_menager/Thermos LED.jpg', rating: 5, badge: 'Nouveau' },
+    { id: 19, name: 'Thermos LED 1L', price: 8000, category: 'electromenager', image: 'Image/Electro_menager/Thermos LED.jpg', rating: 5, badge: 'Nouveau' },
+    { id: 21, name: 'Carafe plus 4 verres(très Robuste)', price: 8000, category: 'electromenager', image: 'Image/Electro_menager/Carafe plus 4 verres.jpg', rating: 5, badge: 'Nouveau' },
+    { id: 22, name: 'Chauffe eau 3L', price: 10000, category: 'electromenager', image: 'Image/Electro_menager/Chauffe eau 3L.jpg', rating: 5, badge: 'Nouveau' },
+    { id: 23, name: 'Mixeur portatif', price: 8000, category: 'electromenager', image: 'Image/Electro_menager/Mixeur portatif.jpg', rating: 5, badge: 'Nouveau' },
+
+
 
     //Electricité
     { id: 20, name: 'Caisse à outils (électricien)', price: 120000, category: 'electricite', image: 'Image/Electricité/Caisse à outils (électricien).jpg', rating: 5, badge: 'Nouveau' }

@@ -460,13 +460,10 @@ function getSlidesToShow() {
     return 1; // Mobile portrait
 }
 
-// Navigation du carousel - VERSION CORRIGÉE
+// Navigation du carousel
 function goToSlide(slideIndex) {
     const container = document.getElementById('categories-container');
     const dots = document.querySelectorAll('.carousel-dot');
-    
-    // Mettre à jour le nombre de slides à afficher selon l'écran
-    slidesToShow = getSlidesToShow();
     const totalSlides = Math.ceil(categories.length / slidesToShow);
     
     // Gérer les limites
@@ -486,64 +483,49 @@ function goToSlide(slideIndex) {
     });
 }
 
-// Recréer les points de navigation quand la taille change
-function updateCarouselNavigation() {
-    const nav = document.getElementById('carousel-nav');
-    nav.innerHTML = '';
-    
-    slidesToShow = getSlidesToShow();
-    const totalSlides = Math.ceil(categories.length / slidesToShow);
-    
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
-        dot.addEventListener('click', () => goToSlide(i));
-        nav.appendChild(dot);
-    }
-}
-
 // Navigation automatique du carousel
-let carouselInterval = setInterval(() => {
+setInterval(() => {
     const totalSlides = Math.ceil(categories.length / slidesToShow);
     currentSlide = (currentSlide + 1) % totalSlides;
     goToSlide(currentSlide);
 }, 5000);
 
-// Redémarrer l'autoplay
-function restartAutoPlay() {
-    clearInterval(carouselInterval);
-    carouselInterval = setInterval(() => {
-        const totalSlides = Math.ceil(categories.length / slidesToShow);
-        currentSlide = (currentSlide + 1) % totalSlides;
-        goToSlide(currentSlide);
-    }, 5000);
-}
-
 // Fonction pour aller au slide précédent
 function prevSlide() {
     goToSlide(currentSlide - 1);
-    restartAutoPlay();
 }
 
 // Fonction pour aller au slide suivant
 function nextSlide() {
     goToSlide(currentSlide + 1);
-    restartAutoPlay();
 }
 
-// Mettre à jour le carousel quand la fenêtre est redimensionnée
-window.addEventListener('resize', function() {
-    updateCarouselNavigation();
-    goToSlide(0); // Retourner au premier slide
-    restartAutoPlay();
-});
+// Ajouter les flèches de navigation au carousel
+function addCarouselNavigation() {
+    const carousel = document.querySelector('.categories-carousel');
+    
+    // Créer les flèches de navigation
+    const prevButton = document.createElement('button');
+    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    prevButton.className = 'carousel-arrow carousel-prev';
+    prevButton.addEventListener('click', prevSlide);
+    
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    nextButton.className = 'carousel-arrow carousel-next';
+    nextButton.addEventListener('click', nextSlide);
+    
+    // Ajouter les flèches au carousel
+    carousel.style.position = 'relative';
+    carousel.appendChild(prevButton);
+    carousel.appendChild(nextButton);
+}
 
-// Initialisation
+// Modifier l'initialisation pour inclure la navigation
 document.addEventListener('DOMContentLoaded', function() {
     initCategories();
     initProducts();
     initEventListeners();
     updateCartCount();
-    addCarouselNavigation();
-    updateCarouselNavigation(); // Initialiser la navigation
+    addCarouselNavigation(); // Ajouter cette ligne
 });

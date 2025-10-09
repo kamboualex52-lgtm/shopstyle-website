@@ -38,6 +38,7 @@ const products = [
     { id: 21, name: 'Carafe plus 4 verres(très Robuste)', price: 8000, category: 'electromenager', image: 'Image/Electro_menager/Carafe plus 4 verres.jpg', rating: 5, badge: 'Nouveau' },
     { id: 22, name: 'Chauffe eau 3L', price: 10000, category: 'electromenager', image: 'Image/Electro_menager/Chauffe eau 3L.jpg', rating: 5, badge: 'Nouveau' },
     { id: 23, name: 'Mixeur portatif', price: 8000, category: 'electromenager', image: 'Image/Electro_menager/Mixeur portatif.jpg', rating: 5, badge: 'Nouveau' },
+    { id: 24, name: 'Tapie de Cuisson', price: 10000, category: 'electromenager', image: 'Image/Electro_menager/Tapie de Cuisson.jpg', rating: 5, badge: 'Nouveau' },
 
 
 

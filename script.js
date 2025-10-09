@@ -32,10 +32,12 @@ const products = [
 
 
     // Electro_menager
-    { id: 17, name: 'Ouvre bière automatique', price: 2500, category: 'Électroménager', image: 'Image/Electro_menager/Ouvre bière automatique.jpg', rating: 5, badge: 'Populaire' },
-    { id: 18, name: 'Tire bouchon', price: 11000, category: 'Électroménager', image: 'Image/Electro_menager/Tire bouchon.jpg', rating: 5, badge: 'Promo' }
+    { id: 17, name: 'Ouvre bière automatique', price: 2500, category: 'electromenager', image: 'Image/Electro_menager/Ouvre bière automatique.jpg', rating: 5, badge: 'Nouveau' },
+    { id: 18, name: 'Tire bouchon rechargeable', price: 12000, category: 'electromenager', image: 'Image/Electro_menager/Tire bouchon.jpg', rating: 5, badge: 'Nouveau' },
+    { id: 19, name: 'Thermos LED 1L', price: 10000, category: 'electromenager', image: 'Image/Electro_menager/Thermos LED.jpg', rating: 5, badge: 'Nouveau' },
 
-
+    //Electricité
+    { id: 20, name: 'Caisse à outils (électricien)', price: 120000, category: 'electricite', image: 'Image/Electricité/Caisse à outils (électricien).jpg', rating: 5, badge: 'Nouveau' }
     
 ];
 

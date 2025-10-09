@@ -492,6 +492,11 @@ function nextSlide() {
 function addCarouselNavigation() {
     const carousel = document.querySelector('.categories-carousel');
     
+    // Vérifier si les flèches existent déjà
+    if (document.querySelector('.carousel-arrow')) {
+        return;
+    }
+    
     // Créer les flèches de navigation
     const prevButton = document.createElement('button');
     prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';

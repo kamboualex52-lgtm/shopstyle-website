@@ -28,8 +28,17 @@ const products = [
     { id: 13, name: 'Robe africaine élégante - Modèle 5', price: 25000, category: 'vetements', image: 'Image/Vetement/Image5.jpeg', rating: 5, badge: 'Populaire' },
     { id: 14, name: 'Robe africaine élégante - Modèle 6', price: 17000, category: 'vetements', image: 'Image/Vetement/Image6.jpeg', rating: 4, badge: null },
     { id: 15, name: 'Robe africaine élégante - Modèle 7', price: 21000, category: 'vetements', image: 'Image/Vetement/Image7.jpeg', rating: 4, badge: null },
-    { id: 16, name: 'Robe africaine élégante - Modèle 8', price: 23000, category: 'vetements', image: 'Image/Vetement/Image8.jpeg', rating: 5, badge: 'Promo' }
+    { id: 16, name: 'Robe africaine élégante - Modèle 8', price: 23000, category: 'vetements', image: 'Image/Vetement/Image8.jpeg', rating: 5, badge: 'Promo' },
+
+
+    // Electro_menager
+    { id: 17, name: 'Ouvre bière automatique', price: 2500, category: 'Électroménager', image: 'Image/Electro_menager/Ouvre bière automatique.jpg', rating: 5, badge: 'Populaire' },
+    { id: 18, name: 'Tire bouchon', price: 11000, category: 'Électroménager', image: 'Image/Electro_menager/Tire bouchon.jpg', rating: 5, badge: 'Promo' }
+
+
+    
 ];
+
 
 // Variables globales
 let cart = [];

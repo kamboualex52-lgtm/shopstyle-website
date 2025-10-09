@@ -374,6 +374,76 @@ nav ul li:hover > .submenu {
     font-size: clamp(12px, 1.4vw, 14px);
 }
 
+/* Carousel catégories - VERSION CORRIGÉE */
+.categories-section {
+    padding: clamp(40px, 8vw, 50px) 0;
+    background: white;
+}
+
+.categories-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(15px, 3vw, 20px) 0;
+}
+
+.categories-container {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: clamp(15px, 3vw, 20px);
+}
+
+/* CORRECTION IMPORTANTE : Remplacer la largeur fixe par une approche responsive */
+.category-card {
+    flex: 0 0 auto; /* Changé de calc(20% - 16px) à auto */
+    width: calc(20% - clamp(12px, 2.5vw, 16px)); /* Largeur responsive */
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+    min-width: 0;
+}
+
+.category-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.category-image {
+    height: clamp(120px, 20vw, 150px);
+    width: 100%;
+    overflow: hidden;
+}
+
+.category-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.category-card:hover .category-image img {
+    transform: scale(1.1);
+}
+
+.category-info {
+    padding: clamp(12px, 2.5vw, 15px);
+}
+
+.category-title {
+    font-size: clamp(16px, 2.2vw, 18px);
+    font-weight: 600;
+    margin-bottom: clamp(8px, 1.5vw, 10px);
+    color: var(--secondary);
+    line-height: 1.3;
+}
+
+.category-count {
+    color: var(--gray);
+    font-size: clamp(12px, 1.4vw, 14px);
+}
+
 .carousel-nav {
     display: flex;
     justify-content: center;
@@ -395,7 +465,6 @@ nav ul li:hover > .submenu {
     background: var(--primary);
 }
 
-
 /* Flèches de navigation du carousel */
 .carousel-arrow {
     position: absolute;
@@ -403,8 +472,8 @@ nav ul li:hover > .submenu {
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.9);
     border: none;
-    width: 40px;
-    height: 40px;
+    width: clamp(35px, 6vw, 40px);
+    height: clamp(35px, 6vw, 40px);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -413,7 +482,7 @@ nav ul li:hover > .submenu {
     box-shadow: var(--shadow);
     transition: var(--transition);
     z-index: 100;
-    font-size: 16px;
+    font-size: clamp(14px, 2vw, 16px);
     color: var(--secondary);
 }
 
@@ -424,19 +493,35 @@ nav ul li:hover > .submenu {
 }
 
 .carousel-prev {
-    left: 10px;
+    left: clamp(5px, 2vw, 10px);
 }
 
 .carousel-next {
-    right: 10px;
+    right: clamp(5px, 2vw, 10px);
 }
 
-/* Cacher les flèches sur mobile */
+/* CORRECTIONS RESPONSIVE POUR LE CAROUSEL */
+@media (max-width: 1200px) {
+    .category-card {
+        width: calc(25% - clamp(12px, 2.5vw, 15px)); /* 4 cartes par ligne */
+    }
+}
+
+@media (max-width: 992px) {
+    .category-card {
+        width: calc(33.333% - clamp(10px, 2vw, 14px)); /* 3 cartes par ligne */
+    }
+}
+
 @media (max-width: 768px) {
+    .category-card {
+        width: calc(50% - clamp(8px, 1.5vw, 10px)); /* 2 cartes par ligne */
+    }
+    
     .carousel-arrow {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
     }
     
     .carousel-prev {
@@ -449,10 +534,33 @@ nav ul li:hover > .submenu {
 }
 
 @media (max-width: 576px) {
+    .category-card {
+        width: calc(50% - 8px); /* 2 cartes par ligne sur mobile */
+    }
+    
     .carousel-arrow {
         display: none; /* Cacher complètement sur très petits écrans */
     }
 }
+
+@media (max-width: 480px) {
+    .category-card {
+        width: 100%; /* 1 carte par ligne sur très petits écrans */
+        margin: 0 auto;
+        max-width: 280px;
+    }
+    
+    .categories-container {
+        gap: 15px;
+    }
+}
+
+/* Assurer que le conteneur du carousel a une largeur correcte */
+.categories-carousel {
+    width: 100%;
+    margin: 0 auto;
+}
+
 
 /* Section produits */
 .products-section {

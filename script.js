@@ -452,9 +452,18 @@ function checkout() {
 function goToSlide(slideIndex) {
     const container = document.getElementById('categories-container');
     const dots = document.querySelectorAll('.carousel-dot');
-    const slideWidth = 100 / slidesToShow;
+    const totalSlides = Math.ceil(categories.length / slidesToShow);
     
-    currentSlide = slideIndex;
+    // Gérer les limites
+    if (slideIndex < 0) {
+        currentSlide = totalSlides - 1;
+    } else if (slideIndex >= totalSlides) {
+        currentSlide = 0;
+    } else {
+        currentSlide = slideIndex;
+    }
+    
+    const slideWidth = 100 / slidesToShow;
     container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
     
     dots.forEach((dot, index) => {
@@ -468,3 +477,43 @@ setInterval(() => {
     currentSlide = (currentSlide + 1) % totalSlides;
     goToSlide(currentSlide);
 }, 5000);
+
+// Fonction pour aller au slide précédent
+function prevSlide() {
+    goToSlide(currentSlide - 1);
+}
+
+// Fonction pour aller au slide suivant
+function nextSlide() {
+    goToSlide(currentSlide + 1);
+}
+
+// Ajouter les flèches de navigation au carousel
+function addCarouselNavigation() {
+    const carousel = document.querySelector('.categories-carousel');
+    
+    // Créer les flèches de navigation
+    const prevButton = document.createElement('button');
+    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    prevButton.className = 'carousel-arrow carousel-prev';
+    prevButton.addEventListener('click', prevSlide);
+    
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    nextButton.className = 'carousel-arrow carousel-next';
+    nextButton.addEventListener('click', nextSlide);
+    
+    // Ajouter les flèches au carousel
+    carousel.style.position = 'relative';
+    carousel.appendChild(prevButton);
+    carousel.appendChild(nextButton);
+}
+
+// Modifier l'initialisation pour inclure la navigation
+document.addEventListener('DOMContentLoaded', function() {
+    initCategories();
+    initProducts();
+    initEventListeners();
+    updateCartCount();
+    addCarouselNavigation(); // Ajouter cette ligne
+});

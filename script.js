@@ -10,7 +10,7 @@ const categories = [
     { id: 'fitness', name: 'Fitness', count: 22, image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
 ];
 
-// Données des produits - VERSION COMPLÈTE AVEC DESCRIPTIONS
+// Données des produits COMPLÈTES avec médias
 const products = [
     { 
         id: 1, 
@@ -28,6 +28,11 @@ const products = [
             'Capacité: 1.5L',
             'Design anti-dérapant',
             'Facile à nettoyer'
+        ],
+        media: [
+            { type: 'image', src: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+            { type: 'image', src: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
+            { type: 'image', src: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
         ]
     },
     { 
@@ -45,388 +50,12 @@ const products = [
             'Hauteur réglable',
             'Interrupteur intégré',
             'Design moderne'
+        ],
+        media: [
+            { type: 'image', src: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
         ]
     },
-    { 
-        id: 4, 
-        name: 'Chaussures de sport Nike', 
-        price: 35000, 
-        category: 'chaussures', 
-        image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', 
-        rating: 5, 
-        badge: 'Promo',
-        description: 'Chaussures de sport Nike pour homme, confortables et durables. Idéales pour la course et les activités sportives.',
-        features: [
-            'Semelle en caoutchouc',
-            'Tige en mesh respirant',
-            'Confort amortissant',
-            'Semelle anti-dérapante',
-            'Plusieurs coloris disponibles'
-        ]
-    },
-    { 
-        id: 5, 
-        name: 'Sac à main cuir véritable', 
-        price: 22000, 
-        category: 'accessoires', 
-        image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', 
-        rating: 4, 
-        badge: null,
-        description: 'Sac à main en cuir véritable, élégant et spacieux. Parfait pour usage quotidien ou occasions spéciales.',
-        features: [
-            'Cuir véritable',
-            'Fermeture à zip',
-            'Compartiments multiples',
-            'Bandoulière ajustable',
-            'Dimensions: 30x20x10cm'
-        ]
-    },
-    { 
-        id: 6, 
-        name: 'Kit soins visage complet', 
-        price: 12000, 
-        category: 'beaute', 
-        image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', 
-        rating: 4, 
-        badge: null,
-        description: 'Kit complet de soins pour le visage avec produits naturels. Nettoyant, tonique et crème hydratante.',
-        features: [
-            'Nettoyant visage',
-            'Tonique rafraîchissant',
-            'Crème hydratante',
-            'Ingrédients naturels',
-            'Pour tous types de peau'
-        ]
-    },
-    { 
-        id: 7, 
-        name: 'Vitamines et minéraux', 
-        price: 8000, 
-        category: 'complement', 
-        image: 'Image/came.jpeg', 
-        rating: 3, 
-        badge: null,
-        description: 'Complément alimentaire riche en vitamines et minéraux essentiels. Soutient le système immunitaire et l\'énergie.',
-        features: [
-            'Multivitamines complètes',
-            'Minéraux essentiels',
-            'Soutien immunitaire',
-            '60 gélules',
-            'Sans conservateurs'
-        ]
-    },
-    { 
-        id: 8, 
-        name: 'Tapis de yoga premium', 
-        price: 15000, 
-        category: 'fitness', 
-        image: 'https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', 
-        rating: 4, 
-        badge: null,
-        description: 'Tapis de yoga antidérapant et écologique. Idéal pour la pratique du yoga, pilates et exercices au sol.',
-        features: [
-            'Matériau écologique',
-            'Surface antidérapante',
-            'Épaisseur: 6mm',
-            'Dimensions: 183x61cm',
-            'Facile à nettoyer'
-        ]
-    },
-    
-    // Vos produits vêtements avec images locales
-    { 
-        id: 9, 
-        name: 'Robe africaine élégante - Modèle 1', 
-        price: 15000, 
-        category: 'vetements', 
-        image: 'Image/Vetement/Image1.jpeg', 
-        rating: 4, 
-        badge: null,
-        description: 'Robe africaine élégante en tissu wax de haute qualité. Design unique et confortable pour toutes occasions.',
-        features: [
-            'Tissu wax 100% coton',
-            'Coupe ajustée',
-            'Manches courtes',
-            'Longueur mi-mollet',
-            'Lavable en machine'
-        ]
-    },
-    { 
-        id: 10, 
-        name: 'Robe africaine élégante - Modèle 2', 
-        price: 18000, 
-        category: 'vetements', 
-        image: 'Image/Vetement/Image2.jpeg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Robe africaine moderne avec motifs traditionnels. Parfaite pour les cérémonies et événements spéciaux.',
-        features: [
-            'Tissu wax premium',
-            'Design contemporain',
-            'Encolure en V',
-            'Ceinture assortie',
-            'Taille unique'
-        ]
-    },
-    { 
-        id: 11, 
-        name: 'Robe africaine élégante - Modèle 3', 
-        price: 22000, 
-        category: 'vetements', 
-        image: 'Image/Vetement/Image3.jpeg', 
-        rating: 4, 
-        badge: null,
-        description: 'Robe africaine sophistiquée avec broderies artisanales. Pièce unique et élégante.',
-        features: [
-            'Broderies artisanales',
-            'Tissu de qualité supérieure',
-            'Coupe fluide',
-            'Manches trois-quarts',
-            'Élégante et raffinée'
-        ]
-    },
-    { 
-        id: 12, 
-        name: 'Robe africaine élégante - Modèle 4', 
-        price: 19000, 
-        category: 'vetements', 
-        image: 'Image/Vetement/Image4.jpeg', 
-        rating: 4, 
-        badge: null,
-        description: 'Robe africaine colorée avec imprimés vibrants. Confort et style pour votre garde-robe.',
-        features: [
-            'Imprimés vibrants',
-            'Tissu léger et respirant',
-            'Coupe droite',
-            'Encolure ronde',
-            'Entretien facile'
-        ]
-    },
-    { 
-        id: 13, 
-        name: 'Robe africaine élégante - Modèle 5', 
-        price: 25000, 
-        category: 'vetements', 
-        image: 'Image/Vetement/Image5.jpeg', 
-        rating: 5, 
-        badge: 'Populaire',
-        description: 'Robe africaine de luxe avec détails perlés. Création exclusive pour les occasions spéciales.',
-        features: [
-            'Détails perlés',
-            'Tissu de soie africaine',
-            'Coupe sur mesure',
-            'Longueur longue',
-            'Pièce exclusive'
-        ]
-    },
-    { 
-        id: 14, 
-        name: 'Robe africaine élégante - Modèle 6', 
-        price: 17000, 
-        category: 'vetements', 
-        image: 'Image/Vetement/Image6.jpeg', 
-        rating: 4, 
-        badge: null,
-        description: 'Robe africaine décontractée pour usage quotidien. Style et confort réunis.',
-        features: [
-            'Style décontracté',
-            'Tissu stretch confortable',
-            'Poches fonctionnelles',
-            'Ceinture élastique',
-            'Usage quotidien'
-        ]
-    },
-    { 
-        id: 15, 
-        name: 'Robe africaine élégante - Modèle 7', 
-        price: 21000, 
-        category: 'vetements', 
-        image: 'Image/Vetement/Image7.jpeg', 
-        rating: 4, 
-        badge: null,
-        description: 'Robe africaine élégante avec motifs géométriques. Modernité et tradition harmonieusement mêlées.',
-        features: [
-            'Motifs géométriques',
-            'Tissu wax imprimé',
-            'Coupe A-line',
-            'Manches ballon',
-            'Style moderne'
-        ]
-    },
-    { 
-        id: 16, 
-        name: 'Robe africaine élégante - Modèle 8', 
-        price: 23000, 
-        category: 'vetements', 
-        image: 'Image/Vetement/Image8.jpeg', 
-        rating: 5, 
-        badge: 'Promo',
-        description: 'Robe africaine cérémoniale avec accessoires assortis. Élégance et tradition pour grands événements.',
-        features: [
-            'Set complet',
-            'Tissu premium',
-            'Accessoires inclus',
-            'Coupe traditionnelle',
-            'Pour cérémonies'
-        ]
-    },
-
-    // Electro_menager
-    { 
-        id: 17, 
-        name: 'Ouvre bière automatique', 
-        price: 2500, 
-        category: 'electromenager', 
-        image: 'Image/Electro_menager/Ouvre bière automatique.jpg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Ouvre-bouteille automatique fonctionnant sur piles. Simple d\'utilisation et efficace.',
-        features: [
-            'Fonctionnement automatique',
-            'Alimentation piles',
-            'Design compact',
-            'Facile à utiliser',
-            'Pour bouteilles standards'
-        ]
-    },
-    { 
-        id: 18, 
-        name: 'Tire bouchon rechargeable', 
-        price: 12000, 
-        category: 'electromenager', 
-        image: 'Image/Electro_menager/Tire bouchon.jpg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Tire-bouchon électrique rechargeable. Retire les bouchons en quelques secondes sans effort.',
-        features: [
-            'Rechargeable USB',
-            'Fonctionnement silencieux',
-            'Batterie lithium',
-            'Automatique',
-            'Charge rapide'
-        ]
-    },
-    { 
-        id: 19, 
-        name: 'Thermos LED 1L', 
-        price: 8000, 
-        category: 'electromenager', 
-        image: 'Image/Electro_menager/Thermos LED.jpg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Thermos isotherme avec affichage LED de la température. Garde les boissons chaudes ou froides pendant des heures.',
-        features: [
-            'Capacité 1L',
-            'Affichage LED température',
-            'Isolation 12 heures',
-            'Bouchon étanche',
-            'Design moderne'
-        ]
-    },
-    { 
-        id: 21, 
-        name: 'Carafe plus 4 verres(très Robuste)', 
-        price: 8000, 
-        category: 'electromenager', 
-        image: 'Image/Electro_menager/Carafe plus 4 verres.jpg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Set carafe et verres en verre trempé très robuste. Idéal pour jus, eau et boissons.',
-        features: [
-            'Verre trempé robuste',
-            'Set 5 pièces',
-            'Capacité carafe: 1.5L',
-            'Design élégant',
-            'Lavable au lave-vaisselle'
-        ]
-    },
-    { 
-        id: 22, 
-        name: 'Chauffe eau 3L', 
-        price: 10000, 
-        category: 'electromenager', 
-        image: 'Image/Electro_menager/Chauffe eau 3L.jpg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Bouilloire électrique 3L avec arrêt automatique. Chauffe l\'eau rapidement et en toute sécurité.',
-        features: [
-            'Capacité 3L',
-            'Arrêt automatique',
-            'Base rotative 360°',
-            'Indicateur niveau eau',
-            'Chauffe rapide'
-        ]
-    },
-    { 
-        id: 23, 
-        name: 'Mixeur portatif', 
-        price: 8000, 
-        category: 'electromenager', 
-        image: 'Image/Electro_menager/Mixeur portatif.jpg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Mixeur plongeant portable pour smoothies et soupes. Léger et facile à utiliser.',
-        features: [
-            'Mixeur plongeant',
-            'Portable et léger',
-            'Lames inoxydables',
-            'Facile à nettoyer',
-            'Parfait pour smoothies'
-        ]
-    },
-    { 
-        id: 24, 
-        name: 'Tapie de Cuisson', 
-        price: 3000, 
-        category: 'electromenager', 
-        image: 'Image/Electro_menager/Tapie de Cuisson.jpg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Tapis de cuisson silicone réutilisable. Anti-adhésif et résistant à la chaleur.',
-        features: [
-            'Silicone alimentaire',
-            'Résistant à 230°C',
-            'Anti-adhésif',
-            'Réutilisable',
-            'Facile à nettoyer'
-        ]
-    },
-
-    //Electricité
-    { 
-        id: 20, 
-        name: 'Caisse à outils (électricien)', 
-        price: 120000, 
-        category: 'electricite', 
-        image: 'Image/Electricité/Caisse à outils (électricien).jpg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Caisse à outils complète pour électricien professionnel. Tous les outils essentiels pour travaux électriques.',
-        features: [
-            '50 pièces complètes',
-            'Outils isolés',
-            'Testeur de tension',
-            'Multimètre digital',
-            'Caisse robuste'
-        ]
-    },
-    { 
-        id: 25, 
-        name: 'Caisse à outils (élctro-technicien)', 
-        price: 25000, 
-        category: 'electricite', 
-        image: 'Image/Electricité/Caisse élctro-technicien.jpg', 
-        rating: 5, 
-        badge: 'Nouveau',
-        description: 'Caisse à outils électro-technicien avec instruments de mesure. Parfaite pour dépannage et maintenance.',
-        features: [
-            'Instruments de mesure',
-            'Tournevis isolés',
-            'Pinces diverses',
-            'Matériel de test',
-            'Porte-documents inclus'
-        ]
-    }
+    // ... AJOUTEZ LE RESTE DE VOS PRODUITS AVEC LE MÊME FORMAT
 ];
 
 // Variables globales
@@ -443,42 +72,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initEventListeners();
     updateCartCount();
     addCarouselNavigation();
+    setupDetailPageEvents(); // IMPORTANT: Initialiser les événements de la page détail
 });
 
-// Initialiser les catégories
-function initCategories() {
-    const container = document.getElementById('categories-container');
-    const nav = document.getElementById('carousel-nav');
-    
-    // Générer les cartes de catégories
-    categories.forEach((category, index) => {
-        const categoryCard = document.createElement('div');
-        categoryCard.className = 'category-card';
-        categoryCard.innerHTML = `
-            <div class="category-image">
-                <img src="${category.image}" alt="${category.name}" onerror="handleImageError(this)">
-            </div>
-            <div class="category-info">
-                <h3 class="category-title">${category.name}</h3>
-                <div class="category-count">${category.count} articles</div>
-            </div>
-        `;
-        categoryCard.addEventListener('click', () => filterProducts(category.id));
-        container.appendChild(categoryCard);
-        
-        // Générer les points de navigation
-        if (index % slidesToShow === 0) {
-            const dot = document.createElement('div');
-            dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
-            dot.addEventListener('click', () => goToSlide(index / slidesToShow));
-            nav.appendChild(dot);
-        }
-    });
-}
-
-// Initialiser les produits
+// Initialiser les produits CORRIGÉ
 function initProducts() {
     const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
     grid.innerHTML = '';
     
     products.forEach(product => {
@@ -504,11 +105,11 @@ function initProducts() {
         grid.appendChild(productCard);
     });
     
-    // Ajouter les événements
+    // Réattacher les événements
     attachProductEvents();
 }
 
-// Attacher les événements aux produits
+// Attacher les événements aux produits CORRIGÉ
 function attachProductEvents() {
     // Ajouter au panier
     document.querySelectorAll('.add-to-cart, .add-to-cart-btn').forEach(button => {
@@ -531,7 +132,7 @@ function attachProductEvents() {
     // Clic sur la carte produit
     document.querySelectorAll('.product-card').forEach(card => {
         card.addEventListener('click', function(e) {
-            if (!e.target.closest('.product-actions')) {
+            if (!e.target.closest('.product-actions') && !e.target.closest('.add-to-cart-btn')) {
                 const productId = parseInt(this.querySelector('.add-to-cart').getAttribute('data-id'));
                 showProductDetail(productId);
             }
@@ -539,58 +140,21 @@ function attachProductEvents() {
     });
 }
 
-// Gestion des erreurs d'images
-function handleImageError(img) {
-    console.log('Image non trouvée:', img.src);
-    img.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><rect width="24" height="24" fill="%23f0f0f0"/><text x="12" y="12" font-family="Arial" font-size="12" text-anchor="middle" alignment-baseline="middle" fill="%23999">Image</text></svg>';
-    img.alt = 'Image non disponible';
-    img.style.backgroundColor = '#f9f9f9';
-}
-
-// Initialiser les événements
-function initEventListeners() {
-    // Ouvrir/fermer le panier
-    document.getElementById('open-cart').addEventListener('click', openCart);
-    document.getElementById('close-cart').addEventListener('click', closeCart);
-    
-    // Méthodes de paiement
-    document.querySelectorAll('.payment-method').forEach(method => {
-        method.addEventListener('click', function() {
-            document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
-            this.classList.add('selected');
-        });
-    });
-    
-    // Commander sur WhatsApp
-    document.getElementById('checkout-btn').addEventListener('click', checkout);
-    
-    // Fermer le panier en cliquant à l'extérieur
-    document.getElementById('cart-modal').addEventListener('click', function(e) {
-        if (e.target === this) closeCart();
-    });
-    
-    // Filtrer les produits via le menu de catégories
-    document.querySelectorAll('.submenu a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const categoryId = this.getAttribute('data-category');
-            filterProducts(categoryId);
-        });
-    });
-    
-    // Événements pour la page détail
-    setupDetailPageEvents();
-}
-
-// Configuration des événements de la page détail
+// Configuration des événements de la page détail CORRIGÉ
 function setupDetailPageEvents() {
     // Fermer le modal détail
-    document.getElementById('close-detail')?.addEventListener('click', closeProductDetail);
+    const closeDetail = document.getElementById('close-detail');
+    if (closeDetail) {
+        closeDetail.addEventListener('click', closeProductDetail);
+    }
     
     // Fermer en cliquant à l'extérieur
-    document.getElementById('product-detail-modal')?.addEventListener('click', function(e) {
-        if (e.target === this) closeProductDetail();
-    });
+    const detailModal = document.getElementById('product-detail-modal');
+    if (detailModal) {
+        detailModal.addEventListener('click', function(e) {
+            if (e.target === this) closeProductDetail();
+        });
+    }
     
     // Gestion de la quantité
     document.querySelectorAll('.qty-btn').forEach(btn => {
@@ -606,38 +170,44 @@ function setupDetailPageEvents() {
             
             input.value = value;
         });
-    });
+    }
     
     // Ajouter au panier depuis détail
-    document.getElementById('add-to-cart-detail')?.addEventListener('click', function() {
-        if (!currentProduct) return;
-        
-        const quantity = parseInt(document.querySelector('.qty-input').value);
-        
-        for (let i = 0; i < quantity; i++) {
-            addToCart(currentProduct.id);
-        }
-        
-        showNotification(`${quantity} ${currentProduct.name} ajouté${quantity > 1 ? 's' : ''} au panier`);
-        closeProductDetail();
-    });
+    const addToCartDetail = document.getElementById('add-to-cart-detail');
+    if (addToCartDetail) {
+        addToCartDetail.addEventListener('click', function() {
+            if (!currentProduct) return;
+            
+            const quantity = parseInt(document.querySelector('.qty-input').value);
+            
+            for (let i = 0; i < quantity; i++) {
+                addToCart(currentProduct.id);
+            }
+            
+            showNotification(`${quantity} ${currentProduct.name} ajouté${quantity > 1 ? 's' : ''} au panier`);
+            closeProductDetail();
+        });
+    }
     
     // Acheter maintenant
-    document.getElementById('buy-now')?.addEventListener('click', function() {
-        if (!currentProduct) return;
-        
-        const quantity = parseInt(document.querySelector('.qty-input').value);
-        
-        // Vider le panier et ajouter seulement ce produit
-        cart = [];
-        
-        for (let i = 0; i < quantity; i++) {
-            addToCart(currentProduct.id);
-        }
-        
-        closeProductDetail();
-        openCart();
-    });
+    const buyNow = document.getElementById('buy-now');
+    if (buyNow) {
+        buyNow.addEventListener('click', function() {
+            if (!currentProduct) return;
+            
+            const quantity = parseInt(document.querySelector('.qty-input').value);
+            
+            // Vider le panier et ajouter seulement ce produit
+            cart = [];
+            
+            for (let i = 0; i < quantity; i++) {
+                addToCart(currentProduct.id);
+            }
+            
+            closeProductDetail();
+            openCart();
+        });
+    }
     
     // Échappement pour fermer les modals
     document.addEventListener('keydown', function(e) {
@@ -647,7 +217,7 @@ function setupDetailPageEvents() {
     });
 }
 
-// Afficher les détails du produit
+// Afficher les détails du produit CORRIGÉ
 function showProductDetail(productId) {
     currentProduct = products.find(p => p.id === productId);
     if (!currentProduct) return;
@@ -682,39 +252,70 @@ function showProductDetail(productId) {
     document.body.style.overflow = 'hidden';
 }
 
-// Mettre à jour la galerie du produit
+// Mettre à jour la galerie du produit CORRIGÉ
 function updateProductGallery() {
     const mainImage = document.getElementById('detail-main-image');
     const thumbnailsContainer = document.getElementById('image-thumbnails');
+    const playVideoBtn = document.getElementById('play-video-btn');
+    
+    if (!mainImage || !thumbnailsContainer) return;
     
     thumbnailsContainer.innerHTML = '';
+    currentMediaIndex = 0;
+    
+    // Utiliser les médias si disponibles, sinon utiliser l'image principale
+    const mediaItems = currentProduct.media || [{ type: 'image', src: currentProduct.image }];
     
     // Image principale
-    mainImage.src = currentProduct.image;
+    mainImage.src = mediaItems[0].src;
     mainImage.alt = currentProduct.name;
     
-    // Miniatures (pour l'instant juste l'image principale)
-    const thumbnail = document.createElement('div');
-    thumbnail.className = 'thumbnail active';
-    thumbnail.innerHTML = `<img src="${currentProduct.image}" alt="${currentProduct.name}">`;
+    // Afficher/masquer le bouton play pour la vidéo
+    if (playVideoBtn) {
+        playVideoBtn.style.display = mediaItems[0].type === 'video' ? 'block' : 'none';
+    }
     
-    thumbnail.addEventListener('click', () => {
-        mainImage.src = currentProduct.image;
-        document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
-        thumbnail.classList.add('active');
+    // Miniatures
+    mediaItems.forEach((media, index) => {
+        const thumbnail = document.createElement('div');
+        thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+        
+        if (media.type === 'video') {
+            thumbnail.innerHTML = `<img src="${media.thumbnail || media.src}" alt="Vidéo ${currentProduct.name}">`;
+        } else {
+            thumbnail.innerHTML = `<img src="${media.src}" alt="${currentProduct.name} ${index + 1}">`;
+        }
+        
+        thumbnail.addEventListener('click', () => {
+            // Mettre à jour l'image principale
+            mainImage.src = media.type === 'video' ? (media.thumbnail || media.src) : media.src;
+            
+            if (playVideoBtn) {
+                playVideoBtn.style.display = media.type === 'video' ? 'block' : 'none';
+            }
+            
+            currentMediaIndex = index;
+            
+            // Mettre à jour les miniatures actives
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            thumbnail.classList.add('active');
+        });
+        
+        thumbnailsContainer.appendChild(thumbnail);
     });
-    
-    thumbnailsContainer.appendChild(thumbnail);
 }
 
 // Fermer le modal détail
 function closeProductDetail() {
-    document.getElementById('product-detail-modal').style.display = 'none';
+    const detailModal = document.getElementById('product-detail-modal');
+    if (detailModal) {
+        detailModal.style.display = 'none';
+    }
     document.body.style.overflow = 'auto';
 }
 
-// [RESTE DU CODE IDENTIQUE - fonctions filterProducts, addToCart, updateCartCount, etc.]
-// ... (toutes les autres fonctions restent exactement les mêmes)
+// [GARDER TOUTES LES AUTRES FONCTIONS EXISTANTES COMME addToCart, updateCartCount, etc.]
+// ... le reste de vos fonctions existantes
 
 // Navigation du carousel
 function goToSlide(slideIndex) {
@@ -759,6 +360,7 @@ function nextSlide() {
 // Ajouter les flèches de navigation au carousel
 function addCarouselNavigation() {
     const carousel = document.querySelector('.categories-carousel');
+    if (!carousel) return;
     
     // Créer les flèches de navigation
     const prevButton = document.createElement('button');

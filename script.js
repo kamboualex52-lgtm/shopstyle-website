@@ -54,7 +54,7 @@ const products = [
         media: [
             { type: 'image', src: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
         ]
-    },
+    }
     // ... AJOUTEZ LE RESTE DE VOS PRODUITS AVEC LE MÊME FORMAT
 ];
 

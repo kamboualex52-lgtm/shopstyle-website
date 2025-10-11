@@ -322,7 +322,7 @@ const products = [
         name: 'Ouvre bière automatique', 
         price: 2500, 
         category: 'electromenager', 
-        image: 'Image/Electro_menager/Ouvre bière automatique.jpg', 
+        image: 'Image/Electro_menager/Ouvre_auto/Ouvre bière automatique.jpg', 
         rating: 5, 
         badge: 'Nouveau',
         description: 'Ouvre-bouteille automatique fonctionnant sur piles. Simple d\'utilisation et efficace.',
@@ -427,7 +427,7 @@ const products = [
         name: 'Mixeur portatif', 
         price: 8000, 
         category: 'electromenager', 
-        image: 'Image/Electro_menager/Mixeur portatif.jpg', 
+        image: 'Image/Electro_menager/Mixeur_p/Mixeur portatif.jpg', 
         rating: 5, 
         badge: 'Nouveau',
         description: 'Mixeur plongeant portable pour smoothies et soupes. Léger et facile à utiliser.',
@@ -439,7 +439,8 @@ const products = [
             'Parfait pour smoothies'
         ],
         media: [
-            { type: 'image', src: 'Image/Electro_menager/Mixeur portatif.jpg' }
+            { type: 'image', src: 'Image/Electro_menager/Mixeur_p/Mixeur portatif.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Mixeur_p/Mixeur_color.jpg.jpg' }
         ]
     },
     { 
@@ -469,7 +470,7 @@ const products = [
         name: 'Caisse à outils (électricien)', 
         price: 120000, 
         category: 'electricite', 
-        image: 'Image/Electricité/Caisse à outils (électricien).jpg', 
+        image: 'Image/Electricité/Cais_élec/Caisse à outils (électricien).jpg', 
         rating: 5, 
         badge: 'Nouveau',
         description: 'Caisse à outils complète pour électricien professionnel. Tous les outils essentiels pour travaux électriques.',

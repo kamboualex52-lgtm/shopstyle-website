@@ -513,6 +513,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCategories();
     initProducts();
     initEventListeners();
+    initSearch();
     updateCartCount();
     addCarouselNavigation();
     setupDetailPageEvents();
@@ -771,6 +772,166 @@ function closeCart() {
         cartModal.style.display = 'none';
     }
 }
+
+
+// ==================== FONCTIONNALITÉ DE RECHERCHE ====================
+
+// Initialiser la recherche
+function initSearch() {
+    const searchInput = document.querySelector('.search-bar input');
+    const searchButton = document.querySelector('.search-bar button');
+    
+    if (searchInput && searchButton) {
+        // Recherche au clic sur le bouton
+        searchButton.addEventListener('click', performSearch);
+        
+        // Recherche avec la touche Entrée
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        // Recherche en temps réel (optionnel)
+        searchInput.addEventListener('input', function() {
+            if (this.value.length >= 3) {
+                performSearch();
+            } else if (this.value.length === 0) {
+                // Réinitialiser l'affichage si la recherche est vide
+                initProducts();
+            }
+        });
+    }
+}
+
+// Exécuter la recherche
+function performSearch() {
+    const searchInput = document.querySelector('.search-bar input');
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    
+    if (searchTerm === '') {
+        // Si la recherche est vide, réinitialiser l'affichage
+        initProducts();
+        return;
+    }
+    
+    // Filtrer les produits selon le terme de recherche
+    const filteredProducts = products.filter(product => {
+        // Recherche dans le nom
+        const nameMatch = product.name.toLowerCase().includes(searchTerm);
+        
+        // Recherche dans la description
+        const descriptionMatch = product.description.toLowerCase().includes(searchTerm);
+        
+        // Recherche dans la catégorie
+        const categoryMatch = product.category.toLowerCase().includes(searchTerm);
+        
+        // Recherche dans les caractéristiques
+        const featuresMatch = product.features && product.features.some(feature => 
+            feature.toLowerCase().includes(searchTerm)
+        );
+        
+        return nameMatch || descriptionMatch || categoryMatch || featuresMatch;
+    });
+    
+    // Afficher les résultats
+    displaySearchResults(filteredProducts, searchTerm);
+}
+
+// Afficher les résultats de recherche
+function displaySearchResults(filteredProducts, searchTerm) {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    grid.innerHTML = '';
+    
+    if (filteredProducts.length === 0) {
+        // Aucun résultat trouvé
+        grid.innerHTML = `
+            <div class="no-results" style="grid-column: 1/-1; text-align: center; padding: 40px;">
+                <div style="font-size: 48px; color: #ccc; margin-bottom: 20px;">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 style="color: #666; margin-bottom: 10px;">Aucun résultat trouvé</h3>
+                <p style="color: #999;">Aucun produit ne correspond à "${searchTerm}"</p>
+                <button class="btn" onclick="clearSearch()" style="margin-top: 20px;">
+                    Voir tous les produits
+                </button>
+            </div>
+        `;
+        return;
+    }
+    
+    // Afficher le nombre de résultats
+    const resultsHeader = document.createElement('div');
+    resultsHeader.className = 'search-results-header';
+    resultsHeader.style.cssText = `
+        grid-column: 1/-1;
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        border-left: 4px solid var(--primary);
+    `;
+    resultsHeader.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <h3 style="margin: 0; color: #333;">Résultats de recherche</h3>
+                <p style="margin: 5px 0 0 0; color: #666;">
+                    ${filteredProducts.length} produit${filteredProducts.length > 1 ? 's' : ''} trouvé${filteredProducts.length > 1 ? 's' : ''} pour "${searchTerm}"
+                </p>
+            </div>
+            <button class="btn btn-outline" onclick="clearSearch()">
+                <i class="fas fa-times"></i> Effacer
+            </button>
+        </div>
+    `;
+    grid.appendChild(resultsHeader);
+    
+    // Afficher les produits filtrés
+    filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}" onerror="handleImageError(this)">
+                <div class="product-actions">
+                    <button class="add-to-cart" data-id="${product.id}"><i class="fas fa-cart-plus"></i></button>
+                    <button class="view-detail" data-id="${product.id}"><i class="fas fa-eye"></i></button>
+                    <button><i class="fas fa-heart"></i></button>
+                </div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">${highlightSearchTerm(product.name, searchTerm)}</h3>
+                <div class="product-rating">${'★'.repeat(product.rating)}${'☆'.repeat(5-product.rating)}</div>
+                <div class="product-price">${product.price.toLocaleString()} FCFA</div>
+                <button class="btn add-to-cart-btn" data-id="${product.id}">Ajouter au panier</button>
+            </div>
+        `;
+        grid.appendChild(productCard);
+    });
+    
+    attachProductEvents();
+}
+
+// Surligner le terme de recherche dans les résultats
+function highlightSearchTerm(text, searchTerm) {
+    if (!searchTerm) return text;
+    
+    const regex = new RegExp(`(${searchTerm})`, 'gi');
+    return text.replace(regex, '<mark class="search-highlight">$1</mark>');
+}
+
+// Effacer la recherche et réinitialiser l'affichage
+function clearSearch() {
+    const searchInput = document.querySelector('.search-bar input');
+    if (searchInput) {
+        searchInput.value = '';
+    }
+    initProducts();
+}
+
 
 // ==================== FONCTIONS PAGE DÉTAIL ====================
 function setupDetailPageEvents() {

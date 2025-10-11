@@ -774,7 +774,6 @@ function closeCart() {
     }
 }
 
-
 // ==================== GESTION DU MENU DE NAVIGATION ====================
 
 function initNavigation() {
@@ -1190,101 +1189,6 @@ function makePhoneCall() {
     window.open('tel:+242068448698');
 }
 
-
-
-// ==================== CSS SUPPLEMENTAIRE POUR LE MENU ====================
-
-// Ajoutez ces styles dans votre CSS
-const navigationStyles = `
-/* Sous-menu actif */
-.submenu.active {
-    display: block;
-    animation: fadeInDown 0.3s ease;
-}
-
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Menu mobile */
-.menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    font-size: 24px;
-    color: var(--primary);
-    cursor: pointer;
-    padding: 10px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-    
-    nav ul {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        box-shadow: var(--shadow);
-        flex-direction: column;
-        padding: 10px 0;
-    }
-    
-    nav.active ul {
-        display: flex;
-    }
-    
-    .submenu {
-        position: static;
-        box-shadow: none;
-        background: #f8f9fa;
-    }
-}
-
-/* Style pour les sections */
-.about-section, .contact-section {
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-`;
-
-// Injecter les styles
-function injectNavigationStyles() {
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = navigationStyles;
-    document.head.appendChild(styleSheet);
-}
-
-// Appeler cette fonction aussi
-document.addEventListener('DOMContentLoaded', function() {
-    injectNavigationStyles();
-});
-
-
-
-
 // ==================== FONCTIONNALITÉ DE RECHERCHE ====================
 
 // Initialiser la recherche
@@ -1442,7 +1346,6 @@ function clearSearch() {
     }
     initProducts();
 }
-
 
 // ==================== FONCTIONS PAGE DÉTAIL ====================
 function setupDetailPageEvents() {
@@ -1838,3 +1741,112 @@ function checkout() {
     
     window.open(url, '_blank');
 }
+
+// ==================== INJECTION DES STYLES CSS ====================
+
+// Injecter les styles CSS pour la navigation
+function injectNavigationStyles() {
+    const navigationStyles = `
+    /* Sous-menu actif */
+    .submenu.active {
+        display: block;
+        animation: fadeInDown 0.3s ease;
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Menu mobile */
+    .menu-toggle {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: var(--primary);
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .menu-toggle {
+            display: block;
+        }
+        
+        nav ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: var(--shadow);
+            flex-direction: column;
+            padding: 10px 0;
+        }
+        
+        nav.active ul {
+            display: flex;
+        }
+        
+        .submenu {
+            position: static;
+            box-shadow: none;
+            background: #f8f9fa;
+        }
+    }
+
+    /* Style pour les sections */
+    .about-section, .contact-section {
+        animation: fadeIn 0.5s ease;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Styles pour la recherche */
+    .search-highlight {
+        background-color: #fff3cd;
+        padding: 2px 4px;
+        border-radius: 3px;
+        font-weight: bold;
+        color: #856404;
+    }
+
+    .btn-outline {
+        background: transparent;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+    }
+
+    .btn-outline:hover {
+        background: var(--primary);
+        color: white;
+    }
+    `;
+
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = navigationStyles;
+    document.head.appendChild(styleSheet);
+}
+
+// Appeler l'injection des styles
+document.addEventListener('DOMContentLoaded', function() {
+    injectNavigationStyles();
+});

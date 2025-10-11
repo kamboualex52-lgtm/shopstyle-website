@@ -77,15 +77,90 @@
         </div>
     </section>
 
-    <!-- Section produits populaires -->
-    <section class="products-section">
-        <div class="container">
-            <h2 class="section-title">Produits Populaires</h2>
-            <div class="products-grid" id="products-grid">
-                <!-- Les produits seront générés par JavaScript -->
+   <!-- Page détail produit -->
+    <div class="product-detail-modal" id="product-detail-modal">
+        <div class="product-detail-content">
+            <button class="close-detail" id="close-detail">&times;</button>
+            
+            <div class="product-detail-container">
+                <!-- Galerie d'images et vidéos -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img id="detail-main-image" src="" alt="">
+                        <button class="play-video-btn" id="play-video-btn" style="display: none;">
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                    <div class="image-thumbnails" id="image-thumbnails">
+                        <!-- Les miniatures seront générées dynamiquement -->
+                    </div>
+                </div>
+                
+                <!-- Informations du produit -->
+                <div class="product-detail-info">
+                    <h1 id="detail-product-name"></h1>
+                    <div class="product-detail-rating" id="detail-product-rating"></div>
+                    <div class="product-detail-price" id="detail-product-price"></div>
+                    
+                    <div class="product-description">
+                        <h3>Description</h3>
+                        <p id="detail-product-description"></p>
+                    </div>
+                    
+                    <div class="product-features">
+                        <h3>Caractéristiques</h3>
+                        <ul id="detail-product-features">
+                            <!-- Les caractéristiques seront générées dynamiquement -->
+                        </ul>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <div class="quantity-selector">
+                            <label>Quantité:</label>
+                            <div class="quantity-controls">
+                                <button class="qty-btn minus" type="button">-</button>
+                                <input type="number" class="qty-input" value="1" min="1" max="99">
+                                <button class="qty-btn plus" type="button">+</button>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-primary" id="add-to-cart-detail">
+                            <i class="fas fa-cart-plus"></i> Ajouter au panier
+                        </button>
+                        
+                        <button class="btn btn-success" id="buy-now">
+                            <i class="fas fa-bolt"></i> Acheter maintenant
+                        </button>
+                    </div>
+                    
+                    <div class="product-meta">
+                        <div class="meta-item">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>Livraison gratuite à partir de 50,000 FCFA</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-undo"></i>
+                            <span>Retour gratuit sous 14 jours</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Garantie 1 an</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
+    
+    <!-- Modal vidéo -->
+    <div class="video-modal" id="video-modal">
+        <div class="video-modal-content">
+            <button class="close-video" id="close-video">&times;</button>
+            <video id="product-video" controls>
+                Votre navigateur ne supporte pas la lecture de vidéos.
+            </video>
+        </div>
+    </div>
 
     <!-- Newsletter -->
     <section class="newsletter">

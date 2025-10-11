@@ -476,7 +476,11 @@ const products = [
             'Caisse robuste'
         ],
         media: [
-            { type: 'image', src: 'Image/Electricité/Caisse à outils (électricien).jpg' }
+            { type: 'image', src: 'Image/Electricité/Caisse à outils (électricien).jpg' },
+            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue1.jpgjpg' },
+            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue2.jpgjpg' },
+            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue3.jpg.jpg' },
+            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue4.jpg.jpg' }
         ]
     },
     { 

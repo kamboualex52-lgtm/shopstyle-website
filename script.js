@@ -334,7 +334,12 @@ const products = [
             'Pour bouteilles standards'
         ],
         media: [
-            { type: 'image', src: 'Image/Electro_menager/Ouvre bière automatique.jpg' }
+            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre bière automatique.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre1.jpg.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre2.jpg.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre3.jpg.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre4.jpg.jpg' }
+            
         ]
     },
     { 
@@ -476,7 +481,7 @@ const products = [
             'Caisse robuste'
         ],
         media: [
-            { type: 'image', src: 'Image/Electricité/Caisse à outils (électricien).jpg' },
+            { type: 'image', src: 'Image/Electricité/Cais_élec/Caisse à outils (électricien).jpg' },
             { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue1.jpgjpg' },
             { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue2.jpgjpg' },
             { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue3.jpg.jpg' },

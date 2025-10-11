@@ -937,7 +937,7 @@ function showHomePage() {
 // Nouveautés - VERSION AMÉLIORÉE
 function showNewProducts() {
     const newProducts = products.filter(product => 
-        product.badge === 'Nouveau' || product.badge === 'Nouveauté' || product.badge === 'Populaire'
+        product.badge === 'Nouveau' || product.badge === 'Nouveauté' //|| product.badge === 'Populaire'
     );
     
     if (newProducts.length === 0) {
@@ -953,8 +953,8 @@ function showNewProducts() {
 // Promotions - VERSION AMÉLIORÉE
 function showPromotions() {
     const promoProducts = products.filter(product => 
-        product.badge === 'Promo' || product.badge === 'Promotion' || 
-        product.price < 15000 // Produits à moins de 15,000 FCFA considérés en promo
+        product.badge === 'Promo' || product.badge === 'Promotion'
+        //product.price < 15000// Produits à moins de 15,000 FCFA considérés en promo
     );
     
     displayFilteredProducts(promoProducts, 'Promotions');

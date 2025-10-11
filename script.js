@@ -774,6 +774,528 @@ function closeCart() {
 }
 
 
+// ==================== GESTION DU MENU DE NAVIGATION ====================
+
+function initNavigation() {
+    // Gestion du menu responsive
+    initMobileMenu();
+    
+    // Gestion des liens de navigation
+    initNavLinks();
+    
+    // Gestion du sous-menu Catégories
+    initCategoriesMenu();
+}
+
+// Menu mobile
+function initMobileMenu() {
+    const menuToggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('nav');
+    
+    if (menuToggle) {
+        menuToggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+    }
+    
+    // Fermer le menu en cliquant à l'extérieur
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('nav') && !e.target.closest('.menu-toggle')) {
+            nav.classList.remove('active');
+            if (menuToggle) menuToggle.classList.remove('active');
+        }
+    });
+}
+
+// Gestion des liens de navigation
+function initNavLinks() {
+    // Accueil
+    const accueilLink = document.querySelector('nav a[href="#"]');
+    if (accueilLink) {
+        accueilLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showHomePage();
+        });
+    }
+    
+    // Nouveautés
+    const nouveautesLink = document.querySelector('nav li:nth-child(3) a');
+    if (nouveautesLink) {
+        nouveautesLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showNewProducts();
+        });
+    }
+    
+    // Promotions
+    const promotionsLink = document.querySelector('nav li:nth-child(4) a');
+    if (promotionsLink) {
+        promotionsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPromotions();
+        });
+    }
+    
+    // À propos
+    const aboutLink = document.querySelector('nav li:nth-child(5) a');
+    if (aboutLink) {
+        aboutLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showAbout();
+        });
+    }
+    
+    // Contact
+    const contactLink = document.querySelector('nav li:nth-child(6) a');
+    if (contactLink) {
+        contactLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showContact();
+        });
+    }
+}
+
+// Gestion du sous-menu Catégories
+function initCategoriesMenu() {
+    const categoriesLink = document.querySelector('nav li:nth-child(2) a');
+    const submenu = document.querySelector('.submenu');
+    
+    if (categoriesLink && submenu) {
+        // Ouvrir/fermer le sous-menu au clic
+        categoriesLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            submenu.classList.toggle('active');
+        });
+        
+        // Fermer le sous-menu en cliquant ailleurs
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('nav li:nth-child(2)')) {
+                submenu.classList.remove('active');
+            }
+        });
+    }
+}
+
+// ==================== FONCTIONS DES PAGES ====================
+
+// Page d'accueil
+function showHomePage() {
+    // Réinitialiser l'affichage des produits
+    initProducts();
+    
+    // Afficher les catégories
+    const categoriesSection = document.querySelector('.categories-section');
+    if (categoriesSection) {
+        categoriesSection.style.display = 'block';
+    }
+    
+    // Cacher les autres sections si elles existent
+    hideAllSections();
+    
+    // Mettre à jour le titre si nécessaire
+    updatePageTitle('Accueil');
+    
+    // Scroll vers le haut
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    console.log('Navigation: Accueil');
+}
+
+// Nouveautés
+function showNewProducts() {
+    const newProducts = products.filter(product => 
+        product.badge === 'Nouveau' || product.badge === 'Nouveauté'
+    );
+    
+    displayFilteredProducts(newProducts, 'Nouveautés');
+    
+    console.log('Navigation: Nouveautés -', newProducts.length, 'produits');
+}
+
+// Promotions
+function showPromotions() {
+    const promoProducts = products.filter(product => 
+        product.badge === 'Promo' || product.badge === 'Promotion' || 
+        product.price < 10000 // Exemple: produits moins chers considérés en promo
+    );
+    
+    displayFilteredProducts(promoProducts, 'Promotions');
+    
+    console.log('Navigation: Promotions -', promoProducts.length, 'produits');
+}
+
+// Page À propos
+function showAbout() {
+    hideAllSections();
+    
+    const aboutHTML = `
+        <div class="about-section" style="padding: 40px 20px; max-width: 800px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">À Propos de KWAD</h2>
+            
+            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: var(--shadow);">
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <div style="font-size: 48px; color: var(--primary); margin-bottom: 15px;">
+                        🛍️
+                    </div>
+                    <h3 style="color: #333; margin-bottom: 10px;">Votre Boutique en Ligne de Confiance</h3>
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">📖 Notre Histoire</h4>
+                    <p style="line-height: 1.6; color: #666;">
+                        KWAD est née de la passion pour offrir des produits de qualité à des prix accessibles. 
+                        Depuis notre création, nous nous engageons à fournir une expérience d'achat exceptionnelle 
+                        à tous nos clients.
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">🎯 Notre Mission</h4>
+                    <p style="line-height: 1.6; color: #666;">
+                        Rendre le shopping en ligne simple, sécurisé et agréable. Nous sélectionnons 
+                        soigneusement chaque produit pour vous garantir qualité et satisfaction.
+                    </p>
+                </div>
+                
+                <div style="margin-bottom: 25px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">⭐ Nos Valeurs</h4>
+                    <ul style="line-height: 1.6; color: #666; padding-left: 20px;">
+                        <li><strong>Qualité :</strong> Des produits rigoureusement sélectionnés</li>
+                        <li><strong>Service :</strong> Un support client réactif et attentionné</li>
+                        <li><strong>Innovation :</strong> Une plateforme constamment améliorée</li>
+                        <li><strong>Confiance :</strong> Des transactions sécurisées et transparentes</li>
+                    </ul>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                        <div style="font-size: 24px; color: var(--primary); margin-bottom: 10px;">${products.length}+</div>
+                        <div style="color: #666;">Produits</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                        <div style="font-size: 24px; color: var(--primary); margin-bottom: 10px;">${categories.length}</div>
+                        <div style="color: #666;">Catégories</div>
+                    </div>
+                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                        <div style="font-size: 24px; color: var(--primary); margin-bottom: 10px;">100%</div>
+                        <div style="color: #666;">Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    const grid = document.getElementById('products-grid');
+    if (grid) {
+        grid.innerHTML = aboutHTML;
+    }
+    
+    updatePageTitle('À Propos');
+    console.log('Navigation: À Propos');
+}
+
+// Page Contact
+function showContact() {
+    hideAllSections();
+    
+    const contactHTML = `
+        <div class="contact-section" style="padding: 40px 20px; max-width: 800px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Contactez-Nous</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">📞 Informations de Contact</h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Téléphone</div>
+                                <div style="color: #666;">+242 06 844 8698</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">WhatsApp</div>
+                                <div style="color: #666;">+242 06 844 8698</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold; color: #333;">Email</div>
+                                <div style="color: #666;">contact@kwad.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 20px;">🕒 Horaires d'Ouverture</h3>
+                    
+                    <div style="color: #666;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                            <span>Lundi - Vendredi</span>
+                            <span style="font-weight: bold;">8h00 - 18h00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
+                            <span>Samedi</span>
+                            <span style="font-weight: bold;">9h00 - 16h00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between;">
+                            <span>Dimanche</span>
+                            <span style="font-weight: bold;">Fermé</span>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 25px; padding: 15px; background: #fff3cd; border-radius: 5px; border-left: 4px solid #ffc107;">
+                        <div style="color: #856404; font-size: 14px;">
+                            <strong>💡 Conseil :</strong> Pour une réponse rapide, contactez-nous via WhatsApp !
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: var(--shadow);">
+                <h3 style="color: var(--primary); margin-bottom: 20px;">📍 Nous Contacter Directement</h3>
+                <div style="text-align: center;">
+                    <button class="btn" onclick="openWhatsAppContact()" style="margin: 5px;">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </button>
+                    <button class="btn" onclick="makePhoneCall()" style="margin: 5px;">
+                        <i class="fas fa-phone"></i> Appeler
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    const grid = document.getElementById('products-grid');
+    if (grid) {
+        grid.innerHTML = contactHTML;
+    }
+    
+    updatePageTitle('Contact');
+    console.log('Navigation: Contact');
+}
+
+// ==================== FONCTIONS UTILITAIRES POUR LA NAVIGATION ====================
+
+// Afficher les produits filtrés
+function displayFilteredProducts(filteredProducts, title) {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    // Cacher la section catégories
+    const categoriesSection = document.querySelector('.categories-section');
+    if (categoriesSection) {
+        categoriesSection.style.display = 'none';
+    }
+    
+    grid.innerHTML = '';
+    
+    if (filteredProducts.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
+                <div style="font-size: 64px; color: #ddd; margin-bottom: 20px;">😔</div>
+                <h3 style="color: #666; margin-bottom: 10px;">Aucun produit trouvé</h3>
+                <p style="color: #999; margin-bottom: 20px;">Nous n'avons pas de produits dans cette section pour le moment.</p>
+                <button class="btn" onclick="showHomePage()">
+                    <i class="fas fa-home"></i> Retour à l'accueil
+                </button>
+            </div>
+        `;
+        return;
+    }
+    
+    // En-tête de section
+    const sectionHeader = document.createElement('div');
+    sectionHeader.style.cssText = `
+        grid-column: 1/-1;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 10px;
+        text-align: center;
+    `;
+    sectionHeader.innerHTML = `
+        <h2 style="margin: 0 0 10px 0; font-size: 24px;">${title}</h2>
+        <p style="margin: 0; opacity: 0.9;">${filteredProducts.length} produit${filteredProducts.length > 1 ? 's' : ''} disponible${filteredProducts.length > 1 ? 's' : ''}</p>
+    `;
+    grid.appendChild(sectionHeader);
+    
+    // Afficher les produits
+    filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}" onerror="handleImageError(this)">
+                <div class="product-actions">
+                    <button class="add-to-cart" data-id="${product.id}"><i class="fas fa-cart-plus"></i></button>
+                    <button class="view-detail" data-id="${product.id}"><i class="fas fa-eye"></i></button>
+                    <button><i class="fas fa-heart"></i></button>
+                </div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">${product.name}</h3>
+                <div class="product-rating">${'★'.repeat(product.rating)}${'☆'.repeat(5-product.rating)}</div>
+                <div class="product-price">${product.price.toLocaleString()} FCFA</div>
+                <button class="btn add-to-cart-btn" data-id="${product.id}">Ajouter au panier</button>
+            </div>
+        `;
+        grid.appendChild(productCard);
+    });
+    
+    attachProductEvents();
+    updatePageTitle(title);
+}
+
+// Cacher toutes les sections
+function hideAllSections() {
+    const categoriesSection = document.querySelector('.categories-section');
+    if (categoriesSection) {
+        categoriesSection.style.display = 'none';
+    }
+}
+
+// Mettre à jour le titre de la page
+function updatePageTitle(title) {
+    document.title = `${title} - KWAD`;
+}
+
+// Contacter via WhatsApp
+function openWhatsAppContact() {
+    const message = "Bonjour KWAD ! J'aimerais avoir plus d'informations sur vos produits.";
+    const phoneNumber = '+242068448698';
+    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(url, '_blank');
+}
+
+// Appeler
+function makePhoneCall() {
+    window.open('tel:+242068448698');
+}
+
+// ==================== MODIFICATION DE L'INITIALISATION ====================
+
+// Ajoutez cette ligne dans votre fonction d'initialisation principale
+document.addEventListener('DOMContentLoaded', function() {
+    initCategories();
+    initProducts();
+    initEventListeners();
+    initSearch();
+    initNavigation(); // ← AJOUTEZ CETTE LIGNE
+    updateCartCount();
+    addCarouselNavigation();
+    setupDetailPageEvents();
+});
+
+// ==================== CSS SUPPLEMENTAIRE POUR LE MENU ====================
+
+// Ajoutez ces styles dans votre CSS
+const navigationStyles = `
+/* Sous-menu actif */
+.submenu.active {
+    display: block;
+    animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Menu mobile */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--primary);
+    cursor: pointer;
+    padding: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        padding: 10px 0;
+    }
+    
+    nav.active ul {
+        display: flex;
+    }
+    
+    .submenu {
+        position: static;
+        box-shadow: none;
+        background: #f8f9fa;
+    }
+}
+
+/* Style pour les sections */
+.about-section, .contact-section {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+`;
+
+// Injecter les styles
+function injectNavigationStyles() {
+    const styleSheet = document.createElement('style');
+    styleSheet.textContent = navigationStyles;
+    document.head.appendChild(styleSheet);
+}
+
+// Appeler cette fonction aussi
+document.addEventListener('DOMContentLoaded', function() {
+    injectNavigationStyles();
+});
+
+
+
+
 // ==================== FONCTIONNALITÉ DE RECHERCHE ====================
 
 // Initialiser la recherche

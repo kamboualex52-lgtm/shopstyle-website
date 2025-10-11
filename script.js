@@ -514,6 +514,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initProducts();
     initEventListeners();
     initSearch();
+    initNavigation();
     updateCartCount();
     addCarouselNavigation();
     setupDetailPageEvents();
@@ -1189,19 +1190,7 @@ function makePhoneCall() {
     window.open('tel:+242068448698');
 }
 
-// ==================== MODIFICATION DE L'INITIALISATION ====================
 
-// Ajoutez cette ligne dans votre fonction d'initialisation principale
-document.addEventListener('DOMContentLoaded', function() {
-    initCategories();
-    initProducts();
-    initEventListeners();
-    initSearch();
-    initNavigation(); // ← AJOUTEZ CETTE LIGNE
-    updateCartCount();
-    addCarouselNavigation();
-    setupDetailPageEvents();
-});
 
 // ==================== CSS SUPPLEMENTAIRE POUR LE MENU ====================
 

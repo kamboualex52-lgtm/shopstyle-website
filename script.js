@@ -774,7 +774,7 @@ function closeCart() {
     }
 }
 
-// ==================== GESTION DU MENU DE NAVIGATION ====================
+// ==================== CORRECTION DE LA GESTION DU MENU ====================
 
 function initNavigation() {
     // Gestion du menu responsive
@@ -808,57 +808,59 @@ function initMobileMenu() {
     });
 }
 
-// Gestion des liens de navigation
+// Gestion des liens de navigation - VERSION CORRIGÉE
 function initNavLinks() {
-    // Accueil
-    const accueilLink = document.querySelector('nav a[href="#"]');
-    if (accueilLink) {
-        accueilLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            showHomePage();
-        });
-    }
+    // Sélectionner tous les liens de navigation principaux
+    const navLinks = document.querySelectorAll('nav > ul > li > a');
     
-    // Nouveautés
-    const nouveautesLink = document.querySelector('nav li:nth-child(3) a');
-    if (nouveautesLink) {
-        nouveautesLink.addEventListener('click', function(e) {
+    navLinks.forEach((link, index) => {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
-            showNewProducts();
+            
+            // Fermer le sous-menu des catégories s'il est ouvert
+            const submenu = document.querySelector('.submenu');
+            if (submenu) {
+                submenu.classList.remove('active');
+            }
+            
+            // Fermer le menu mobile s'il est ouvert
+            const nav = document.querySelector('nav');
+            if (nav) {
+                nav.classList.remove('active');
+            }
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (menuToggle) {
+                menuToggle.classList.remove('active');
+            }
+            
+            // Déterminer quelle page afficher selon l'index
+            switch(index) {
+                case 0: // Accueil
+                    showHomePage();
+                    break;
+                case 1: // Catégories (géré par initCategoriesMenu)
+                    // Ne rien faire ici, le sous-menu se gère séparément
+                    break;
+                case 2: // Nouveautés
+                    showNewProducts();
+                    break;
+                case 3: // Promotions
+                    showPromotions();
+                    break;
+                case 4: // À propos
+                    showAbout();
+                    break;
+                case 5: // Contact
+                    showContact();
+                    break;
+            }
         });
-    }
-    
-    // Promotions
-    const promotionsLink = document.querySelector('nav li:nth-child(4) a');
-    if (promotionsLink) {
-        promotionsLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            showPromotions();
-        });
-    }
-    
-    // À propos
-    const aboutLink = document.querySelector('nav li:nth-child(5) a');
-    if (aboutLink) {
-        aboutLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            showAbout();
-        });
-    }
-    
-    // Contact
-    const contactLink = document.querySelector('nav li:nth-child(6) a');
-    if (contactLink) {
-        contactLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            showContact();
-        });
-    }
+    });
 }
 
 // Gestion du sous-menu Catégories
 function initCategoriesMenu() {
-    const categoriesLink = document.querySelector('nav li:nth-child(2) a');
+    const categoriesLink = document.querySelector('nav li:nth-child(2) > a');
     const submenu = document.querySelector('.submenu');
     
     if (categoriesLink && submenu) {
@@ -874,10 +876,33 @@ function initCategoriesMenu() {
                 submenu.classList.remove('active');
             }
         });
+        
+        // Gérer les clics sur les sous-catégories
+        const submenuLinks = document.querySelectorAll('.submenu a');
+        submenuLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const categoryId = this.getAttribute('data-category');
+                filterProducts(categoryId);
+                
+                // Fermer le sous-menu après sélection
+                submenu.classList.remove('active');
+                
+                // Fermer le menu mobile
+                const nav = document.querySelector('nav');
+                if (nav) {
+                    nav.classList.remove('active');
+                }
+                const menuToggle = document.querySelector('.menu-toggle');
+                if (menuToggle) {
+                    menuToggle.classList.remove('active');
+                }
+            });
+        });
     }
 }
 
-// ==================== FONCTIONS DES PAGES ====================
+// ==================== FONCTIONS DES PAGES AMÉLIORÉES ====================
 
 // Page d'accueil
 function showHomePage() {
@@ -890,34 +915,36 @@ function showHomePage() {
         categoriesSection.style.display = 'block';
     }
     
-    // Cacher les autres sections si elles existent
-    hideAllSections();
-    
-    // Mettre à jour le titre si nécessaire
-    updatePageTitle('Accueil');
-    
     // Scroll vers le haut
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Mettre à jour le titre
+    updatePageTitle('Accueil');
     
     console.log('Navigation: Accueil');
 }
 
-// Nouveautés
+// Nouveautés - VERSION AMÉLIORÉE
 function showNewProducts() {
     const newProducts = products.filter(product => 
-        product.badge === 'Nouveau' || product.badge === 'Nouveauté'
+        product.badge === 'Nouveau' || product.badge === 'Nouveauté' || product.badge === 'Populaire'
     );
     
-    displayFilteredProducts(newProducts, 'Nouveautés');
+    if (newProducts.length === 0) {
+        // Si aucun produit "Nouveau", prendre les 8 premiers produits
+        displayFilteredProducts(products.slice(0, 8), 'Nouveautés');
+    } else {
+        displayFilteredProducts(newProducts, 'Nouveautés');
+    }
     
     console.log('Navigation: Nouveautés -', newProducts.length, 'produits');
 }
 
-// Promotions
+// Promotions - VERSION AMÉLIORÉE
 function showPromotions() {
     const promoProducts = products.filter(product => 
         product.badge === 'Promo' || product.badge === 'Promotion' || 
-        product.price < 10000 // Exemple: produits moins chers considérés en promo
+        product.price < 15000 // Produits à moins de 15,000 FCFA considérés en promo
     );
     
     displayFilteredProducts(promoProducts, 'Promotions');
@@ -925,173 +952,240 @@ function showPromotions() {
     console.log('Navigation: Promotions -', promoProducts.length, 'produits');
 }
 
-// Page À propos
+// Page À propos - VERSION AMÉLIORÉE
 function showAbout() {
-    hideAllSections();
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    // Cacher la section catégories
+    const categoriesSection = document.querySelector('.categories-section');
+    if (categoriesSection) {
+        categoriesSection.style.display = 'none';
+    }
     
     const aboutHTML = `
-        <div class="about-section" style="padding: 40px 20px; max-width: 800px; margin: 0 auto;">
+        <div class="about-section" style="padding: 40px 20px; max-width: 900px; margin: 0 auto;">
             <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">À Propos de KWAD</h2>
             
-            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: var(--shadow);">
-                <div style="text-align: center; margin-bottom: 30px;">
-                    <div style="font-size: 48px; color: var(--primary); margin-bottom: 15px;">
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow);">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <div style="font-size: 64px; color: var(--primary); margin-bottom: 20px;">
                         🛍️
                     </div>
-                    <h3 style="color: #333; margin-bottom: 10px;">Votre Boutique en Ligne de Confiance</h3>
-                </div>
-                
-                <div style="margin-bottom: 25px;">
-                    <h4 style="color: var(--primary); margin-bottom: 15px;">📖 Notre Histoire</h4>
-                    <p style="line-height: 1.6; color: #666;">
-                        KWAD est née de la passion pour offrir des produits de qualité à des prix accessibles. 
-                        Depuis notre création, nous nous engageons à fournir une expérience d'achat exceptionnelle 
-                        à tous nos clients.
+                    <h3 style="color: #333; margin-bottom: 15px; font-size: 28px;">Votre Boutique en Ligne de Confiance</h3>
+                    <p style="color: #666; font-size: 18px; line-height: 1.6;">
+                        Découvrez une expérience de shopping exceptionnelle avec KWAD
                     </p>
                 </div>
                 
-                <div style="margin-bottom: 25px;">
-                    <h4 style="color: var(--primary); margin-bottom: 15px;">🎯 Notre Mission</h4>
-                    <p style="line-height: 1.6; color: #666;">
-                        Rendre le shopping en ligne simple, sécurisé et agréable. Nous sélectionnons 
-                        soigneusement chaque produit pour vous garantir qualité et satisfaction.
-                    </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+                    <div>
+                        <h4 style="color: var(--primary); margin-bottom: 20px; font-size: 22px;">📖 Notre Histoire</h4>
+                        <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                            Fondée en 2024, <strong>KWAD</strong> est née de la passion pour offrir des produits de qualité 
+                            à des prix accessibles pour tous les Congolais. Notre mission est de révolutionner 
+                            le commerce en ligne au Congo Brazzaville en proposant une plateforme fiable, 
+                            sécurisée et conviviale.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <h4 style="color: var(--primary); margin-bottom: 20px; font-size: 22px;">🎯 Notre Mission</h4>
+                        <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                            Rendre le shopping en ligne <strong>simple, sécurisé et agréable</strong>. Nous sélectionnons 
+                            rigoureusement chaque produit pour vous garantir qualité, durabilité et satisfaction. 
+                            Votre bonheur est notre priorité absolue.
+                        </p>
+                    </div>
                 </div>
                 
-                <div style="margin-bottom: 25px;">
-                    <h4 style="color: var(--primary); margin-bottom: 15px;">⭐ Nos Valeurs</h4>
-                    <ul style="line-height: 1.6; color: #666; padding-left: 20px;">
-                        <li><strong>Qualité :</strong> Des produits rigoureusement sélectionnés</li>
-                        <li><strong>Service :</strong> Un support client réactif et attentionné</li>
-                        <li><strong>Innovation :</strong> Une plateforme constamment améliorée</li>
-                        <li><strong>Confiance :</strong> Des transactions sécurisées et transparentes</li>
-                    </ul>
+                <div style="margin-bottom: 40px;">
+                    <h4 style="color: var(--primary); margin-bottom: 25px; font-size: 22px; text-align: center;">⭐ Nos Valeurs</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                        <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid var(--primary);">
+                            <div style="font-size: 32px; margin-bottom: 15px;">👍</div>
+                            <h5 style="color: #333; margin-bottom: 10px;">Qualité Garantie</h5>
+                            <p style="color: #666; font-size: 14px;">Des produits rigoureusement sélectionnés et testés</p>
+                        </div>
+                        <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid var(--success);">
+                            <div style="font-size: 32px; margin-bottom: 15px;">🚚</div>
+                            <h5 style="color: #333; margin-bottom: 10px;">Livraison Rapide</h5>
+                            <p style="color: #666; font-size: 14px;">Expédition express dans tout le Congo Brazzaville</p>
+                        </div>
+                        <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid var(--warning);">
+                            <div style="font-size: 32px; margin-bottom: 15px;">💬</div>
+                            <h5 style="color: #333; margin-bottom: 10px;">Service Client</h5>
+                            <p style="color: #666; font-size: 14px;">Support réactif et attentionné 6j/7</p>
+                        </div>
+                        <div style="text-align: center; padding: 25px; background: #f8f9fa; border-radius: 10px; border-left: 4px solid var(--danger);">
+                            <div style="font-size: 32px; margin-bottom: 15px;">🛡️</div>
+                            <h5 style="color: #333; margin-bottom: 10px;">Confiance & Sécurité</h5>
+                            <p style="color: #666; font-size: 14px;">Transactions 100% sécurisées et transparentes</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
-                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-                        <div style="font-size: 24px; color: var(--primary); margin-bottom: 10px;">${products.length}+</div>
-                        <div style="color: #666;">Produits</div>
-                    </div>
-                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-                        <div style="font-size: 24px; color: var(--primary); margin-bottom: 10px;">${categories.length}</div>
-                        <div style="color: #666;">Catégories</div>
-                    </div>
-                    <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
-                        <div style="font-size: 24px; color: var(--primary); margin-bottom: 10px;">100%</div>
-                        <div style="color: #666;">Satisfaction</div>
+                <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 30px; border-radius: 10px; text-align: center;">
+                    <h4 style="margin-bottom: 20px; font-size: 24px;">📊 Notre Impact</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
+                        <div>
+                            <div style="font-size: 32px; font-weight: bold; margin-bottom: 5px;">${products.length}+</div>
+                            <div>Produits</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 32px; font-weight: bold; margin-bottom: 5px;">${categories.length}</div>
+                            <div>Catégories</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 32px; font-weight: bold; margin-bottom: 5px;">100%</div>
+                            <div>Satisfaction Client</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 32px; font-weight: bold; margin-bottom: 5px;">24/7</div>
+                            <div>Support Client</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     `;
     
-    const grid = document.getElementById('products-grid');
-    if (grid) {
-        grid.innerHTML = aboutHTML;
-    }
-    
+    grid.innerHTML = aboutHTML;
     updatePageTitle('À Propos');
     console.log('Navigation: À Propos');
 }
 
-// Page Contact
+// Page Contact - VERSION AMÉLIORÉE
 function showContact() {
-    hideAllSections();
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    // Cacher la section catégories
+    const categoriesSection = document.querySelector('.categories-section');
+    if (categoriesSection) {
+        categoriesSection.style.display = 'none';
+    }
     
     const contactHTML = `
-        <div class="contact-section" style="padding: 40px 20px; max-width: 800px; margin: 0 auto;">
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">Contactez-Nous</h2>
+        <div class="contact-section" style="padding: 40px 20px; max-width: 1000px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary); font-size: 32px;">Contactez-Nous</h2>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
-                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: var(--shadow);">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">📞 Informations de Contact</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
+                <!-- Informations de contact -->
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 24px;">📞 Informations de Contact</h3>
                     
-                    <div style="margin-bottom: 20px;">
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <div style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                    <div style="space-y-4">
+                        <div style="display: flex; align-items: center; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="background: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
                                 <i class="fas fa-phone"></i>
                             </div>
                             <div>
-                                <div style="font-weight: bold; color: #333;">Téléphone</div>
-                                <div style="color: #666;">+242 06 844 8698</div>
+                                <div style="font-weight: bold; color: #333; font-size: 16px;">Téléphone Principal</div>
+                                <div style="color: #666; font-size: 18px;">+242 06 844 8698</div>
                             </div>
                         </div>
                         
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <div style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="background: #25D366; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
                                 <i class="fab fa-whatsapp"></i>
                             </div>
                             <div>
-                                <div style="font-weight: bold; color: #333;">WhatsApp</div>
-                                <div style="color: #666;">+242 06 844 8698</div>
+                                <div style="font-weight: bold; color: #333; font-size: 16px;">WhatsApp Business</div>
+                                <div style="color: #666; font-size: 18px;">+242 06 844 8698</div>
                             </div>
                         </div>
                         
-                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
-                            <div style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="background: var(--secondary); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
                                 <i class="fas fa-envelope"></i>
                             </div>
                             <div>
-                                <div style="font-weight: bold; color: #333;">Email</div>
-                                <div style="color: #666;">contact@kwad.com</div>
+                                <div style="font-weight: bold; color: #333; font-size: 16px;">Email</div>
+                                <div style="color: #666; font-size: 18px;">frediadaniella@gmail.com</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
+                            <div style="background: var(--warning); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <div style="font-weight: bold; color: #333; font-size: 16px;">Adresse</div>
+                                <div style="color: #666; font-size: 18px;">Pointe-Noire, République du Congo</div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: var(--shadow);">
-                    <h3 style="color: var(--primary); margin-bottom: 20px;">🕒 Horaires d'Ouverture</h3>
+                <!-- Horaires d'ouverture -->
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow);">
+                    <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 24px;">🕒 Horaires d'Ouverture</h3>
                     
-                    <div style="color: #666;">
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
-                            <span>Lundi - Vendredi</span>
-                            <span style="font-weight: bold;">8h00 - 18h00</span>
+                    <div style="color: #666; space-y-3">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                            <span style="font-weight: 500;">Lundi - Vendredi</span>
+                            <span style="font-weight: bold; color: var(--primary);">8h00 - 18h00</span>
                         </div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #eee;">
-                            <span>Samedi</span>
-                            <span style="font-weight: bold;">9h00 - 16h00</span>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
+                            <span style="font-weight: 500;">Samedi</span>
+                            <span style="font-weight: bold; color: var(--primary);">9h00 - 16h00</span>
                         </div>
                         <div style="display: flex; justify-content: space-between;">
-                            <span>Dimanche</span>
-                            <span style="font-weight: bold;">Fermé</span>
+                            <span style="font-weight: 500;">Dimanche</span>
+                            <span style="font-weight: bold; color: #dc3545;">Fermé</span>
                         </div>
                     </div>
                     
-                    <div style="margin-top: 25px; padding: 15px; background: #fff3cd; border-radius: 5px; border-left: 4px solid #ffc107;">
-                        <div style="color: #856404; font-size: 14px;">
-                            <strong>💡 Conseil :</strong> Pour une réponse rapide, contactez-nous via WhatsApp !
+                    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 10px; border-left: 4px solid #ffc107;">
+                        <div style="color: #856404; font-size: 15px; line-height: 1.5;">
+                            <strong>💡 Conseil :</strong> Pour une réponse rapide, contactez-nous via WhatsApp ! 
+                            Notre équipe est disponible pour vous accompagner dans vos achats.
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: var(--shadow);">
-                <h3 style="color: var(--primary); margin-bottom: 20px;">📍 Nous Contacter Directement</h3>
-                <div style="text-align: center;">
-                    <button class="btn" onclick="openWhatsAppContact()" style="margin: 5px;">
-                        <i class="fab fa-whatsapp"></i> WhatsApp
+            <!-- Actions de contact -->
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow); text-align: center;">
+                <h3 style="color: var(--primary); margin-bottom: 30px; font-size: 26px;">📍 Contactez-Nous Directement</h3>
+                <p style="color: #666; margin-bottom: 30px; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Nous sommes là pour vous aider ! Choisissez le moyen de contact qui vous convient le mieux.
+                </p>
+                
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <button class="btn" onclick="openWhatsAppContact()" style="padding: 15px 30px; font-size: 16px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fab fa-whatsapp" style="font-size: 20px;"></i> WhatsApp
                     </button>
-                    <button class="btn" onclick="makePhoneCall()" style="margin: 5px;">
-                        <i class="fas fa-phone"></i> Appeler
+                    <button class="btn" onclick="makePhoneCall()" style="padding: 15px 30px; font-size: 16px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-phone" style="font-size: 18px;"></i> Appeler
+                    </button>
+                    <button class="btn" onclick="sendEmail()" style="padding: 15px 30px; font-size: 16px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-envelope" style="font-size: 18px;"></i> Email
                     </button>
                 </div>
             </div>
         </div>
     `;
     
-    const grid = document.getElementById('products-grid');
-    if (grid) {
-        grid.innerHTML = contactHTML;
-    }
-    
+    grid.innerHTML = contactHTML;
     updatePageTitle('Contact');
     console.log('Navigation: Contact');
 }
 
-// ==================== FONCTIONS UTILITAIRES POUR LA NAVIGATION ====================
+// ==================== FONCTIONS UTILITAIRES AJOUTÉES ====================
 
-// Afficher les produits filtrés
+// Fonction pour envoyer un email
+function sendEmail() {
+    const email = 'frediadaniella@gmail.com';
+    const subject = 'Demande d\'information - KWAD';
+    const body = 'Bonjour KWAD,\n\nJe suis intéressé(e) par vos produits et j\'aimerais avoir plus d\'informations.\n\nCordialement,';
+    
+    const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoLink);
+}
+
+// Afficher les produits filtrés - VERSION AMÉLIORÉE
 function displayFilteredProducts(filteredProducts, title) {
     const grid = document.getElementById('products-grid');
     if (!grid) return;
@@ -1106,11 +1200,14 @@ function displayFilteredProducts(filteredProducts, title) {
     
     if (filteredProducts.length === 0) {
         grid.innerHTML = `
-            <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px;">
-                <div style="font-size: 64px; color: #ddd; margin-bottom: 20px;">😔</div>
-                <h3 style="color: #666; margin-bottom: 10px;">Aucun produit trouvé</h3>
-                <p style="color: #999; margin-bottom: 20px;">Nous n'avons pas de produits dans cette section pour le moment.</p>
-                <button class="btn" onclick="showHomePage()">
+            <div style="grid-column: 1/-1; text-align: center; padding: 80px 20px;">
+                <div style="font-size: 80px; color: #ddd; margin-bottom: 20px;">😔</div>
+                <h3 style="color: #666; margin-bottom: 15px; font-size: 24px;">Aucun produit trouvé</h3>
+                <p style="color: #999; margin-bottom: 30px; font-size: 16px; max-width: 400px; margin-left: auto; margin-right: auto;">
+                    Nous n'avons pas de produits dans cette section pour le moment. 
+                    Revenez bientôt pour découvrir nos nouvelles arrivées !
+                </p>
+                <button class="btn" onclick="showHomePage()" style="padding: 12px 30px; font-size: 16px;">
                     <i class="fas fa-home"></i> Retour à l'accueil
                 </button>
             </div>
@@ -1118,20 +1215,23 @@ function displayFilteredProducts(filteredProducts, title) {
         return;
     }
     
-    // En-tête de section
+    // En-tête de section amélioré
     const sectionHeader = document.createElement('div');
     sectionHeader.style.cssText = `
         grid-column: 1/-1;
         margin-bottom: 30px;
-        padding: 20px;
+        padding: 25px;
         background: linear-gradient(135deg, var(--primary), var(--secondary));
         color: white;
-        border-radius: 10px;
+        border-radius: 15px;
         text-align: center;
+        box-shadow: var(--shadow);
     `;
     sectionHeader.innerHTML = `
-        <h2 style="margin: 0 0 10px 0; font-size: 24px;">${title}</h2>
-        <p style="margin: 0; opacity: 0.9;">${filteredProducts.length} produit${filteredProducts.length > 1 ? 's' : ''} disponible${filteredProducts.length > 1 ? 's' : ''}</p>
+        <h2 style="margin: 0 0 10px 0; font-size: 28px; font-weight: bold;">${title}</h2>
+        <p style="margin: 0; opacity: 0.9; font-size: 16px;">
+            ${filteredProducts.length} produit${filteredProducts.length > 1 ? 's' : ''} disponible${filteredProducts.length > 1 ? 's' : ''}
+        </p>
     `;
     grid.appendChild(sectionHeader);
     
@@ -1163,31 +1263,12 @@ function displayFilteredProducts(filteredProducts, title) {
     updatePageTitle(title);
 }
 
-// Cacher toutes les sections
-function hideAllSections() {
-    const categoriesSection = document.querySelector('.categories-section');
-    if (categoriesSection) {
-        categoriesSection.style.display = 'none';
-    }
-}
-
 // Mettre à jour le titre de la page
 function updatePageTitle(title) {
     document.title = `${title} - KWAD`;
 }
 
-// Contacter via WhatsApp
-function openWhatsAppContact() {
-    const message = "Bonjour KWAD ! J'aimerais avoir plus d'informations sur vos produits.";
-    const phoneNumber = '+242068448698';
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank');
-}
 
-// Appeler
-function makePhoneCall() {
-    window.open('tel:+242068448698');
-}
 
 // ==================== FONCTIONNALITÉ DE RECHERCHE ====================
 

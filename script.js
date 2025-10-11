@@ -335,10 +335,10 @@ const products = [
         ],
         media: [
             { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre bière automatique.jpg' },
-            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre1.jpg.jpg' },
-            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre2.jpg.jpg' },
-            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre3.jpg.jpg' },
-            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre4.jpg.jpg' }
+            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre1.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre2.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre3.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Ouvre_auto/Ouvre4.jpg' }
             
         ]
     },
@@ -440,7 +440,7 @@ const products = [
         ],
         media: [
             { type: 'image', src: 'Image/Electro_menager/Mixeur_p/Mixeur portatif.jpg' },
-            { type: 'image', src: 'Image/Electro_menager/Mixeur_p/Mixeur_color.jpg.jpg' }
+            { type: 'image', src: 'Image/Electro_menager/Mixeur_p/Mixeur_color.jpg' }
         ]
     },
     { 
@@ -483,10 +483,10 @@ const products = [
         ],
         media: [
             { type: 'image', src: 'Image/Electricité/Cais_élec/Caisse à outils (électricien).jpg' },
-            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue1.jpgjpg' },
-            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue2.jpgjpg' },
-            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue3.jpg.jpg' },
-            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue4.jpg.jpg' }
+            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue1.jpg' },
+            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue2.jpg' },
+            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue3.jpg' },
+            { type: 'image', src: 'Image/Electricité/Cais_élec/Contenue4.jpg' }
         ]
     },
     { 

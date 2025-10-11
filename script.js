@@ -14,13 +14,13 @@ const categories = [
 const products = [
     { 
         id: 1, 
-        name: 'Mixeur électrique 500W', 
+        name: 'Tire bouchon', 
         price: 25000, 
         category: 'electromenager', 
-        image: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80', 
+        image: 'Image/Electro_menager/Tire bouchon.jpg', 
         rating: 4, 
         badge: 'Nouveau',
-        description: 'Mixeur électrique haute performance 500W avec 5 vitesses variables. Parfait pour smoothies, soupes et préparations culinaires. Design ergonomique et facile à nettoyer.',
+        description: '🍷✨ Ouvrez vos bouteilles sans effort avec notre tire-bouchon électronique ! Rechargeable, rapide et élégant, il ouvre votre vin en quelques secondes.Fini les bouchons coincés ou les efforts inutiles 😎🎁 Idéal pour vos soirées, vos dîners ou un cadeau stylé..',
         features: [
             'Moteur puissant de 500W',
             '5 vitesses variables + fonction pulse',
@@ -30,9 +30,8 @@ const products = [
             'Facile à nettoyer'
         ],
         media: [
-            { type: 'image', src: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
-            { type: 'image', src: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' },
-            { type: 'image', src: 'https://images.unsplash.com/photo-1570222094114-d054a817e56b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80' }
+            { type: 'image', src: 'Image/Electro_menager/Tire bouchon.jpg' },
+            { type: 'video', src: 'Image/Electro_menager/Tire bouchon-VID.mp4' }
         ]
     },
     { 

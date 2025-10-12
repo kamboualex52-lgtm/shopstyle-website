@@ -369,7 +369,7 @@ const products = [
         name: 'Thermos LED 1L', 
         price: 8000, 
         category: 'electromenager', 
-        image: 'Image/Electro_menager/Thermos LED.jpg', 
+        image: 'Image/Electro_menager/Therm_L/Thermos LED.jpg', 
         rating: 5, 
         badge: 'Nouveau',
         description: 'Thermos isotherme avec affichage LED de la température. Garde les boissons chaudes ou froides pendant des heures.',
@@ -381,7 +381,9 @@ const products = [
             'Design moderne'
         ],
         media: [
-            { type: 'image', src: 'Image/Electro_menager/Thermos LED.jpg' }
+            { type: 'image', src: 'Image/Electro_menager/Therm_L/Thermos LED.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Therm_L/Thermo1.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Therm_L/Thermo1.jpg' } 
         ]
     },
     { 

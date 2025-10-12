@@ -532,7 +532,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartCount();
     addCarouselNavigation();
     setupDetailPageEvents();
-    initFooterLinks();
+    //initFooterLinks();
 });
 
 // ==================== FONCTIONS CATÉGORIES ====================

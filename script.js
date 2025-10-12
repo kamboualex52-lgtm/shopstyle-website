@@ -1190,6 +1190,42 @@ function showContact() {
 
 
 // ==================== FONCTIONS Informations ====================
+// Gestion des liens du footer - VERSION COMPLÈTE
+function initFooterLinks() {
+    const footerLinks = document.querySelectorAll('.footer-column a');
+    
+    footerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const linkText = this.textContent.trim();
+            
+            switch(linkText) {
+                case 'À propos de nous':
+                    showAbout();
+                    break;
+                case 'Livraison':
+                    showDeliveryInfo();
+                    break;
+                case 'Politique de retour':
+                    showReturnPolicy();
+                    break;
+                case 'Conditions générales':
+                    showTerms();
+                    break;
+                case 'Politique de confidentialité':
+                    showPrivacyPolicy();
+                    break;
+                default:
+                    showHomePage();
+            }
+        });
+    });
+}
+
+
+
+
 // 📄 CONDITIONS GÉNÉRALES DE VENTE
 function showTerms() {
     const grid = document.getElementById('products-grid');

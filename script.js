@@ -347,7 +347,7 @@ const products = [
         name: 'Tire bouchon rechargeable', 
         price: 12000, 
         category: 'electromenager', 
-        image: 'Image/Electro_menager/Tire bouchon.jpg', 
+        image: 'Image/Electro_menager/Tire_bouch/Tire bouchon.jpg', 
         rating: 5, 
         badge: 'Nouveau',
         description: 'Tire-bouchon électrique rechargeable. Retire les bouchons en quelques secondes sans effort.',
@@ -359,7 +359,9 @@ const products = [
             'Charge rapide'
         ],
         media: [
-            { type: 'image', src: 'Image/Electro_menager/Tire bouchon.jpg' }
+            { type: 'image', src: 'Image/Electro_menager/Tire_bouch/Tire bouchon.jpg' },
+            { type: 'video', src: 'Image/Electro_menager/Tire_bouch/Tire bouchon-VID.mp4' }
+            
         ]
     },
     { 

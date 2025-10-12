@@ -1187,6 +1187,262 @@ function showContact() {
     console.log('Navigation: Contact');
 }
 
+
+
+// ==================== FONCTIONS Informations ====================
+// 📄 CONDITIONS GÉNÉRALES DE VENTE
+function showTerms() {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    hideAllSections();
+    
+    const termsHTML = `
+        <div class="legal-page" style="padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">🧾 CONDITIONS GÉNÉRALES DE VENTE – KWAD</h2>
+            
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow);">
+                <!-- Section 1 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">1. Présentation</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Le site <strong>KWAD</strong> est une boutique en ligne proposant des produits dans les catégories suivantes :
+                        Électroménager, Électricité, Vêtements, Chaussures, Accessoires et Beauté.
+                        En utilisant le site ou en passant commande, le client accepte sans réserve les présentes Conditions Générales de Vente (CGV).
+                    </p>
+                </div>
+                
+                <!-- Section 2 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">2. Produits</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Les produits présentés sur KWAD sont décrits et photographiés avec la plus grande exactitude possible.
+                        Cependant, des variations mineures peuvent exister selon les écrans ou les fabricants.
+                    </p>
+                </div>
+                
+                <!-- Section 3 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">3. Commandes</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Toute commande effectuée sur le site implique l'acceptation des prix, des descriptions et des présentes conditions.
+                        KWAD se réserve le droit d'annuler ou de refuser toute commande pour motif légitime (stock insuffisant, problème de paiement, suspicion de fraude…).
+                    </p>
+                </div>
+                
+                <!-- Section 4 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">4. Prix et paiement</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Les prix sont indiqués en <strong>franc CFA</strong> et incluent toutes taxes applicables.
+                        Les paiements peuvent s'effectuer par <strong>Mobile Money, carte bancaire</strong> ou tout autre moyen indiqué sur le site.
+                    </p>
+                </div>
+                
+                <!-- Section 5 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">5. Livraison</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        KWAD livre sur tout le territoire indiqué sur le site.
+                        Les délais de livraison varient selon la destination et la disponibilité du produit.
+                        En cas de retard, le client sera informé et pourra demander un remboursement si le produit n'a pas été expédié.
+                    </p>
+                </div>
+                
+                <!-- Section 6 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">6. Retours et remboursements</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Le client dispose d'un délai de <strong>7 jours</strong> après réception du produit pour signaler un article défectueux ou non conforme.
+                        Le produit devra être retourné dans son emballage d'origine, non utilisé.
+                        KWAD s'engage à échanger le produit ou à effectuer un remboursement selon le cas.
+                    </p>
+                </div>
+                
+                <!-- Section 7 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">7. Responsabilité</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        KWAD ne saurait être tenue responsable des dommages résultant d'une mauvaise utilisation du produit ou d'une cause extérieure (accident, choc, utilisation non conforme…).
+                    </p>
+                </div>
+                
+                <!-- Section 8 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">8. Données personnelles</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Les informations collectées lors des commandes sont nécessaires au traitement des achats et à la gestion du service client.
+                        Elles sont traitées conformément à la <a href="#" onclick="showPrivacyPolicy(); return false;" style="color: var(--primary); text-decoration: underline;">Politique de Confidentialité</a> de KWAD.
+                    </p>
+                </div>
+                
+                <!-- Section 9 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">9. Propriété intellectuelle</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Tous les éléments du site (textes, images, logos, design) sont la propriété exclusive de KWAD et ne peuvent être reproduits sans autorisation.
+                    </p>
+                </div>
+                
+                <!-- Section 10 -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">10. Droit applicable</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Les présentes conditions sont régies par le <strong>droit congolais</strong>.
+                        En cas de litige, une solution à l'amiable sera privilégiée avant toute action judiciaire.
+                    </p>
+                </div>
+                
+                <!-- Boutons d'action -->
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="showHomePage()" class="btn" style="background: var(--primary); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">
+                        <i class="fas fa-home"></i> Retour à l'accueil
+                    </button>
+                    <button onclick="showPrivacyPolicy()" class="btn" style="background: var(--secondary); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">
+                        <i class="fas fa-shield-alt"></i> Voir la Politique de Confidentialité
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    grid.innerHTML = termsHTML;
+    updatePageTitle('Conditions Générales - KWAD');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+
+
+// 🔒 POLITIQUE DE CONFIDENTIALITÉ
+function showPrivacyPolicy() {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    hideAllSections();
+    
+    const privacyHTML = `
+        <div class="legal-page" style="padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">🔒 POLITIQUE DE CONFIDENTIALITÉ – KWAD</h2>
+            
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow);">
+                <!-- Section 1 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">1. Collecte des informations</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        KWAD collecte les informations suivantes lorsque vous utilisez le site ou passez commande :
+                    </p>
+                    <ul style="line-height: 1.7; color: #666; font-size: 16px; padding-left: 20px;">
+                        <li>Nom, prénom, adresse, numéro de téléphone, email</li>
+                        <li>Informations de paiement (sécurisées et non conservées après transaction)</li>
+                        <li>Historique de commandes et préférences produits</li>
+                    </ul>
+                </div>
+                
+                <!-- Section 2 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">2. Utilisation des données</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Ces données servent à :
+                    </p>
+                    <ul style="line-height: 1.7; color: #666; font-size: 16px; padding-left: 20px;">
+                        <li>Traiter et livrer vos commandes</li>
+                        <li>Améliorer nos services et nos offres</li>
+                        <li>Vous informer des promotions et nouveautés (si vous y consentez)</li>
+                    </ul>
+                </div>
+                
+                <!-- Section 3 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">3. Protection des données</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        <strong>KWAD s'engage à protéger vos données personnelles.</strong><br>
+                        Nous utilisons des mesures de sécurité adaptées (cryptage, pare-feu, accès restreint).
+                        Aucune donnée n'est vendue ni partagée à des tiers sans votre consentement.
+                    </p>
+                </div>
+                
+                <!-- Section 4 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">4. Cookies</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Le site KWAD utilise des cookies pour améliorer la navigation et analyser les visites.
+                        Vous pouvez à tout moment refuser les cookies via les paramètres de votre navigateur.
+                    </p>
+                </div>
+                
+                <!-- Section 5 -->
+                <div style="margin-bottom: 30px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">5. Vos droits</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        Conformément à la réglementation en vigueur, vous pouvez :
+                    </p>
+                    <ul style="line-height: 1.7; color: #666; font-size: 16px; padding-left: 20px;">
+                        <li>Accéder à vos données</li>
+                        <li>Demander leur modification ou suppression</li>
+                        <li>Retirer votre consentement à tout moment</li>
+                    </ul>
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-top: 15px;">
+                        <p style="color: #666; font-size: 16px; margin: 0;">
+                            <strong>Pour exercer vos droits :</strong><br>
+                            📧 Contact : <strong>frediadaniella@gmail.cm</strong><br>
+                            📞 Téléphone : <strong>+242 06 844 86 98</strong>
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Section 6 -->
+                <div style="margin-bottom: 40px;">
+                    <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 20px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">6. Modifications</h3>
+                    <p style="line-height: 1.7; color: #666; font-size: 16px;">
+                        KWAD se réserve le droit de modifier la présente politique à tout moment.
+                        La version la plus récente est toujours disponible sur notre site.
+                    </p>
+                </div>
+                
+                <!-- Boutons d'action -->
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="showHomePage()" class="btn" style="background: var(--primary); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">
+                        <i class="fas fa-home"></i> Retour à l'accueil
+                    </button>
+                    <button onclick="showTerms()" class="btn" style="background: var(--secondary); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">
+                        <i class="fas fa-file-contract"></i> Voir les Conditions Générales
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    grid.innerHTML = privacyHTML;
+    updatePageTitle('Politique de Confidentialité - KWAD');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+
+// Page Livraison
+function showDeliveryInfo() {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    hideAllSections();
+    
+    grid.innerHTML = `
+        <div style="padding: 40px 20px; max-width: 800px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">🚚 Informations de Livraison</h2>
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow);">
+                <h3>Nos Services de Livraison</h3>
+                <p>Contenu à compléter avec vos informations de livraison...</p>
+                <button onclick="showHomePage()" class="btn">Retour à l'accueil</button>
+            </div>
+        </div>
+    `;
+    updatePageTitle('Livraison - KWAD');
+}
+
+
+
+
+
 // ==================== FONCTIONS UTILITAIRES AJOUTÉES ====================
 
 // Fonction pour envoyer un email

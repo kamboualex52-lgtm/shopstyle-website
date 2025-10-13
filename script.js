@@ -1193,53 +1193,62 @@ function showContact() {
 // ==================== FONCTIONS INFORMATIONS - VERSION CORRIGÉE ====================
 
 // Gestion des liens du footer - VERSION COMPLÈTE ET FONCTIONNELLE
+// REMPLACEZ la gestion des cas dans initFooterLinks() par ceci :
 function initFooterLinks() {
-    const footerLinks = document.querySelectorAll('.footer-column a');
+    console.log('🔄 Initialisation des liens du footer...');
     
-    footerLinks.forEach(link => {
+    const footerLinks = document.querySelectorAll('.footer-column a, footer a');
+    
+    footerLinks.forEach((link) => {
+        const linkText = link.textContent.trim();
+        
         link.addEventListener('click', function(e) {
             e.preventDefault();
+            e.stopPropagation();
             
-            const linkText = this.textContent.trim();
+            console.log(`🎯 Clic sur le lien: "${linkText}"`);
             
-            switch(linkText) {
-                case 'À propos de nous':
-                    showAbout();
-                    break;
-                case 'Livraison':
-                    showDeliveryInfo();
-                    break;
-                case 'Politique de retour':
-                    showReturnPolicy();
-                    break;
-                case 'Conditions générales':
-                    showTerms();
-                    break;
-                case 'Politique de confidentialité':
-                    showPrivacyPolicy();
-                    break;
-                case 'Mon compte':
-                    showAccountPage();
-                    break;
-                case 'Historique de commandes':
-                    showOrderHistory();
-                    break;
-                case 'Liste de souhaits':
-                    showWishlist();
-                    break;
-                case 'Newsletter':
-                    showNewsletterPage();
-                    break;
-                default:
-                    // Pour les autres liens, essayer de trouver une correspondance partielle
-                    if (linkText.includes('Livraison')) showDeliveryInfo();
-                    else if (linkText.includes('Retour')) showReturnPolicy();
-                    else if (linkText.includes('Conditions')) showTerms();
-                    else if (linkText.includes('Confidentialité')) showPrivacyPolicy();
-                    else showHomePage();
+            // Gestion spécifique pour les liens problématiques
+            if (linkText.includes('Conditions générales') || linkText === 'Conditions générales') {
+                console.log('🚀 Navigation vers Conditions générales');
+                showTerms();
+            }
+            else if (linkText.includes('Politique de confidentialité') || linkText === 'Politique de confidentialité') {
+                console.log('🚀 Navigation vers Politique de confidentialité');
+                showPrivacyPolicy();
+            }
+            else if (linkText.includes('Livraison')) {
+                showDeliveryInfo();
+            }
+            else if (linkText.includes('Retour')) {
+                showReturnPolicy();
+            }
+            else if (linkText.includes('À propos')) {
+                showAbout();
+            }
+            else if (linkText.includes('Mon compte')) {
+                showAccountPage();
+            }
+            else if (linkText.includes('Historique')) {
+                showOrderHistory();
+            }
+            else if (linkText.includes('souhaits') || linkText.includes('Favoris')) {
+                showWishlist();
+            }
+            else if (linkText.includes('Newsletter')) {
+                showNewsletterPage();
+            }
+            else if (linkText.includes('Contact')) {
+                showContact();
+            }
+            else {
+                console.log('🔍 Lien non reconnu, navigation vers accueil');
+                showHomePage();
             }
         });
     });
+    
+    console.log(`✅ ${footerLinks.length} liens du footer initialisés`);
 }
 
 // Fonction utilitaire pour cacher toutes les sections
@@ -1379,143 +1388,294 @@ function showDeliveryInfo() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// 🔄 POLITIQUE DE RETOUR - VERSION COMPLÈTE
-function showReturnPolicy() {
-    const grid = document.getElementById('products-grid');
-    if (!grid) return;
+
+
+// 📄 CONDITIONS GÉNÉRALES - VERSION COMPLÈTE ET TESTÉE
+function showTerms() {
+    console.log('🔧 showTerms() appelée - Affichage des conditions générales');
     
+    const grid = document.getElementById('products-grid');
+    if (!grid) {
+        console.error('❌ Element products-grid non trouvé');
+        return;
+    }
+    
+    // Cacher les autres sections
     hideAllSections();
     
-    const returnHTML = `
-        <div class="info-page" style="padding: 40px 20px; max-width: 900px; margin: 0 auto;">
-            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">🔄 Politique de Retour & Échange</h2>
+    const termsHTML = `
+        <div style="padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">📝 Conditions Générales de Vente</h2>
             
             <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow);">
-                <!-- Section Délai de Retour -->
-                <div style="margin-bottom: 40px;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">⏱️ Délai de Retour</h3>
-                    <div style="background: #e8f5e8; padding: 25px; border-radius: 10px; text-align: center;">
-                        <div style="font-size: 48px; margin-bottom: 15px;">📅</div>
-                        <h4 style="color: #2e7d32; margin-bottom: 10px; font-size: 20px;">7 Jours pour Changer d'Avis</h4>
-                        <p style="color: #666; margin: 0; font-size: 16px;">
-                            Vous disposez de <strong>7 jours</strong> à compter de la réception de votre colis 
-                            pour nous retourner un article non conforme ou défectueux.
-                        </p>
-                    </div>
-                </div>
                 
-                <!-- Section Conditions -->
-                <div style="margin-bottom: 40px;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">✅ Conditions de Retour</h3>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                            <h4 style="color: var(--success); margin-bottom: 15px;">🟢 RETOURS ACCEPTÉS</h4>
-                            <ul style="color: #666; padding-left: 20px;">
-                                <li>Articles défectueux</li>
-                                <li>Produits non conformes</li>
-                                <li>Erreur de notre part</li>
-                                <li>Emballage d'origine intact</li>
-                                <li>Étiquettes et accessoires inclus</li>
-                            </ul>
-                        </div>
-                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
-                            <h4 style="color: var(--accent); margin-bottom: 15px;">🔴 RETOURS REFUSÉS</h4>
-                            <ul style="color: #666; padding-left: 20px;">
-                                <li>Articles personnalisés</li>
-                                <li>Produits utilisés ou endommagés</li>
-                                <li>Emballage ouvert ou manquant</li>
-                                <li>Retour hors délai</li>
-                                <li>Articles soldés</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Section Processus de Retour -->
-                <div style="margin-bottom: 40px;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">📋 Processus de Retour</h3>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
-                        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-                            <div style="font-size: 32px; margin-bottom: 15px;">📞</div>
-                            <h4 style="color: #333; margin-bottom: 10px;">1. Contactez-nous</h4>
-                            <p style="color: #666; font-size: 14px;">Appelez ou WhatsApp sous 7 jours</p>
-                        </div>
-                        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-                            <div style="font-size: 32px; margin-bottom: 15px;">📦</div>
-                            <h4 style="color: #333; margin-bottom: 10px;">2. Préparez le colis</h4>
-                            <p style="color: #666; font-size: 14px;">Avec tous les accessoires d'origine</p>
-                        </div>
-                        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-                            <div style="font-size: 32px; margin-bottom: 15px;">🚚</div>
-                            <h4 style="color: #333; margin-bottom: 10px;">3. Retournez</h4>
-                            <p style="color: #666; font-size: 14px;">Nous organisons l'enlèvement</p>
-                        </div>
-                        <div style="text-align: center; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-                            <div style="font-size: 32px; margin-bottom: 15px;">💳</div>
-                            <h4 style="color: #333; margin-bottom: 10px;">4. Remboursement</h4>
-                            <p style="color: #666; font-size: 14px;">Sous 3 jours après réception</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Section Remboursements -->
-                <div style="margin-bottom: 40px;">
-                    <h3 style="color: var(--primary); margin-bottom: 20px; font-size: 22px; border-bottom: 2px solid var(--primary); padding-bottom: 10px;">💳 Modalités de Remboursement</h3>
-                    
-                    <div style="background: #e3f2fd; padding: 25px; border-radius: 10px;">
-                        <h4 style="color: #1565c0; margin-bottom: 15px;">🔄 Options Disponibles</h4>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
-                            <div style="background: white; padding: 15px; border-radius: 8px;">
-                                <h5 style="color: #333; margin-bottom: 10px;">💸 Remboursement</h5>
-                                <p style="color: #666; margin: 0; font-size: 14px;">Sur le compte Mobile Money d'origine sous 3 jours</p>
-                            </div>
-                            <div style="background: white; padding: 15px; border-radius: 8px;">
-                                <h5 style="color: #333; margin-bottom: 10px;">🔄 Échange</h5>
-                                <p style="color: #666; margin: 0; font-size: 14px;">Produit similaire ou de valeur équivalente</p>
-                            </div>
-                            <div style="background: white; padding: 15px; border-radius: 8px;">
-                                <h5 style="color: #333; margin-bottom: 10px;">🎁 Bon d'achat</h5>
-                                <p style="color: #666; margin: 0; font-size: 14px;">Valable 6 mois sur tout le site</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Section Contact -->
-                <div style="background: #fff3cd; padding: 20px; border-radius: 10px; border-left: 4px solid #ffc107; margin-bottom: 30px;">
-                    <h4 style="color: #856404; margin-bottom: 10px;">📞 Besoin d'Aide ?</h4>
-                    <p style="color: #856404; margin: 0 0 15px 0;">
-                        Notre service client est là pour vous accompagner dans votre démarche de retour.
+                <!-- En-tête -->
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <div style="font-size: 80px; margin-bottom: 20px;">⚖️</div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Conditions Générales de Vente KWAD</h3>
+                    <p style="color: #666; font-size: 16px;">
+                        Dernière mise à jour : ${new Date().toLocaleDateString('fr-FR')}
                     </p>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button onclick="openWhatsAppContact()" class="btn" style="background: #25D366; color: white; padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer; font-size: 14px;">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </button>
-                        <button onclick="makePhoneCall()" class="btn" style="background: var(--primary); color: white; padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer; font-size: 14px;">
-                            <i class="fas fa-phone"></i> Appeler
-                        </button>
-                    </div>
                 </div>
-                
-                <!-- Boutons d'action -->
+
+                <!-- Article 1 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">1</span>
+                        Objet
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Les présentes conditions générales de vente régissent les relations contractuelles entre KWAD et ses clients.
+                        Toute commande implique l'acceptation sans réserve de ces conditions.
+                    </p>
+                </div>
+
+                <!-- Article 2 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">2</span>
+                        Produits et Prix
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Les produits sont décrits avec la plus grande exactitude possible. Les prix sont en francs CFA (FCFA) toutes taxes comprises.
+                        KWAD se réserve le droit de modifier ses prix à tout moment.
+                    </p>
+                </div>
+
+                <!-- Article 3 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">3</span>
+                        Commandes
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Les commandes sont passées via WhatsApp. Toute commande vaut acceptation des prix et des conditions de vente.
+                        KWAD se réserve le droit d'annuler toute commande en cas de problème de stock.
+                    </p>
+                </div>
+
+                <!-- Article 4 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">4</span>
+                        Paiement
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Le paiement s'effectue par Mobile Money (MTN ou Airtel). La commande n'est validée qu'après confirmation du paiement.
+                    </p>
+                </div>
+
+                <!-- Article 5 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">5</span>
+                        Livraison
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Les délais de livraison sont indicatifs. En cas de retard, le client sera informé.
+                        Les frais de livraison sont à la charge du client sauf indication contraire.
+                    </p>
+                </div>
+
+                <!-- Article 6 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">6</span>
+                        Retour et Remboursement
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Délai de rétractation de 7 jours. Les produits doivent être retournés dans leur état d'origine.
+                        Les frais de retour sont à la charge du client sauf pour les produits défectueux.
+                    </p>
+                </div>
+
+                <!-- Article 7 -->
+                <div style="margin-bottom: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">7</span>
+                        Responsabilité
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        KWAD ne saurait être tenue responsable des dommages résultant d'une mauvaise utilisation des produits.
+                    </p>
+                </div>
+
+                <!-- Section contact -->
+                <div style="background: #e3f2fd; padding: 25px; border-radius: 10px; margin-bottom: 30px; text-align: center;">
+                    <h4 style="color: #1565c0; margin-bottom: 15px;">📞 Questions sur nos conditions ?</h4>
+                    <p style="color: #1565c0; margin: 0 0 15px 0;">
+                        Notre équipe est à votre disposition pour toute clarification.
+                    </p>
+                    <button onclick="openWhatsAppContact()" class="btn" style="background: #25D366; color: white;">
+                        <i class="fab fa-whatsapp"></i> Nous contacter
+                    </button>
+                </div>
+
+                <!-- Boutons de navigation -->
                 <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                    <button onclick="showHomePage()" class="btn" style="background: var(--primary); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">
+                    <button onclick="showHomePage()" class="btn" style="background: var(--primary); color: white;">
                         <i class="fas fa-home"></i> Retour à l'accueil
                     </button>
-                    <button onclick="showTerms()" class="btn" style="background: var(--secondary); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer; font-size: 16px;">
-                        <i class="fas fa-file-contract"></i> Voir les CGV
+                    <button onclick="showPrivacyPolicy()" class="btn" style="background: var(--secondary); color: white;">
+                        <i class="fas fa-shield-alt"></i> Politique de confidentialité
                     </button>
                 </div>
             </div>
         </div>
     `;
     
-    grid.innerHTML = returnHTML;
-    updatePageTitle('Politique de Retour - KWAD');
+    grid.innerHTML = termsHTML;
+    updatePageTitle('Conditions Générales - KWAD');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    console.log('✅ Conditions générales affichées avec succès');
 }
+
+
+
+// 🔒 POLITIQUE DE CONFIDENTIALITÉ - VERSION COMPLÈTE ET TESTÉE
+function showPrivacyPolicy() {
+    console.log('🔧 showPrivacyPolicy() appelée - Affichage de la politique de confidentialité');
+    
+    const grid = document.getElementById('products-grid');
+    if (!grid) {
+        console.error('❌ Element products-grid non trouvé');
+        return;
+    }
+    
+    // Cacher les autres sections
+    hideAllSections();
+    
+    const privacyHTML = `
+        <div style="padding: 40px 20px; max-width: 900px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 30px; color: var(--primary);">🔒 Politique de Confidentialité</h2>
+            
+            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow);">
+                
+                <!-- En-tête -->
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <div style="font-size: 80px; margin-bottom: 20px;">🛡️</div>
+                    <h3 style="color: var(--primary); margin-bottom: 15px;">Protection de Vos Données Personnelles</h3>
+                    <p style="color: #666; font-size: 16px;">
+                        Dernière mise à jour : ${new Date().toLocaleDateString('fr-FR')}
+                    </p>
+                </div>
+
+                <!-- Section 1 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">1</span>
+                        Données Collectées
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Nous collectons : nom, prénom, adresse, numéro de téléphone, adresse email.
+                        Ces données sont nécessaires au traitement de votre commande et à la livraison.
+                    </p>
+                </div>
+
+                <!-- Section 2 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">2</span>
+                        Utilisation des Données
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Vos données sont utilisées pour : traiter votre commande, vous livrer, vous informer de l'état de votre commande,
+                        et vous envoyer des offres promotionnelles (si vous y consentez).
+                    </p>
+                </div>
+
+                <!-- Section 3 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">3</span>
+                        Protection des Données
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles pour protéger vos données
+                        contre tout accès non autorisé, modification ou destruction.
+                    </p>
+                </div>
+
+                <!-- Section 4 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">4</span>
+                        Partage des Données
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Vos données ne sont jamais vendues à des tiers. Elles peuvent être partagées avec nos prestataires
+                        de livraison uniquement dans le cadre de l'exécution de votre commande.
+                    </p>
+                </div>
+
+                <!-- Section 5 -->
+                <div style="margin-bottom: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">5</span>
+                        Durée de Conservation
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Vos données sont conservées pendant la durée nécessaire à l'exécution de nos services,
+                        et conformément aux obligations légales.
+                    </p>
+                </div>
+
+                <!-- Section 6 -->
+                <div style="margin-bottom: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                        <span style="background: var(--primary); color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">6</span>
+                        Vos Droits
+                    </h4>
+                    <p style="color: #666; line-height: 1.6; margin: 0;">
+                        Vous disposez des droits d'accès, de rectification, d'effacement, de limitation et d'opposition.
+                        Pour exercer ces droits, contactez-nous aux coordonnées ci-dessous.
+                    </p>
+                </div>
+
+                <!-- Section contact -->
+                <div style="background: #e8f5e8; padding: 25px; border-radius: 10px; margin-bottom: 30px;">
+                    <h4 style="color: #2e7d32; margin-bottom: 15px; text-align: center;">📞 Contact Délégué à la Protection des Données</h4>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; text-align: center;">
+                        <div>
+                            <div style="font-size: 24px; margin-bottom: 10px;">📧</div>
+                            <div style="font-weight: bold; color: #333;">Email</div>
+                            <div style="color: #666;">frediadaniella@gmail.com</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 24px; margin-bottom: 10px;">📞</div>
+                            <div style="font-weight: bold; color: #333;">Téléphone</div>
+                            <div style="color: #666;">+242 06 844 8698</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 24px; margin-bottom: 10px;">💬</div>
+                            <div style="font-weight: bold; color: #333;">WhatsApp</div>
+                            <div style="color: #666;">+242 06 844 8698</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boutons de navigation -->
+                <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="showHomePage()" class="btn" style="background: var(--primary); color: white;">
+                        <i class="fas fa-home"></i> Retour à l'accueil
+                    </button>
+                    <button onclick="showTerms()" class="btn" style="background: var(--secondary); color: white;">
+                        <i class="fas fa-file-contract"></i> Conditions générales
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    grid.innerHTML = privacyHTML;
+    updatePageTitle('Politique de Confidentialité - KWAD');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    console.log('✅ Politique de confidentialité affichée avec succès');
+}
+
+
 
 // FONCTIONS MANQUANTES À AJOUTER
 

@@ -857,7 +857,8 @@ function initNavLinks() {
                     // Ne rien faire ici, le sous-menu se gère séparément
                     break;
                 case 2: // Nouveautés
-                    showNewProducts();
+                    //showNewProducts();
+                    showDeliveryInfo();
                     break;
                 case 3: // Promotions
                     showPromotions();

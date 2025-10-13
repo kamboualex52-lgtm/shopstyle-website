@@ -857,8 +857,7 @@ function initNavLinks() {
                     // Ne rien faire ici, le sous-menu se gère séparément
                     break;
                 case 2: // Nouveautés
-                    //showNewProducts();
-                    showDeliveryInfo();
+                    showNewProducts();
                     break;
                 case 3: // Promotions
                     showPromotions();
@@ -1208,9 +1207,6 @@ function initFooterLinks() {
                     break;
                 case 'Livraison':
                     showDeliveryInfo();
-                    break;
-                case 'Politique de retour':
-                    showReturnPolicy();
                     break;
                 case 'Conditions générales':
                     showTerms();

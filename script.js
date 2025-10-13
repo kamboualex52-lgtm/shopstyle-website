@@ -1796,7 +1796,7 @@ function makePhoneCall() {
 
 
 
-// ==================== FONCTIONS UTILITAIRES AJOUTÉES ====================
+// ==================== FONCTIONS UTILITAIRES AJOUTÉES ===================
 
 // Fonction pour envoyer un email
 function sendEmail() {

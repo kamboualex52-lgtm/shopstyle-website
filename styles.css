@@ -1642,3 +1642,48 @@ footer {
     }
 }
 
+
+.categories-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.categories-container {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Ajustement responsive pour le nombre de catégories visibles */
+.category-card {
+    flex: 0 0 calc(20% - 16px); /* 5 catégories par vue (100%/5 = 20%) */
+    min-width: 0; /* Important pour le flex-shrink */
+}
+
+/* Version responsive */
+@media (max-width: 1200px) {
+    .category-card {
+        flex: 0 0 calc(25% - 15px); /* 4 catégories */
+    }
+}
+
+@media (max-width: 992px) {
+    .category-card {
+        flex: 0 0 calc(33.333% - 14px); /* 3 catégories */
+    }
+}
+
+@media (max-width: 768px) {
+    .category-card {
+        flex: 0 0 calc(50% - 10px); /* 2 catégories */
+    }
+}
+
+@media (max-width: 480px) {
+    .category-card {
+        flex: 0 0 calc(50% - 10px); /* 2 catégories */
+    }
+}

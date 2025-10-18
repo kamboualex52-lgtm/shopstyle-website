@@ -376,7 +376,7 @@ const products = [
 // Variables globales
 let cart = [];
 let currentSlide = 0;
-const slidesToShow = 8;
+const slidesToShow = 4;
 let currentProduct = null;
 let currentMediaIndex = 0;
 

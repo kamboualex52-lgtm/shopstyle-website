@@ -2185,10 +2185,18 @@ function initEventListeners() {
 }
 
 // ==================== FONCTIONS CAROUSEL ====================
+// CORRECTION COMPLÈTE DU CAROUSEL
+let currentSlide = 0;
+const slidesToShow = 5; // Nombre de catégories visibles à la fois
+
 function goToSlide(slideIndex) {
     const container = document.getElementById('categories-container');
     const dots = document.querySelectorAll('.carousel-dot');
+    
+    // CALCUL CORRECT du nombre total de slides
     const totalSlides = Math.ceil(categories.length / slidesToShow);
+    
+    console.log(`Navigation: slide ${slideIndex} / ${totalSlides - 1}`);
     
     // Gérer les limites
     if (slideIndex < 0) {
@@ -2199,15 +2207,21 @@ function goToSlide(slideIndex) {
         currentSlide = slideIndex;
     }
     
+    // CALCUL CORRECT de la largeur du slide
     const slideWidth = 100 / slidesToShow;
-    container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+    const translateX = currentSlide * slideWidth * slidesToShow;
     
+    console.log(`Déplacement: ${translateX}%`);
+    
+    container.style.transform = `translateX(-${translateX}%)`;
+    
+    // Mettre à jour les points de navigation
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
     });
 }
 
-// Navigation automatique du carousel
+// Navigation automatique CORRIGÉE
 setInterval(() => {
     const totalSlides = Math.ceil(categories.length / slidesToShow);
     currentSlide = (currentSlide + 1) % totalSlides;
@@ -2241,6 +2255,65 @@ function addCarouselNavigation() {
     carousel.style.position = 'relative';
     carousel.appendChild(prevButton);
     carousel.appendChild(nextButton);
+    
+    // Ajouter le CSS pour les flèches si pas déjà fait
+    addCarouselArrowStyles();
+}
+
+function addCarouselArrowStyles() {
+    const style = document.createElement('style');
+    style.textContent = `
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 10;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            color: var(--primary);
+        }
+        
+        .carousel-arrow:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-prev {
+            left: 10px;
+        }
+        
+        .carousel-next {
+            right: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .carousel-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
+            }
+            
+            .carousel-prev {
+                left: 5px;
+            }
+            
+            .carousel-next {
+                right: 5px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
 }
 
 // ==================== FONCTION WHATSAPP ====================

@@ -400,6 +400,10 @@ function initCategories() {
     
     if (!container || !nav) return;
     
+    // Vider le conteneur avant d'ajouter
+    container.innerHTML = '';
+    nav.innerHTML = '';
+    
     // Générer les cartes de catégories
     categories.forEach((category, index) => {
         const categoryCard = document.createElement('div');
@@ -415,15 +419,21 @@ function initCategories() {
         `;
         categoryCard.addEventListener('click', () => filterProducts(category.id));
         container.appendChild(categoryCard);
-        
-        // Générer les points de navigation
-        if (index % slidesToShow === 0) {
-            const dot = document.createElement('div');
-            dot.className = 'carousel-dot' + (index === 0 ? ' active' : '');
-            dot.addEventListener('click', () => goToSlide(index / slidesToShow));
-            nav.appendChild(dot);
-        }
     });
+    
+    // Générer les points de navigation - CORRECTION
+    const totalSlides = Math.ceil(categories.length / slidesToShow);
+    console.log(`Total slides: ${totalSlides} (${categories.length} catégories / ${slidesToShow} par vue)`);
+    
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToSlide(i));
+        nav.appendChild(dot);
+    }
+    
+    // Initialiser la navigation
+    addCarouselNavigation();
 }
 
 // ==================== FONCTIONS PRODUITS ====================

@@ -1002,17 +1002,17 @@ function showContact() {
                 </div>
                 
                 <!-- Horaires d'ouverture -->
-                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow);">
+                <div style="background: white; padding: 50px; border-radius: 15px; box-shadow: var(--shadow);">
                     <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 24px;">🕒 Horaires d'Ouverture</h3>
                     
                     <div style="color: #666; space-y-3">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
                             <span style="font-weight: 500;">Lundi - Vendredi</span>
-                            <span style="font-weight: bold; color: var(--primary);">8h00 - 18h00</span>
+                            <span style="font-weight: bold; color: var(--primary);"> 8h00 - 18h00 </span>
                         </div>
                         <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
                             <span style="font-weight: 500;">Samedi</span>
-                            <span style="font-weight: bold; color: var(--primary);">9h00 - 16h00</span>
+                            <span style="font-weight: bold; color: var(--primary);"> 9h00 - 16h00 </span>
                         </div>
                         <div style="display: flex; justify-content: space-between;">
                             <span style="font-weight: 500;">Dimanche</span>
@@ -1020,7 +1020,7 @@ function showContact() {
                         </div>
                     </div>
                     
-                    <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 10px; border-left: 4px solid #ffc107;">
+                    <div style="margin-top: 50px; padding: 20px; background: #fff3cd; border-radius: 10px; border-left: 4px solid #ffc107;">
                         <div style="color: #856404; font-size: 15px; line-height: 1.5;">
                             <strong>💡 Conseil :</strong> Pour une réponse rapide, contactez-nous via WhatsApp ! 
                             Notre équipe est disponible pour vous accompagner dans vos achats.

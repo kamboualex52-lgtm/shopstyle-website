@@ -247,7 +247,7 @@ const products = [
     { 
         id: 21, 
         name: 'Carafe plus 4 verres (très Robuste)', 
-        price: 8000, 
+        price: 10000, 
         category: 'electromenager', 
         image: 'Image/Electro_menager/Carafe plus 4 verres.jpg', 
         rating: 5, 
@@ -266,7 +266,7 @@ const products = [
     },
     { 
         id: 22, 
-        name: 'Chauffe eau 3L', 
+        name: 'Chauffe eau 2L', 
         price: 10000, 
         category: 'electromenager', 
         image: 'Image/Electro_menager/Chauffe eau 3L.jpg', 
@@ -274,7 +274,7 @@ const products = [
         badge: 'Nouveau',
         description: 'Bouilloire électrique 3L avec arrêt automatique. Chauffe l\'eau rapidement et en toute sécurité.',
         features: [
-            'Capacité 3L',
+            'Capacité 2L',
             'Arrêt automatique',
             'Base rotative 360°',
             'Indicateur niveau eau',
@@ -330,14 +330,14 @@ const products = [
     { 
         id: 20, 
         name: 'Caisse à outils (électricien)', 
-        price: 120000, 
+        price: 110000, 
         category: 'electricite', 
         image: 'Image/Electricité/Cais_élec/Caisse à outils (électricien).jpg', 
         rating: 5, 
         badge: 'Nouveau',
         description: 'Caisse à outils complète pour électricien professionnel. Tous les outils essentiels pour travaux électriques.',
         features: [
-            '50 pièces complètes',
+            '499 pièces complètes',
             'Outils isolés',
             'Testeur de tension',
             'Multimètre digital',
@@ -354,7 +354,7 @@ const products = [
     { 
         id: 25, 
         name: 'Caisse à outils (électro-technicien)', 
-        price: 25000, 
+        price: 30000, 
         category: 'electricite', 
         image: 'Image/Electricité/Caisse élctro-technicien.jpg', 
         rating: 5, 

@@ -346,6 +346,64 @@ function initEventListeners() {
     });
 }
 
+// ==================== FONCTIONS CAROUSEL ====================
+function goToSlide(slideIndex) {
+    const container = document.getElementById('categories-container');
+    const dots = document.querySelectorAll('.carousel-dot');
+    const totalSlides = Math.ceil(categories.length / slidesToShow);
+    
+    // Gérer les limites
+    if (slideIndex < 0) {
+        currentSlide = totalSlides - 1;
+    } else if (slideIndex >= totalSlides) {
+        currentSlide = 0;
+    } else {
+        currentSlide = slideIndex;
+    }
+    
+    const slideWidth = 100 / slidesToShow;
+    container.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+    
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+// Navigation automatique du carousel
+//setInterval(() => {
+//    const totalSlides = Math.ceil(categories.length / slidesToShow);
+//    currentSlide = (currentSlide + 1) % totalSlides;
+//    goToSlide(currentSlide);
+//}, 5000);
+
+function prevSlide() {
+    goToSlide(currentSlide - 1);
+}
+
+function nextSlide() {
+    goToSlide(currentSlide + 1);
+}
+
+function addCarouselNavigation() {
+    const carousel = document.querySelector('.categories-carousel');
+    if (!carousel) return;
+    
+    // Créer les flèches de navigation
+    const prevButton = document.createElement('button');
+    prevButton.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    prevButton.className = 'carousel-arrow carousel-prev';
+    prevButton.addEventListener('click', prevSlide);
+    
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    nextButton.className = 'carousel-arrow carousel-next';
+    nextButton.addEventListener('click', nextSlide);
+    
+    // Ajouter les flèches au carousel
+    carousel.style.position = 'relative';
+    carousel.appendChild(prevButton);
+    carousel.appendChild(nextButton);
+}
 
 // ==================== FONCTION WHATSAPP ====================
 function checkout() {
@@ -426,93 +484,4 @@ function injectNavigationStyles() {
         }
         to {
             opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Menu mobile */
-    .menu-toggle {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 24px;
-        color: var(--primary);
-        cursor: pointer;
-        padding: 10px;
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .menu-toggle {
-            display: block;
-        }
-        
-        nav ul {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: var(--shadow);
-            flex-direction: column;
-            padding: 10px 0;
-        }
-        
-        nav.active ul {
-            display: flex;
-        }
-        
-        .submenu {
-            position: static;
-            box-shadow: none;
-            background: #f8f9fa;
-        }
-    }
-
-    /* Style pour les sections */
-    .about-section, .contact-section {
-        animation: fadeIn 0.5s ease;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    /* Styles pour la recherche */
-    .search-highlight {
-        background-color: #fff3cd;
-        padding: 2px 4px;
-        border-radius: 3px;
-        font-weight: bold;
-        color: #856404;
-    }
-
-    .btn-outline {
-        background: transparent;
-        border: 2px solid var(--primary);
-        color: var(--primary);
-    }
-
-    .btn-outline:hover {
-        background: var(--primary);
-        color: white;
-    }
-    `;
-
-    const styleSheet = document.createElement('style');
-    styleSheet.textContent = navigationStyles;
-    document.head.appendChild(styleSheet);
-}
-
-// Appeler l'injection des styles
-document.addEventListener('DOMContentLoaded', function() {
-    injectNavigationStyles();
-});
+    

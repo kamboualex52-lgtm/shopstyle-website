@@ -37,10 +37,10 @@ function initFooterLinks() {
             else if (linkText.includes('Mon compte')) {
                 showAccountPage();
             }
-            else if (linkText.includes('Historique de commandes')) {
+            else if (linkText.includes('Historique')) {
                 showOrderHistory();
             }
-            else if (linkText.includes('Liste de souhaits') || linkText.includes('Favoris')) {
+            else if (linkText.includes('souhaits') || linkText.includes('Favoris')) {
                 showWishlist();
             }
             else if (linkText.includes('Newsletter')) {
@@ -609,5 +609,4 @@ function sendEmail() {
 
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoLink);
-
 }

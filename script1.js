@@ -569,12 +569,12 @@ function showContact() {
     const contactHTML = `
         <div class="contact-section" style="padding: 40px 20px; max-width: 1000px; margin: 0 auto;">
             <h2 style="text-align: center; margin-bottom: 40px; color: var(--primary); font-size: 32px;">Contactez-Nous</h2>
-            
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px;">
                 <!-- Informations de contact -->
-                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow);">
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); width: 400px; height: 570px">
                     <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 24px;">📞 Informations de Contact</h3>
-                    
+
                     <div style="space-y-4">
                         <div style="display: flex; align-items: center; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
                             <div style="background: var(--primary); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
@@ -585,7 +585,7 @@ function showContact() {
                                 <div style="color: #666; font-size: 18px;">+242 06 844 8698</div>
                             </div>
                         </div>
-                        
+
                         <div style="display: flex; align-items: center; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
                             <div style="background: #25D366; color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
                                 <i class="fab fa-whatsapp"></i>
@@ -595,7 +595,7 @@ function showContact() {
                                 <div style="color: #666; font-size: 18px;">+242 06 844 8698</div>
                             </div>
                         </div>
-                        
+
                         <div style="display: flex; align-items: center; margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 10px;">
                             <div style="background: var(--secondary); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
                                 <i class="fas fa-envelope"></i>
@@ -605,7 +605,7 @@ function showContact() {
                                 <div style="color: #666; font-size: 18px;">frediadaniella@gmail.com</div>
                             </div>
                         </div>
-                        
+
                         <div style="display: flex; align-items: center; padding: 15px; background: #f8f9fa; border-radius: 10px;">
                             <div style="background: var(--warning); color: white; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; flex-shrink: 0;">
                                 <i class="fas fa-map-marker-alt"></i>
@@ -617,11 +617,11 @@ function showContact() {
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Horaires d'ouverture -->
-                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow);">
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: var(--shadow); width: 400px; height: 570px">
                     <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 24px;">🕒 Horaires d'Ouverture</h3>
-                    
+
                     <div style="color: #666; space-y-3">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #eee;">
                             <span style="font-weight: 500;">Lundi - Vendredi</span>
@@ -636,23 +636,23 @@ function showContact() {
                             <span style="font-weight: bold; color: #dc3545;">Fermé</span>
                         </div>
                     </div>
-                    
+
                     <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-radius: 10px; border-left: 4px solid #ffc107;">
                         <div style="color: #856404; font-size: 15px; line-height: 1.5;">
-                            <strong>💡 Conseil :</strong> Pour une réponse rapide, contactez-nous via WhatsApp ! 
+                            <strong>💡 Conseil :</strong> Pour une réponse rapide, contactez-nous via WhatsApp !
                             Notre équipe est disponible pour vous accompagner dans vos achats.
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Actions de contact -->
             <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: var(--shadow); text-align: center;">
                 <h3 style="color: var(--primary); margin-bottom: 30px; font-size: 26px;">📍 Contactez-Nous Directement</h3>
                 <p style="color: #666; margin-bottom: 30px; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
                     Nous sommes là pour vous aider ! Choisissez le moyen de contact qui vous convient le mieux.
                 </p>
-                
+
                 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
                     <button class="btn" onclick="openWhatsAppContact()" style="padding: 15px 30px; font-size: 16px; display: flex; align-items: center; gap: 10px;">
                         <i class="fab fa-whatsapp" style="font-size: 20px;"></i> WhatsApp

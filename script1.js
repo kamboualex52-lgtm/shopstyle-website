@@ -3,7 +3,7 @@
 // Variables globales
 let cart = [];
 let currentSlide = 0;
-const slidesToShow = 3;
+const slidesToShow = 2;
 let currentProduct = null;
 let currentMediaIndex = 0;
 

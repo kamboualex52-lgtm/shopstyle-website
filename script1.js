@@ -1838,22 +1838,35 @@ function goToSlide(slideIndex) {
 
 // Navigation automatique du carousel
 function getSlidesToShow() {
-  if (window.innerWidth < 600) return 1; // smartphone
-  if (window.innerWidth < 992) return 2; // tablette
-  return 4; // PC
+  if (window.innerWidth < 600) return 1;
+  if (window.innerWidth < 992) return 2;
+  return 4;
 }
 
-// recalcul à chaque redimensionnement
+// recalculer si la fenêtre change de taille
 window.addEventListener('resize', () => {
   slidesToShow = getSlidesToShow();
   goToSlide(currentSlide);
 });
 
-setInterval(() => {
-  const totalSlides = Math.ceil(categories.length / slidesToShow);
-  currentSlide = (currentSlide + 1) % totalSlides;
-  goToSlide(currentSlide);
-}, 5000);
+// fonction pause asynchrone
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// boucle infinie du carrousel
+async function startCarousel() {
+  while (true) {
+    const totalSlides = Math.ceil(categories.length / slidesToShow);
+    currentSlide = (currentSlide + 1) % totalSlides;
+    goToSlide(currentSlide);
+    await sleep(5000); // attend 5 secondes avant de passer à la suivante
+  }
+}
+
+// Démarrer la boucle
+startCarousel();
+
 //_____
 
 function prevSlide() {

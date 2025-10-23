@@ -2,8 +2,10 @@
 
 // Variables globales
 let cart = [];
+// let currentSlide = 0;
+// const slidesToShow = 3;
 let currentSlide = 0;
-const slidesToShow = 3;
+let slidesToShow = getSlidesToShow(); // valeur initiale selon la taille
 let currentProduct = null;
 let currentMediaIndex = 0;
 
@@ -1835,11 +1837,24 @@ function goToSlide(slideIndex) {
 }
 
 // Navigation automatique du carousel
-//setInterval(() => {
-//    const totalSlides = Math.ceil(categories.length / slidesToShow);
-//    currentSlide = (currentSlide + 1) % totalSlides;
-//    goToSlide(currentSlide);
-//}, 5000);
+function getSlidesToShow() {
+  if (window.innerWidth < 600) return 1; // smartphone
+  if (window.innerWidth < 992) return 2; // tablette
+  return 4; // PC
+}
+
+// recalcul à chaque redimensionnement
+window.addEventListener('resize', () => {
+  slidesToShow = getSlidesToShow();
+  goToSlide(currentSlide);
+});
+
+setInterval(() => {
+  const totalSlides = Math.ceil(categories.length / slidesToShow);
+  currentSlide = (currentSlide + 1) % totalSlides;
+  goToSlide(currentSlide);
+}, 5000);
+//_____
 
 function prevSlide() {
     goToSlide(currentSlide - 1);

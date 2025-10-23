@@ -606,7 +606,90 @@ function sendEmail() {
     const email = 'frediadaniella@gmail.com';
     const subject = 'Demande d\'information - KWAD';
     const body = 'Bonjour KWAD,\n\nJe suis intéressé(e) par vos produits et j\'aimerais avoir plus d\'informations.\n\nCordialement,';
-
+    
     const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.open(mailtoLink);
+}
+
+// Afficher les produits filtrés - VERSION AMÉLIORÉE
+function displayFilteredProducts(filteredProducts, title) {
+    const grid = document.getElementById('products-grid');
+    if (!grid) return;
+    
+    // Cacher la section catégories
+    const categoriesSection = document.querySelector('.categories-section');
+    if (categoriesSection) {
+        categoriesSection.style.display = 'none';
+    }
+    
+    grid.innerHTML = '';
+    
+    if (filteredProducts.length === 0) {
+        grid.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; padding: 80px 20px;">
+                <div style="font-size: 80px; color: #ddd; margin-bottom: 20px;">😔</div>
+                <h3 style="color: #666; margin-bottom: 15px; font-size: 24px;">Aucun produit trouvé</h3>
+                <p style="color: #999; margin-bottom: 30px; font-size: 16px; max-width: 400px; margin-left: auto; margin-right: auto;">
+                    Nous n'avons pas de produits dans cette section pour le moment. 
+                    Revenez bientôt pour découvrir nos nouvelles arrivées !
+                </p>
+                <button class="btn" onclick="showHomePage()" style="padding: 12px 30px; font-size: 16px;">
+                    <i class="fas fa-home"></i> Retour à l'accueil
+                </button>
+            </div>
+        `;
+        return;
+    }
+    
+    // En-tête de section amélioré
+    const sectionHeader = document.createElement('div');
+    sectionHeader.style.cssText = `
+        grid-column: 1/-1;
+        margin-bottom: 30px;
+        padding: 25px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: var(--shadow);
+    `;
+    sectionHeader.innerHTML = `
+        <h2 style="margin: 0 0 10px 0; font-size: 28px; font-weight: bold;">${title}</h2>
+        <p style="margin: 0; opacity: 0.9; font-size: 16px;">
+            ${filteredProducts.length} produit${filteredProducts.length > 1 ? 's' : ''} disponible${filteredProducts.length > 1 ? 's' : ''}
+        </p>
+    `;
+    grid.appendChild(sectionHeader);
+    
+    // Afficher les produits
+    filteredProducts.forEach(product => {
+        const productCard = document.createElement('div');
+        productCard.className = 'product-card';
+        productCard.innerHTML = `
+            ${product.badge ? `<div class="product-badge">${product.badge}</div>` : ''}
+            <div class="product-image">
+                <img src="${product.image}" alt="${product.name}" onerror="handleImageError(this)">
+                <div class="product-actions">
+                    <button class="add-to-cart" data-id="${product.id}"><i class="fas fa-cart-plus"></i></button>
+                    <button class="view-detail" data-id="${product.id}"><i class="fas fa-eye"></i></button>
+                    <button><i class="fas fa-heart"></i></button>
+                </div>
+            </div>
+            <div class="product-info">
+                <h3 class="product-title">${product.name}</h3>
+                <div class="product-rating">${'★'.repeat(product.rating)}${'☆'.repeat(5-product.rating)}</div>
+                <div class="product-price">${product.price.toLocaleString()} FCFA</div>
+                <button class="btn add-to-cart-btn" data-id="${product.id}">Ajouter au panier</button>
+            </div>
+        `;
+        grid.appendChild(productCard);
+    });
+    
+    attachProductEvents();
+    updatePageTitle(title);
+}
+
+// Mettre à jour le titre de la page
+function updatePageTitle(title) {
+    document.title = `${title} - KWAD`;
 }

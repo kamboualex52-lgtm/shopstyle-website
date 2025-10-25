@@ -456,7 +456,7 @@ const products = [
     {
         id: 30,
         name: 'Micro-ondes 3 en 1 - Cuisson, Grill & Décongélation',
-        price: 75000,
+        price: 40000,
         category: 'electromenager',
         image: 'Image/Electro_menager/Micro_onde/Micro_onde.jpg',
         rating: 5,
@@ -595,5 +595,6 @@ const products = [
     }
 
 ];
+
 
 

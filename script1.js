@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     addCarouselNavigation();
     setupDetailPageEvents();
     initFooterLinks();
+    testSocialLinks();
 });
 
 // ==================== FONCTIONS CATÉGORIES ====================
@@ -2066,3 +2067,44 @@ function injectNavigationStyles() {
 document.addEventListener('DOMContentLoaded', function() {
     injectNavigationStyles();
 });
+
+
+
+
+// Fonction pour tester les liens sociaux
+function testSocialLinks() {
+    const socialLinks = document.querySelectorAll('.social-icons a');
+    
+    socialLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const platform = this.querySelector('i').className;
+            const href = this.href;
+            
+            console.log(`🔗 Clic sur: ${platform}`);
+            console.log(`🌐 Lien: ${href}`);
+            
+            // Test d'ouverture dans nouvel onglet
+            if (href.includes('facebook.com')) {
+                e.preventDefault();
+                const confirmed = confirm(`Ouvrir Facebook: ${href} ?`);
+                if (confirmed) {
+                    window.open(href, '_blank', 'noopener,noreferrer');
+                }
+            }
+        });
+    });
+}
+
+// Fonction de tracking
+function trackSocialClick(platform) {
+    console.log(`📊 Social click: ${platform}`);
+    // Ici vous pouvez ajouter Google Analytics
+    // gtag('event', 'social_click', { 'platform': platform });
+}
+
+// // Initialisation
+// document.addEventListener('DOMContentLoaded', function() {
+//     testSocialLinks();
+// });
+
+

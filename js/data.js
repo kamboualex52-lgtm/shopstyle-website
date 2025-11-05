@@ -1,4 +1,4 @@
-//NB id_end 33
+//NB id_end 35
 
 // Données des catégories
 const categories = [
@@ -21,7 +21,7 @@ const products = [
     {
         id: 26,
         name: 'Sous-vêtements pour femmes – Confort & Élégance',
-        price: 9500,
+        price: 6500,
         category: 'vetements',
         image: 'Image/Vetement/Sous_V_F/Sous_V.jpg',
         rating: 5,
@@ -47,7 +47,7 @@ const products = [
     {
         id: 27,
         name: 'Crop Top tendance - Style urbain chic',
-        price: 10000,
+        price: 7000,
         category: 'vetements',
         image: 'Image/Vetement/Crop_Top/Crop_Top.jpg',
         rating: 5,
@@ -238,7 +238,7 @@ const products = [
     {
         id: 28,
         name: 'Sac de sortie multifonction pour bébé',
-        price: 18000,
+        price: 15000,
         category: 'accessoires',
         image: 'Image/Sacs/Sac_bébé/Sac_bébé.jpg',
         rating: 5,
@@ -262,7 +262,7 @@ const products = [
     {
         id: 29,
         name: 'Ensemble de sacs étanches pour étudiants',
-        price: 20000,
+        price: 15000,
         category: 'accessoires',
         image: 'Image/Sacs/Sac_Etudiant/Sac.jpg',
         rating: 5,
@@ -287,6 +287,53 @@ const products = [
 
 
     // Electro_menager
+    // Machine à glaçons
+    {
+        id: 35,
+        name: 'Machine à glaçons ultra rapide - Fraîcheur instantanée',
+        price: 50000,
+        category: 'electromenager',
+        image: 'Image/Electro_menager/Machine_Glaçons/Machine_Glaçons.jpg',
+        rating: 5,
+        badge: 'Offre Spéciale',
+        description: 'Machine à glaçons ultra rapide, compacte et silencieuse. Préparez vos glaçons en quelques minutes pour vos cocktails, jus ou cafés glacés. Idéale pour la maison, le bureau ou vos événements.',
+        features: [
+            'Production rapide de glaçons en quelques minutes',
+            'Compacte, silencieuse et facile à utiliser',
+            'Capacité suffisante pour un usage quotidien',
+            'Design moderne et élégant',
+            'Idéale pour maison, bureau ou fêtes'
+        ],
+        media: [
+            { type: 'image', src: 'Image/Electro_menager/Machine_Glaçons/Machine_Glaçons.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Machine_Glaçons/Machine_Glaçons1.jpg' }
+        ]
+    }
+
+
+    // Friteuse électrique
+    {
+        id: 34,
+        name: 'Friteuse électrique - Croustillant parfait & cuisson rapide',
+        price: 50000,
+        category: 'electromenager',
+        image: 'Image/Electro_menager/Friteuse/Friteuse.jpg',
+        rating: 5,
+        badge: 'Offre Spéciale',
+        description: 'Friteuse électrique puissante et sécurisée pour des cuissons rapides et croustillantes. Parfaite pour préparer frites, beignets ou poulet doré à la perfection, elle est facile à utiliser et à nettoyer.',
+        features: [
+            'Puissante et rapide pour une cuisson homogène',
+            'Système de sécurité intégré',
+            'Cuve antiadhésive facile à nettoyer',
+            'Design moderne et compact',
+            'Idéale pour la maison, les fêtes ou repas en famille'
+        ],
+        media: [
+            { type: 'image', src: 'Image/Electro_menager/Friteuse/Friteuse.jpg' }
+        ]
+    }
+
+ 
     // Ouvre bière
     {
         id: 17,
@@ -318,7 +365,7 @@ const products = [
     {
         id: 19,
         name: 'Tire bouchon rechargeable',
-        price: 12000,
+        price: 15000,
         category: 'electromenager',
         image: 'Image/Electro_menager/Tire_bouch/Tire bouchon.jpg',
         rating: 5,
@@ -495,7 +542,8 @@ const products = [
         ],
         media: [
             { type: 'image', src: 'Image/Electro_menager/Follet/Follet.jpg' },
-            { type: 'image', src: 'Image/Electro_menager/Follet/Follet1.jpg' }
+            { type: 'image', src: 'Image/Electro_menager/Follet/Follet1.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Follet/Fouet.jpg' }
         ]
     },
 
@@ -517,7 +565,8 @@ const products = [
             'Idéal pour la maison, le restaurant ou comme cadeau'
         ],
         media: [
-            { type: 'image', src: 'Image/Electro_menager/Ensemble-Couteau1/Couteau.jpg' }
+            { type: 'image', src: 'Image/Electro_menager/Ensemble-Couteau1/Couteau.jpg' },
+            { type: 'image', src: 'Image/Electro_menager/Ensemble-Couteau1/Couteau1.jpg' }
         ]
     },
 
@@ -595,6 +644,7 @@ const products = [
     }
 
 ];
+
 
 
 

@@ -308,7 +308,7 @@ const products = [
             { type: 'image', src: 'Image/Electro_menager/Machine_Glaçons/Machine_Glaçons.jpg' },
             { type: 'image', src: 'Image/Electro_menager/Machine_Glaçons/Machine_Glaçons1.jpg' }
         ]
-    }
+    },
 
 
     // Friteuse électrique
@@ -331,7 +331,7 @@ const products = [
         media: [
             { type: 'image', src: 'Image/Electro_menager/Friteuse/Friteuse.jpg' }
         ]
-    }
+    },
 
  
     // Ouvre bière
@@ -644,6 +644,7 @@ const products = [
     }
 
 ];
+
 
 
 

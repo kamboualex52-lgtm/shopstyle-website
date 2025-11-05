@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     addCarouselNavigation();
     setupDetailPageEvents();
     initFooterLinks();
-    testSocialLinks();
+    initSocialLinks();
 });
 
 // ==================== FONCTIONS CATÉGORIES ====================
@@ -2071,40 +2071,165 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// Fonction pour tester les liens sociaux
-function testSocialLinks() {
-    const socialLinks = document.querySelectorAll('.social-icons a');
+// Fonction principale pour gérer tous les clics sociaux
+function handleSocialClick(e) {
+    e.preventDefault();
+    
+    const link = e.currentTarget;
+    const href = link.href;
+    const platform = getPlatformFromUrl(href);
+    
+    console.log(`🔗 Clic détecté sur: ${platform}`);
+    console.log(`🌐 URL: ${href}`);
+    
+    // Gestion spécifique par plateforme
+    switch(platform) {
+        case 'facebook':
+            openFacebook(href);
+            break;
+        case 'instagram':
+            openInstagram(href);
+            break;
+        case 'email':
+            openEmail(href);
+            break;
+        case 'whatsapp':
+            openWhatsApp(href);
+            break;
+        default:
+            openDefaultSocial(href, platform);
+    }
+    
+    // Tracking
+    trackSocialClick(platform);
+}
+
+// Détection de la plateforme
+function getPlatformFromUrl(url) {
+    if (url.includes('facebook.com')) return 'facebook';
+    if (url.includes('instagram.com')) return 'instagram';
+    if (url.includes('mailto:')) return 'email';
+    if (url.includes('whatsapp.com') || url.includes('wa.me')) return 'whatsapp';
+    if (url.includes('twitter.com')) return 'twitter';
+    if (url.includes('youtube.com')) return 'youtube';
+    return 'other';
+}
+
+// Fonction pour Facebook
+function openFacebook(url) {
+    const confirmed = confirm(`📘 Ouvrir notre page Facebook ?\n\nVous serez redirigé vers notre page officielle.`);
+    if (confirmed) {
+        window.open(url, '_blank', 'noopener,noreferrer,width=800,height=600');
+        showNotification('🔗 Ouverture de Facebook...', 'info');
+    } else {
+        showNotification('❌ Ouverture annulée', 'info');
+    }
+}
+
+// Fonction pour Instagram
+function openInstagram(url) {
+    const confirmed = confirm(`📷 Ouvrir notre page Instagram ?\n\nDécouvrez nos derniers produits et promotions !`);
+    if (confirmed) {
+        window.open(url, '_blank', 'noopener,noreferrer,width=800,height=600');
+        showNotification('📸 Ouverture d\'Instagram...', 'info');
+    } else {
+        showNotification('❌ Ouverture annulée', 'info');
+    }
+}
+
+// Fonction pour Email
+function openEmail(url) {
+    const confirmed = confirm(`📧 Envoyer un email ?\n\nVous allez ouvrir votre application de messagerie.`);
+    if (confirmed) {
+        // Pour email, on utilise window.location pour une meilleure compatibilité
+        window.location.href = url;
+        showNotification('📧 Ouverture de l\'application email...', 'info');
+    } else {
+        showNotification('❌ Envoi annulé', 'info');
+    }
+}
+
+// Fonction pour WhatsApp
+function openWhatsApp(url) {
+    const confirmed = confirm(`💬 Ouvrir WhatsApp ?\n\nContactez-nous directement sur WhatsApp !`);
+    if (confirmed) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+        showNotification('💬 Ouverture de WhatsApp...', 'info');
+    } else {
+        showNotification('❌ Ouverture annulée', 'info');
+    }
+}
+
+// Fonction par défaut pour autres réseaux
+function openDefaultSocial(url, platform) {
+    const confirmed = confirm(`🌐 Ouvrir ${platform} ?\n\nVous serez redirigé vers notre page.`);
+    if (confirmed) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+        showNotification(`🔗 Ouverture de ${platform}...`, 'info');
+    } else {
+        showNotification('❌ Ouverture annulée', 'info');
+    }
+}
+
+// Tracking des clics
+function trackSocialClick(platform) {
+    console.log(`📊 Social click tracked: ${platform}`);
+    
+    // Google Analytics (si configuré)
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'social_click', {
+            'event_category': 'Social Media',
+            'event_label': platform,
+            'value': 1
+        });
+    }
+    
+    // Stockage local pour statistiques
+    const socialStats = JSON.parse(localStorage.getItem('kwad_social_stats')) || {};
+    socialStats[platform] = (socialStats[platform] || 0) + 1;
+    socialStats.last_click = new Date().toISOString();
+    localStorage.setItem('kwad_social_stats', JSON.stringify(socialStats));
+}
+
+// Initialisation des liens sociaux
+function initSocialLinks() {
+    console.log('🔄 Initialisation des liens sociaux...');
+    
+    const socialLinks = document.querySelectorAll('.social-icons a, .social-link');
     
     socialLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const platform = this.querySelector('i').className;
-            const href = this.href;
-            
-            console.log(`🔗 Clic sur: ${platform}`);
-            console.log(`🌐 Lien: ${href}`);
-            
-            // Test d'ouverture dans nouvel onglet
-            if (href.includes('facebook.com')) {
-                e.preventDefault();
-                const confirmed = confirm(`Ouvrir Facebook: ${href} ?`);
-                if (confirmed) {
-                    window.open(href, '_blank', 'noopener,noreferrer');
-                }
-            }
-        });
+        // Supprimer les anciens événements
+        link.removeEventListener('click', handleSocialClick);
+        
+        // Ajouter le nouvel événement
+        link.addEventListener('click', handleSocialClick);
+        
+        // Ajouter des attributs pour le tracking
+        const href = link.href;
+        const platform = getPlatformFromUrl(href);
+        link.setAttribute('data-platform', platform);
+        link.setAttribute('title', `Suivez-nous sur ${platform.charAt(0).toUpperCase() + platform.slice(1)}`);
     });
+    
+    console.log(`✅ ${socialLinks.length} liens sociaux initialisés`);
 }
 
-// Fonction de tracking
-function trackSocialClick(platform) {
-    console.log(`📊 Social click: ${platform}`);
-    // Ici vous pouvez ajouter Google Analytics
-    // gtag('event', 'social_click', { 'platform': platform });
+// Fonction pour afficher les statistiques sociales (optionnel)
+function showSocialStats() {
+    const stats = JSON.parse(localStorage.getItem('kwad_social_stats')) || {};
+    console.log('📈 Statistiques sociales:', stats);
+    
+    let statsHTML = '<h3>📊 Statistiques des Réseaux Sociaux</h3>';
+    for (const [platform, count] of Object.entries(stats)) {
+        if (platform !== 'last_click') {
+            statsHTML += `<p>${platform}: ${count} clics</p>`;
+        }
+    }
+    
+    if (stats.last_click) {
+        statsHTML += `<p><small>Dernier clic: ${new Date(stats.last_click).toLocaleString('fr-FR')}</small></p>`;
+    }
+    
+    return statsHTML;
 }
-
-// // Initialisation
-// document.addEventListener('DOMContentLoaded', function() {
-//     testSocialLinks();
-// });
-
 

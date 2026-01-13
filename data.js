@@ -139,7 +139,6 @@ const products = [
         ]
     },
 
-
     // Sous vêtement
     {
         id: 26,
@@ -192,8 +191,6 @@ const products = [
     },
 
 
-
-
     //Sac
     //Pour bébé
     {
@@ -217,7 +214,6 @@ const products = [
             { type: 'image', src: 'Image/Sacs/Sac_bébé/Sac_bébé1.jpg' }
         ]
     },
-
 
     //Etudiant
     {
@@ -248,6 +244,105 @@ const products = [
 
 
     // Electro_menager
+    {
+        id: 46,
+        name: 'Tapis chauffant electronique',
+        price: 50000,
+        category: 'electromenager',
+        image: 'Image/Electro_menager/tapie chafond/WhatsApp Image 2026-01-11 at 14.21.24.jpeg',
+        rating: 5,
+        badge: 'Best-seller',
+        description: "Rechauffer vos repas partout et a tout moment",
+        features: [
+            'Voltage: 110 - 220V',
+        ],
+        media: [
+            { type: 'image', src: 'Image/Electro_menager/tapie chafond/WhatsApp Image 2026-01-11 at 14.21.24.jpeg' },
+            { type: 'image', src: 'Image/Electro_menager/tapie chafond/WhatsApp Image 2026-01-11 at 14.21.26.jpeg' }
+        ]
+    },
+
+    {
+        id: 45,
+        name: 'presse fruit electrique',
+        price: 50000,
+        category: 'electromenager',
+        image: 'Image/Electro_menager/presse fruit/Pres_fruit0.jpeg',
+        rating: 5,
+        badge: 'Best-seller',
+        description: "Obtener vos jus de fruit fais maison sans trop d'effort",
+        features: [
+            'Voltage: 110 - 220V',
+        ],
+        media: [
+            { type: 'image', src: 'Image/Electro_menager/presse fruit/Pres_fruit0.jpeg' },
+            { type: 'image', src: 'Image/Electro_menager/presse fruit/Pres_fruit1.jpeg' },
+            { type: 'image', src: 'Image/Electro_menager/presse fruit/Pres_fruit2.jpeg' },
+            { type: 'image', src: 'Image/Electro_menager/presse fruit/Pres_fruit3.jpeg' },
+        ]
+    },
+
+    {
+        id: 44,
+        name: '2 en 1 mixeur multifonction',
+        price: 50000,
+        category: 'electromenager',
+        image: 'Image/Electro_menager/Mixer/WhatsApp Image 2026-01-11 at 14.21.04.jpeg',
+        rating: 5,
+        badge: 'Best-seller',
+        description: "Ranger tout ce qui vous fais plaisir, optimier plus d'espace",
+        features: [
+            'Voltage: 110 - 220V',
+            'Nombre de lames: 6',
+            'coleur : argent'
+        ],
+        media: [
+            { type: 'image', src: 'Image/Electro_menager/Mixer/WhatsApp Image 2026-01-11 at 14.21.04.jpeg' },
+            { type: 'image', src: 'Image/Electro_menager/Mixer/WhatsApp Image 2026-01-11 at 14.20.18.jpeg' }
+        ]
+    },
+
+    {
+        id: 43,
+        name: 'Etager de rengement',
+        price: 50000,
+        category: 'electromenager',
+        image: 'Image/Electro_menager/Etagere/Etag0.jpeg',
+        rating: 5,
+        badge: 'Top Vente',
+        description: "Ranger tout ce qui vous fais plaisir, optimier plus d'espace",
+        features: [
+            '... en cours'
+        ],
+        media: [
+            { type: 'image', src: 'Image/Electro_menager/Etagere/Etag0.jpeg' },
+            { type: 'image', src: 'Image/Electro_menager/Etagere/Etag1.jpeg' },
+            { type: 'image', src: 'Image/Electro_menager/Etagere/Etag2.jpeg' },
+            { type: 'image', src: 'Image/Electro_menager/Etagere/Etag3.jpeg' },
+            { type: 'image', src: 'Image/Electro_menager/Etagere/Etag4.jpeg' }
+        ]
+    },
+
+    {
+        id: 42,
+        name: 'Air conditionnee portable',
+        price: 50000,
+        category: 'electromenager',
+        image: 'Image/Electro_menager/Clim/WhatsApp Image 2026-01-11 at 14.19.37.jpeg',
+        rating: 5,
+        badge: 'Nouveau',
+        description: 'Profiter de votre air conditionnee partout chef vous grace',
+        features: [
+            "reservoir d'eau 3L",
+            'energie eolienne froid 45 W',
+            'energie eolienne chaude 18000 W'
+
+        ],
+        media: [
+            { type: 'image', src: 'Image/Electro_menager/Clim/WhatsApp Image 2026-01-11 at 14.19.37.jpeg' }
+        ]
+    },
+
     // Machine à glaçons
     {
         id: 35,
@@ -271,7 +366,6 @@ const products = [
         ]
     },
 
-
     // Friteuse électrique
     {
         id: 34,
@@ -294,7 +388,6 @@ const products = [
         ]
     },
 
- 
     // Ouvre bière
     {
         id: 17,

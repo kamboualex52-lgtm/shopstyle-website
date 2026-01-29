@@ -60,7 +60,7 @@ const products = [
 //    },
 
     {
-        id: 38,
+        id: 37,
         name: 'Robe longue de soirée',
         price: 15000,
         category: 'vetements',
@@ -105,7 +105,7 @@ const products = [
 //    },
 
     {
-        id: 40,
+        id: 38,
         name: 'robe de soirée',
         price: 15000,
         category: 'vetements',
@@ -121,17 +121,14 @@ const products = [
         media: [
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb1.jpeg' },
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb2.jpeg' },
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb3.jpeg' },
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb0.jpeg' },
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb1.jpeg' },
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb2.jpeg' }
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb3.jpeg' }
 
         ]
     },
 
     // Robe enfant
     {
-        id: 41,
+        id: 39,
         name: 'Robe enfant',
         price: 15000,
         category: 'vetements',

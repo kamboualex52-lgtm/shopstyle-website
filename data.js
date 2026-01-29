@@ -119,7 +119,7 @@ const products = [
             'Silhouette : Asymétrique'
         ],
         media: [
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb1.jpeg' },
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb1.jpg' },
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb2.jpeg' },
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb3.jpeg' }
 

@@ -85,24 +85,7 @@ const products = [
         ]
     },
 
-//    {
-//        id: 39,
-//        name: 'Robe confortable',
-//        price: 15000,
-//        category: 'vetements',
-//        image: 'Image/Vetement/Femme/Robe/robe_simple/Rb0.jpeg',
-//        rating: 4,
-//        badge: "Top Vente",
-//        description: '... en cours',
-//        features: [
-//            '... en cours'
-//        ],
-//        media: [
-//            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb0.jpeg' },
-//            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb1.jpeg' },
-//            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb2.jpeg' }
-//        ]
-//    },
+
 
     {
         id: 38,
@@ -119,7 +102,7 @@ const products = [
             'Silhouette : Asymétrique'
         ],
         media: [
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb1.jpg' },
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb1.jpeg' },
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb2.jpeg' },
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb3.jpeg' }
 

@@ -65,7 +65,7 @@ const products = [
         price: 15000,
         category: 'vetements',
         image: 'Image/Vetement/Femme/Robe/robe_elegante/Rb0.jpeg',
-        rating: 3.6,
+        rating: 3,
         badge: "Top Vente",
         description: 'HANO-Robe longue de soirée africaine, tenue de grande taille, Dashiki Ankara, mariage pour femmes musulmanes turques, mousseline de soie',
         features: [

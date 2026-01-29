@@ -24,11 +24,12 @@ const products = [
         price: 15000,
         category: 'vetements',
         image: 'Image/Vetement/Femme/Robe/robe de soiree/IMG-20251228-WA0000(1).jpg',
-        rating: 4,
+        rating: 4.5,
         badge: "Top Vente",
-        description: '... en cours',
+        description: '2025 été élégant robe de soirée formelle haute fente robe de bal fête balayage Train paillettes Maxi longue Slip robes pour les femmes',
         features: [
-            '... en cours'
+            'Silhouette : A-Line',
+            'Type de tissu : Organza bordé'
         ],
         media: [
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe de soiree/robe bege.jpg' },
@@ -39,79 +40,92 @@ const products = [
         ]
     },
 
+//    {
+//        id: 37,
+//        name: 'Robe elegante',
+//        price: 15000,
+//        category: 'vetements',
+//        image: 'Image/Vetement/Femme/Robe/robe_L/Rb0.jpeg',
+//        rating: 4,
+//        badge: "Top Vente",
+//        description: '... en cours',
+//        features: [
+//            '... en cours'
+//        ],
+//        media: [
+//            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_L/Rb1.jpg' },
+//            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_L/Rb2.jpg' },
+//            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_L/Rb3.jpg' }
+//        ]
+//    },
+
     {
-        id: 37,
-        name: 'Robe elegante',
+        id: 38,
+        name: 'Robe longue de soirée',
         price: 15000,
         category: 'vetements',
-        image: 'Image/Vetement/Femme/Robe/robe_L/Rb0.jpeg',
-        rating: 4,
+        image: 'Image/Vetement/Femme/Robe/robe_elegante/Rb0.jpeg',
+        rating: 3.6,
         badge: "Top Vente",
-        description: '... en cours',
+        description: 'HANO-Robe longue de soirée africaine, tenue de grande taille, Dashiki Ankara, mariage pour femmes musulmanes turques, mousseline de soie',
         features: [
-            '... en cours'
+            'Type de tissu : Mousseline de soie',
+            'Style : Formel',
+            'Taille : XL, 2XL, 3XL, L',
+            'Silhouette : Moulante',
+            'Décoration : Cristal, Bouton, lace, Rivet, Zips'
         ],
         media: [
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_elegante/Rb1.jpg' },
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_elegante/Rb2.jpg' },
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_elegante/Rb3.jpg' },
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_L/Rb1.jpg' },
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_L/Rb2.jpg' },
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_L/Rb3.jpg' }
         ]
     },
 
-    {
-        id: 38,
-        name: 'Robe elegante',
-        price: 15000,
-        category: 'vetements',
-        image: 'Image/Vetement/Femme/Robe/robe_elegante/Rb0.jpeg',
-        rating: 4,
-        badge: "Top Vente",
-        description: '... en cours',
-        features: [
-            '... en cours'
-        ],
-        media: [
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_elegante/Rb1.jpg' },
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_elegante/Rb2.jpg' },
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_elegante/Rb3.jpg' }
-        ]
-    },
-
-    {
-        id: 39,
-        name: 'Robe confortable',
-        price: 15000,
-        category: 'vetements',
-        image: 'Image/Vetement/Femme/Robe/robe_simple/Rb0.jpeg',
-        rating: 4,
-        badge: "Top Vente",
-        description: '... en cours',
-        features: [
-            '... en cours'
-        ],
-        media: [
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb0.jpeg' },
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb1.jpeg' },
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb2.jpeg' }
-        ]
-    },
+//    {
+//        id: 39,
+//        name: 'Robe confortable',
+//        price: 15000,
+//        category: 'vetements',
+//        image: 'Image/Vetement/Femme/Robe/robe_simple/Rb0.jpeg',
+//        rating: 4,
+//        badge: "Top Vente",
+//        description: '... en cours',
+//        features: [
+//            '... en cours'
+//        ],
+//        media: [
+//            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb0.jpeg' },
+//            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb1.jpeg' },
+//            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb2.jpeg' }
+//        ]
+//    },
 
     {
         id: 40,
-        name: 'Robe evase',
+        name: 'robe de soirée',
         price: 15000,
         category: 'vetements',
         image: 'Image/Vetement/Femme/Robe/robe_evase/Rb0.jpeg',
         rating: 4,
         badge: "Top Vente",
-        description: '... en cours',
+        description: 'Robe bandage portefeuille col O imprimée avec surpiqûres, polyester, tailles S-3XL, pour femme/bureau',
         features: [
-            '... en cours'
+            'Taille : S à 3XL',
+            'Type de tissu : Coton/polyester',
+            'Silhouette : Asymétrique'
         ],
         media: [
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb1.jpeg' },
             { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb2.jpeg' },
-            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb3.jpeg' }
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_evase/Rb3.jpeg' },
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb0.jpeg' },
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb1.jpeg' },
+            { type: 'image', src: 'Image/Vetement/Femme/Robe/robe_simple/Rb2.jpeg' }
+
         ]
     },
 

@@ -1,0 +1,57 @@
+/* ==================== SECTIONS COMMUNES ==================== */
+.hero {
+    background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    padding: clamp(60px, 12vw, 100px) 0;
+    margin-bottom: clamp(30px, 6vw, 40px);
+}
+
+.hero h1 {
+    font-size: clamp(32px, 6vw, 48px);
+    margin-bottom: clamp(15px, 3vw, 20px);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: clamp(16px, 2.5vw, 20px);
+    margin-bottom: clamp(20px, 4vw, 30px);
+    max-width: min(700px, 90vw);
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.categories-section {
+    padding: clamp(40px, 8vw, 50px) 0;
+    background: white;
+}
+
+.products-section {
+    padding: clamp(40px, 8vw, 50px) 0;
+}
+
+.newsletter {
+    background: var(--secondary);
+    color: white;
+    padding: clamp(40px, 8vw, 60px) 0;
+    text-align: center;
+}
+
+.newsletter h2 {
+    margin-bottom: clamp(15px, 3vw, 20px);
+    font-size: clamp(20px, 3.5vw, 24px);
+}
+
+.newsletter p {
+    max-width: min(600px, 90vw);
+    margin: 0 auto clamp(20px, 4vw, 30px);
+    opacity: 0.9;
+    font-size: clamp(14px, 1.6vw, 16px);
+    line-height: 1.5;
+}

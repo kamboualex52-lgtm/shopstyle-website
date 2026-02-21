@@ -1,0 +1,257 @@
+/* ==================== MEDIA QUERIES GLOBAUX ==================== */
+
+/* Corrections responsive pour le carousel */
+@media (max-width: 1200px) {
+    .category-card {
+        width: calc(25% - clamp(12px, 2.5vw, 15px));
+    }
+}
+
+@media (max-width: 992px) {
+    .category-card {
+        width: calc(33.333% - clamp(10px, 2vw, 14px));
+    }
+}
+
+@media (max-width: 968px) {
+    .product-detail-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 30px;
+    }
+
+    .product-gallery {
+        order: 1;
+    }
+
+    .product-detail-info {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-top {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .search-bar {
+        max-width: 100%;
+        margin: 10px 0;
+        width: 100%;
+        order: 3;
+    }
+
+    .user-actions {
+        margin-top: 10px;
+        order: 2;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        gap: 0;
+    }
+
+    .hero h1 {
+        font-size: clamp(28px, 5vw, 36px);
+    }
+
+    .hero p {
+        font-size: clamp(15px, 2.2vw, 18px);
+    }
+
+    .category-card {
+        width: calc(50% - clamp(8px, 1.5vw, 10px));
+    }
+
+    .carousel-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .carousel-prev {
+        left: 5px;
+    }
+
+    .carousel-next {
+        right: 5px;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .newsletter-form input {
+        min-width: 100%;
+        border-radius: 4px;
+        margin-bottom: 0;
+    }
+
+    .newsletter-form button {
+        border-radius: 4px;
+        width: 100%;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+
+    .cart-item-image {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .cart-item-details {
+        width: 100%;
+    }
+
+    .product-detail-modal {
+        padding: 10px;
+    }
+
+    .product-detail-content {
+        margin: 20px auto;
+    }
+
+    .product-detail-container {
+        padding: 20px;
+        gap: 25px;
+    }
+
+    .detail-actions {
+        padding: 20px;
+    }
+
+    .quantity-selector {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .legal-page {
+        padding: 20px 15px !important;
+    }
+
+    .legal-page > div {
+        padding: 25px !important;
+    }
+
+    .legal-page h2 {
+        font-size: 24px !important;
+    }
+
+    .legal-page h3 {
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .category-card {
+        width: calc(50% - 8px);
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr));
+        gap: clamp(12px, 2.5vw, 15px);
+    }
+
+    .payment-methods {
+        flex-direction: column;
+    }
+
+    .payment-method {
+        min-width: 100%;
+    }
+
+    .user-actions {
+        width: 100%;
+        justify-content: space-around;
+    }
+
+    nav ul li {
+        flex: 1 0 50%;
+        text-align: center;
+    }
+
+    .submenu {
+        width: 100%;
+        position: static;
+        box-shadow: none;
+    }
+
+    .carousel-arrow {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .category-card {
+        width: 100%;
+        margin: 0 auto;
+        max-width: 280px;
+    }
+
+    .categories-container {
+        gap: 15px;
+    }
+
+    .product-detail-container {
+        padding: 15px;
+    }
+
+    .image-thumbnails {
+        justify-content: center;
+    }
+
+    .thumbnail {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .category-card {
+        flex: 0 0 100%;
+    }
+
+    .user-actions a {
+        min-width: 40px;
+        font-size: 10px;
+    }
+
+    .user-actions i {
+        font-size: 14px;
+    }
+}
+
+/* Mode sombre (optionnel) */
+@media (prefers-color-scheme: dark) {
+    /* body {
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+    }
+
+    .product-card,
+    .category-card,
+    .cart-content {
+        background: #2d2d2d;
+    }
+
+    .search-bar input {
+        background: #2d2d2d;
+        color: #f0f0f0;
+        border-color: #444;
+    } */
+}

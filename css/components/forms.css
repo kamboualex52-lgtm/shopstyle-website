@@ -1,0 +1,76 @@
+/* ==================== FORMULAIRES ==================== */
+.search-bar {
+    flex: 1;
+    min-width: 200px;
+    max-width: min(500px, 60vw);
+    margin: 0 clamp(10px, 2vw, 20px);
+    position: relative;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: clamp(10px, 2.5vw, 12px) clamp(15px, 3vw, 20px);
+    border: 2px solid #eee;
+    border-radius: 30px;
+    outline: none;
+    transition: var(--transition);
+    font-size: clamp(14px, 1.6vw, 16px);
+}
+
+.search-bar input:focus {
+    border-color: var(--primary);
+}
+
+.search-bar button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary);
+    border: none;
+    color: white;
+    padding: clamp(5px, 1.5vw, 7px) clamp(10px, 2.5vw, 15px);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: clamp(12px, 1.4vw, 14px);
+}
+
+.search-bar button:hover {
+    background: var(--primary-dark);
+}
+
+.newsletter-form {
+    display: flex;
+    max-width: min(500px, 90vw);
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.newsletter-form input {
+    flex: 1;
+    min-width: 250px;
+    padding: clamp(10px, 2.5vw, 12px) clamp(12px, 2.5vw, 15px);
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    font-size: clamp(14px, 1.6vw, 16px);
+}
+
+.newsletter-form button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: clamp(10px, 2.5vw, 12px) clamp(15px, 3vw, 20px);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: clamp(14px, 1.6vw, 16px);
+    white-space: nowrap;
+}
+
+.newsletter-form button:hover {
+    background: var(--primary-dark);
+}

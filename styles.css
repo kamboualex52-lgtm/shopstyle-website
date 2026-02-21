@@ -1174,10 +1174,10 @@ footer {
     }
 }
 
-/* Support du mode sombre */
+/* Support du mode sombre
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: #1a1a1a;
+        /*background-color: #1a1a1a;
         color: #f0f0f0;
     }
     
@@ -1185,7 +1185,7 @@ footer {
     .category-card,
     .cart-content {
         background: #2d2d2d;
-        color: #f0f0f0;
+       /* color: #f0f0f0;
     }
     
     .search-bar input {
@@ -1194,7 +1194,7 @@ footer {
         border-color: #444;
     }
 }
-
+*/
 
 
 /* Page détail produit */

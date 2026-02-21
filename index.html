@@ -10,7 +10,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="Image/Icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="Image/Icon/favicon-16x16.png">
     <link rel="manifest" href="Image/Icon/site.webmanifest">
-    <link rel="stylesheet" href="styles.css">
+    <!-- Un seul fichier CSS à inclure -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <!-- Header -->
@@ -322,8 +323,31 @@
     <a href="https://wa.me/242068448698?text=Bonjour%20KWAD,%20je%20suis%20intéressé%20par%20vos%20produits" class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-    <script defer src="data.js"></script>
-    <script defer src="script.js"></script>
+    <!-- Charger dans l'ordre -->
+    <script src="js/config/constants.js"></script>
+    <script src="js/data/categories.js"></script>
+    <script src="js/data/products.js"></script>
+    <script src="js/utils/helpers.js"></script>
+    <script src="js/utils/notifications.js"></script>
+    <script src="js/utils/styles.js"></script>
+    <script src="js/core/cart.js"></script>
+    <script src="js/core/products.js"></script>
+    <script src="js/core/categories.js"></script>
+    <script src="js/core/navigation.js"></script>
+    <script src="js/pages/home.js"></script>
+    <script src="js/pages/about.js"></script>
+    <script src="js/pages/contact.js"></script>
+    <script src="js/pages/info-pages.js"></script>
+    <script src="js/pages/account.js"></script>
+    <script src="js/features/search.js"></script>
+    <script src="js/features/social.js"></script>
+    <script src="js/features/detail.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/data/admin-data.js"></script>
+    <script src="js/admin/admin-auth.js"></script>
+    <script src="js/admin/admin-dashboard.js"></script>
+    <script src="js/admin/admin-products.js"></script>
+    <script src="js/admin/admin-categories.js"></script>
 
 </body>
 </html>

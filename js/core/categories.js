@@ -1,3 +1,5 @@
+//categories.js
+
 // ==================== GESTION DES CATÉGORIES ET CAROUSEL ====================
 
 // Initialiser les catégories
@@ -147,8 +149,9 @@ function addCarouselPauseEvents() {
 
 // Fonction de filtrage par catégorie
 function filterProducts(categoryId) {
-    const filteredProducts = products.filter(product => product.category === categoryId);
-    displayFilteredProducts(filteredProducts, `Catégorie: ${categories.find(c => c.id === categoryId)?.name || categoryId}`);
+    const filteredProducts = ProductManager.getByCategory(categoryId);
+    const category = categories.find(c => c.id === categoryId);
+    displayFilteredProducts(filteredProducts, `Catégorie: ${category?.name || categoryId}`);
 }
 
 // Gestion du redimensionnement

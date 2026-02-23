@@ -1,8 +1,15 @@
+//cart.js
+
 // ==================== GESTION DU PANIER ====================
 
 // Ajouter au panier
 function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
+    const product = ProductManager.getById(productId);
+    if (!product) {
+        showNotification('Produit non trouvé', 'error');
+        return;
+    }
+
     const existingItem = cart.find(item => item.id === productId);
 
     if (existingItem) {

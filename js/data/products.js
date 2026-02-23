@@ -1,5 +1,7 @@
+//products.js
+
 // Données des produits COMPLÈTES avec médias
-const products = [
+const defaultProducts = [
     // Vos produits vêtements avec images locales
     // Robe
     {
@@ -676,3 +678,27 @@ const products = [
     }
 
 ];
+
+// Variable dynamique qui contiendra TOUS les produits (par défaut + personnalisés)
+let products = [];
+
+// Fonction pour recharger les produits (fusion)
+function reloadProducts() {
+    // Charger les produits personnalisés depuis localStorage
+    const customProducts = typeof loadCustomProducts === 'function' ? loadCustomProducts() : [];
+
+    // Fusionner les produits par défaut et personnalisés
+    products = [...defaultProducts, ...customProducts];
+
+    console.log(`📦 Produits chargés : ${products.length} (${defaultProducts.length} par défaut + ${customProducts.length} personnalisés)`);
+
+    return products;
+}
+
+// Initialiser au chargement
+reloadProducts();
+
+// Rendre accessible globalement
+window.defaultProducts = defaultProducts;
+window.products = products;
+window.reloadProducts = reloadProducts;

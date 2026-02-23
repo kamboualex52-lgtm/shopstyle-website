@@ -1,3 +1,5 @@
+//products.js
+
 // ==================== GESTION DES PRODUITS ====================
 
 // Initialiser les produits
@@ -7,7 +9,10 @@ function initProducts() {
 
     grid.innerHTML = '';
 
-    products.forEach(product => {
+    // Utiliser ProductManager pour obtenir tous les produits
+    const allProducts = ProductManager.getAll();
+
+    allProducts.forEach(product => {
         const productCard = createProductCard(product);
         grid.appendChild(productCard);
     });

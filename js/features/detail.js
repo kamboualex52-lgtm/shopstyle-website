@@ -67,7 +67,7 @@ function setupDetailPageEvents() {
 }
 
 function showProductDetail(productId) {
-    currentProduct = products.find(p => p.id === productId);
+    currentProduct = ProductManager.getById(productId);
     if (!currentProduct) return;
 
     document.getElementById('detail-product-name').textContent = currentProduct.name;
@@ -118,7 +118,7 @@ function updateProductGallery() {
         const thumbnail = document.createElement('div');
         thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
 
-        thumbnail.innerHTML = `<img src="${media.thumbnail || media.src}" alt="">`;
+        thumbnail.innerHTML = `<img src="${media.thumbnail || media.src}" alt="" onerror="this.src='https://via.placeholder.com/80'">`;
 
         thumbnail.addEventListener('click', () => {
             mainImage.src = media.type === 'video' ? (media.thumbnail || media.src) : media.src;

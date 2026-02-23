@@ -1,12 +1,25 @@
+//main.js
+
 // ==================== POINT D'ENTRÉE PRINCIPAL ====================
 
 // Charger tous les modules dans l'ordre
 document.addEventListener('DOMContentLoaded', function() {
     console.log('🚀 KWAD - Initialisation...');
 
+    // Forcer le rechargement des produits au démarrage
+    if (typeof reloadProducts === 'function') {
+        reloadProducts();
+        console.log('📦 Produits rechargés:', products.length);
+    }
+
     // Initialiser toutes les fonctionnalités
     initCategories();
-    initProducts();
+
+    // Attendre un court instant pour s'assurer que tout est chargé
+    setTimeout(() => {
+        initProducts();
+    }, 50);
+
     initEventListeners();
     initSearch();
     initNavigation();
@@ -15,7 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
     setupDetailPageEvents();
 
     // Initialiser l'admin
-    initAdminAuth();
+    if (typeof initAdminAuth === 'function') {
+        initAdminAuth();
+    }
 
     // Mettre à jour le compteur du panier
     updateCartCount();
@@ -80,3 +95,14 @@ window.openWhatsAppContact = openWhatsAppContact;
 window.makePhoneCall = makePhoneCall;
 window.sendEmail = sendEmail;
 window.clearSearch = clearSearch;
+
+// Exporter les fonctions admin
+window.showAdminDashboard = showAdminDashboard;
+window.adminLogout = adminLogout;
+window.showAdminProductsTab = showAdminProductsTab;
+window.showAddProductForm = showAddProductForm;
+window.editProduct = editProduct;
+window.deleteProduct = deleteProduct;
+window.duplicateProduct = duplicateProduct;
+window.filterAdminProducts = filterAdminProducts;
+window.showAdminCategoriesTab = showAdminCategoriesTab;

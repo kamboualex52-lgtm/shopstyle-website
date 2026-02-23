@@ -28,7 +28,7 @@ function showAdminDashboard() {
                 <div class="stat-card">
                     <div class="stat-icon"><i class="fas fa-box"></i></div>
                     <div class="stat-info">
-                        <h3>${products.length + customProducts.length}</h3>
+                        <h3>${products.length}</h3>
                         <p>Produits totaux</p>
                     </div>
                 </div>
@@ -87,16 +87,29 @@ function showAdminProductsTab() {
     const content = document.getElementById('admin-content');
     if (!content) return;
 
-    // Fusionner les produits par défaut et personnalisés
-    const allProducts = [...products, ...customProducts];
+    // Recharger les dernières données
+    ProductManager.refresh();
+    const allProducts = ProductManager.getAll();
+    const stats = ProductManager.getStats();
 
     content.innerHTML = `
         <div class="admin-products">
             <div class="admin-toolbar">
                 <h3><i class="fas fa-box"></i> Gestion des Produits</h3>
-                <button class="btn btn-success" onclick="showAddProductForm()">
-                    <i class="fas fa-plus"></i> Ajouter un produit
-                </button>
+                <div>
+                    <button class="btn btn-secondary" onclick="ProductManager.refresh(); showAdminProductsTab();">
+                        <i class="fas fa-sync-alt"></i> Actualiser
+                    </button>
+                    <button class="btn btn-success" onclick="showAddProductForm()">
+                        <i class="fas fa-plus"></i> Ajouter un produit
+                    </button>
+                </div>
+            </div>
+
+            <div class="admin-stats-mini">
+                <span>Total: ${stats.total}</span>
+                <span>Par défaut: ${stats.default}</span>
+                <span>Personnalisés: ${stats.custom}</span>
             </div>
 
             <div class="admin-filters">
@@ -141,13 +154,13 @@ function renderAdminProductsList(productsList) {
     }
 
     return productsList.map(product => {
-        const isCustom = product.id > 1000; // Les produits personnalisés ont des ID > 1000
+        const isCustom = product.id > 1000;
         const category = categories.find(c => c.id === product.category) || { name: 'Non catégorisé' };
 
         return `
             <tr data-product-id="${product.id}">
                 <td>
-                    <img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;">
+                    <img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px;" onerror="this.src='https://via.placeholder.com/50'">
                 </td>
                 <td>
                     <strong>${product.name}</strong>

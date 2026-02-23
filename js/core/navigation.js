@@ -1,3 +1,5 @@
+//navigation.js
+
 // ==================== GESTION DE LA NAVIGATION ====================
 
 function initNavigation() {
@@ -103,8 +105,9 @@ function showHomePage() {
 }
 
 // Nouveautés
+// Nouveautés
 function showNewProducts() {
-    const newProducts = products.filter(product =>
+    const newProducts = ProductManager.filter(product =>
         product.badge === 'Nouveau' || product.badge === 'Nouveauté'
     );
 
@@ -117,7 +120,7 @@ function showNewProducts() {
 
 // Promotions
 function showPromotions() {
-    const promoProducts = products.filter(product =>
+    const promoProducts = ProductManager.filter(product =>
         product.badge === 'Promo' || product.badge === 'Promotion'
     );
 

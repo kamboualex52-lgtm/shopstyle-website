@@ -176,6 +176,9 @@ function saveProduct() {
         showNotification('Produit ajouté avec succès', 'success');
     }
 
+    products.append(productData);
+
+
     // Sauvegarder
     saveCustomProducts();
 

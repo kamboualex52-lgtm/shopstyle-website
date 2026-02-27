@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KWAD - Détail produit</title>
+    <meta name="description" content="Découvrez les détails de ce produit KWAD">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header / Navigation (identique à index.html) -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">KWAD</a>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher un produit..." id="searchInput">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
+            </div>
+
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="index.html#categories">Catégories</a></li>
+                <li><a href="index.html#produits">Produits</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-cog"></i> Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page produit -->
+    <main class="product-page container">
+        <div class="product-detail" id="productDetail">
+            <!-- Le contenu sera injecté par JavaScript -->
+        </div>
+
+        <!-- Section partage social -->
+        <div class="share-section">
+            <h3>Partager ce produit</h3>
+            <div class="social-share">
+                <a href="#" class="social-btn facebook" id="shareFb"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-btn twitter" id="shareTwitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-btn whatsapp" id="shareWhatsapp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-btn linkedin" id="shareLinkedin"><i class="fab fa-linkedin-in"></i></a>
+                <button class="social-btn copy-link" id="copyLink"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        <!-- Section commande rapide -->
+        <div class="quick-order">
+            <h3>Commander via WhatsApp</h3>
+            <div class="order-form">
+                <div class="form-group">
+                    <label for="quantity">Quantité :</label>
+                    <input type="number" id="quantity" min="1" value="1">
+                </div>
+                <div class="form-group">
+                    <label>Mode de paiement :</label>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="MTN Money" checked>
+                            <span>MTN Money</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="Airtel Money">
+                            <span>Airtel Money</span>
+                        </label>
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-large" id="orderViaWhatsapp">
+                    <i class="fab fa-whatsapp"></i> Commander maintenant
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (identique à index.html) -->
+    <footer class="footer">
+        <!-- ... contenu du footer ... -->
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

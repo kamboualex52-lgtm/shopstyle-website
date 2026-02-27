@@ -1,0 +1,28 @@
+{
+  "categories": [
+    { "id": "electromenager", "name": "Électroménager", "count": 10, "image": "https://cdn.futura-sciences.com/sources/images/soldes-hiver-electromenager.jpeg" },
+    { "id": "electricite", "name": "Électricité", "count": 2, "image": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+    { "id": "vetements", "name": "Vêtements", "count": 8, "image": "https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+    { "id": "chaussures", "name": "Chaussures", "count": 0, "image": "https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+    { "id": "accessoires", "name": "Accessoires", "count": 2, "image": "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" },
+    { "id": "beaute", "name": "Beauté", "count": 0, "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Robe de soirée",
+      "category": "vetements",
+      "image": "https://via.placeholder.com/300x200",
+      "rating": 4.5,
+      "badge": "Top Vente",
+      "description": "2025 été élégant robe de soirée formelle haute fente robe de bal fête balayage Train paillettes Maxi longue Slip robes pour les femmes",
+      "features": [
+        "Silhouette : A-Line",
+        "Type de tissu : Organza bordé"
+      ],
+      "media": [
+        { "type": "image", "src": "https://via.placeholder.com/800x600" }
+      ]
+    }
+  ]
+}

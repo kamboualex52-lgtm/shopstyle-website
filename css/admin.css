@@ -1,0 +1,235 @@
+/* Styles pour l'interface d'administration */
+.admin-container {
+    padding: 40px 20px;
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-light);
+    transition: var(--transition);
+    position: relative;
+}
+
+.tab-btn:hover {
+    color: var(--primary-color);
+}
+
+.tab-btn.active {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+}
+
+.tab-pane {
+    display: none;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.admin-table {
+    overflow-x: auto;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.admin-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    background: #f8f9fa;
+    padding: 15px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.admin-table td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.admin-table tr:hover {
+    background: #f8f9fa;
+}
+
+.admin-table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.action-btn {
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.edit-btn {
+    background: #ffc107;
+    color: #000;
+}
+
+.edit-btn:hover {
+    background: #e0a800;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: var(--white);
+}
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background: var(--white);
+    margin: 50px auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 10px;
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--text-light);
+}
+
+.close:hover {
+    color: var(--text-color);
+}
+
+#productForm, #categoryForm {
+    margin-top: 20px;
+}
+
+#productForm .form-group,
+#categoryForm .form-group {
+    margin-bottom: 15px;
+}
+
+#productForm label,
+#categoryForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+#productForm input,
+#productForm select,
+#productForm textarea,
+#categoryForm input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#productForm input:focus,
+#productForm select:focus,
+#productForm textarea:focus,
+#categoryForm input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Admin user dans header */
+.admin-user {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.admin-user span {
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.btn-logout {
+    padding: 8px 15px;
+    background: none;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-logout:hover {
+    background: var(--primary-color);
+    color: var(--white);
+}

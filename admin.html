@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KWAD - Administration</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">KWAD Admin</a>
+            <div class="admin-user">
+                <span>Administrateur</span>
+                <button id="logoutBtn" class="btn-logout">Déconnexion</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="admin-container container">
+        <div class="admin-tabs">
+            <button class="tab-btn active" data-tab="products">Produits</button>
+            <button class="tab-btn" data-tab="categories">Catégories</button>
+        </div>
+
+        <!-- Onglet Produits -->
+        <div class="tab-pane active" id="products-tab">
+            <div class="admin-header">
+                <h2>Gestion des produits</h2>
+                <button class="btn btn-primary" id="addProductBtn">
+                    <i class="fas fa-plus"></i> Ajouter un produit
+                </button>
+            </div>
+
+            <div class="admin-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Nom</th>
+                            <th>Catégorie</th>
+                            <th>Note</th>
+                            <th>Badge</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <!-- Produits injectés par JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Onglet Catégories -->
+        <div class="tab-pane" id="categories-tab">
+            <div class="admin-header">
+                <h2>Gestion des catégories</h2>
+                <button class="btn btn-primary" id="addCategoryBtn">
+                    <i class="fas fa-plus"></i> Ajouter une catégorie
+                </button>
+            </div>
+
+            <div class="admin-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Nom</th>
+                            <th>ID</th>
+                            <th>Nb produits</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="categoriesTableBody">
+                        <!-- Catégories injectées par JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal Ajout/Modification Produit -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modalTitle">Ajouter un produit</h3>
+            <form id="productForm">
+                <div class="form-group">
+                    <label>Nom du produit</label>
+                    <input type="text" id="productName" required>
+                </div>
+                <div class="form-group">
+                    <label>Catégorie</label>
+                    <select id="productCategory" required>
+                        <!-- Options injectées par JS -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="productDescription" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="productImage" required>
+                </div>
+                <div class="form-group">
+                    <label>Note (0-5)</label>
+                    <input type="number" id="productRating" min="0" max="5" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label>Badge</label>
+                    <select id="productBadge">
+                        <option value="">Aucun</option>
+                        <option value="Top Vente">Top Vente</option>
+                        <option value="Nouveau">Nouveau</option>
+                        <option value="Promo">Promo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Caractéristiques (une par ligne)</label>
+                    <textarea id="productFeatures" rows="3" placeholder="Ex: Matière: Coton&#10;Couleur: Rouge"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Catégorie -->
+    <div class="modal" id="categoryModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Ajouter une catégorie</h3>
+            <form id="categoryForm">
+                <div class="form-group">
+                    <label>Nom de la catégorie</label>
+                    <input type="text" id="categoryName" required>
+                </div>
+                <div class="form-group">
+                    <label>ID (identifiant unique)</label>
+                    <input type="text" id="categoryId" required>
+                </div>
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="url" id="categoryImage" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/products.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

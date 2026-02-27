@@ -3,367 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Découvrez KWAD, votre boutique en ligne au Congo Brazzaville : électroménager, vêtements, chaussures, accessoires et plus. Livraison rapide et sécurisée !">
-    <title>KWAD - Votre boutique en ligne au Congo Brazzille</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="Image/Icon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="Image/Icon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="Image/Icon/favicon-16x16.png">
-    <link rel="manifest" href="Image/Icon/site.webmanifest">
-    <!-- Un seul fichier CSS à inclure -->
-    <link rel="stylesheet" href="css/main.css">
+    <title>KWAD - Votre Shopping en ligne</title>
+    <meta name="description" content="Découvrez nos produits par catégories : Électroménager, Vêtements, Accessoires et plus. Commandez facilement via WhatsApp.">
+
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- CSS Principal -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-top">
-                <a href="#" class="logo">
-                    <i class="fas fa-shopping-bag"></i> KWAD
-                </a>
-                <div class="search-bar">
-                    <input type="text" placeholder="Rechercher un produit...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-                <div class="user-actions">
-                    <!--<a href="#"><i class="fas fa-user"></i> Compte</a>
-                    <a href="#"><i class="fas fa-heart"></i> Favoris</a>-->
-                    <a href="#" class="cart-icon" id="open-cart">
-                        <i class="fas fa-shopping-cart"></i> Panier
-                        <span class="cart-count">0</span>
-                    </a>
-                </div>
+    <!-- Header / Navigation -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="index.html" class="logo">KWAD</a>
+
+            <!-- Barre de recherche -->
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher un produit..." id="searchInput">
+                <button id="searchBtn"><i class="fas fa-search"></i></button>
             </div>
-            <!-- Ajoutez ce bouton menu toggle dans votre header -->
-            <button class="menu-toggle">
+
+            <!-- Menu mobile -->
+            <button class="menu-toggle" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </button>
-            <nav>
-                <ul>
-                    <li><a href="#">Accueil</a></li>
-                    <li>
-                        <a href="#">Catégories</a>
-                        <ul class="submenu" style="max-height: 300px; overflow-y: auto;">
-                            <li><a href="#" data-category="electromenager">Électroménager</a></li>
-                            <li><a href="#" data-category="electricite">Électricité</a></li>
-                            <li><a href="#" data-category="vetements">Vêtements</a></li>
-                            <li><a href="#" data-category="chaussures">Chaussures</a></li>
-                            <li><a href="#" data-category="accessoires">Accessoires</a></li>
-                            <li><a href="#" data-category="beaute">Produits de beauté</a></li>
-                            <li><a href="#" data-category="complement">Compléments alimentaires</a></li>
-                            <li><a href="#" data-category="fitness">Appareils de fitness</a></li>
-                            <li><a href="#" data-category="vehicules">Véhicules</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="Nouveautés">Nouveautés</a></li>
-                    <li><a href="#">Promotions</a></li>
-                    <li><a href="#">À propos</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+
+            <!-- Navigation links -->
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Accueil</a></li>
+                <li><a href="#categories">Catégories</a></li>
+                <li><a href="#produits">Produits</a></li>
+                <li><a href="admin.html" class="admin-link"><i class="fas fa-cog"></i> Admin</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Bannière principale -->
+    <!-- Hero Section avec animation -->
     <section class="hero">
-        <div class="container">
-            <h1>Bienvenue chez KWAD</h1>
-            <p>Découvrez nos produits de qualité aux meilleurs prix du marché. Livraison rapide dans tout le Congo Brazzaville.</p>
-            <a href="#categories" class="btn">Découvrir nos catégories</a>
+        <div class="hero-content">
+            <h1 class="animate-title">Bienvenue chez KWAD</h1>
+            <p class="animate-text">Découvrez notre sélection de produits de qualité</p>
+            <a href="#categories" class="btn btn-primary animate-btn">Explorer <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-3d" id="hero3d">
+            <!-- Optionnel: Espace pour animation 3D -->
         </div>
     </section>
 
-    <!-- Carousel catégories -->
-    <section class="categories-section" id="categories">
+    <!-- Catégories avec carrousel infini -->
+    <section class="categories" id="categories">
         <div class="container">
             <h2 class="section-title">Nos Catégories</h2>
+
             <div class="categories-carousel">
-                <div class="categories-container" id="categories-container">
-                    <!-- Les catégories seront générées par JavaScript -->
+                <button class="carousel-btn prev" id="prevCategory"><i class="fas fa-chevron-left"></i></button>
+
+                <div class="carousel-track-container">
+                    <ul class="carousel-track" id="categoryTrack">
+                        <!-- Les catégories seront injectées ici par JavaScript -->
+                    </ul>
                 </div>
-                <div class="carousel-nav" id="carousel-nav">
-                    <!-- Les points de navigation seront générés par JavaScript -->
-                </div>
+
+                <button class="carousel-btn next" id="nextCategory"><i class="fas fa-chevron-right"></i></button>
             </div>
+
+            <!-- Indicateurs infinis (dots) -->
+            <div class="carousel-indicators" id="categoryIndicators"></div>
         </div>
     </section>
 
-    <!-- Section produits populaires -->
-    <section class="products-section">
+    <!-- Produits en vedette -->
+    <section class="featured-products" id="produits">
         <div class="container">
             <h2 class="section-title">Produits Populaires</h2>
-            <div class="products-grid" id="products-grid">
-                <!-- Les produits seront générés par JavaScript -->
-            </div>
-        </div>
-    </section>
 
-   <!-- Page détail produit -->
-    <div class="product-detail-modal" id="product-detail-modal">
-        <div class="product-detail-content">
-            <button class="close-detail" id="close-detail">&times;</button>
-            
-            <div class="product-detail-container">
-                <!-- Galerie d'images et vidéos -->
-                <div class="product-gallery">
-                    <div class="main-image">
-                        <img id="detail-main-image" src="" alt="">
-                        <button class="play-video-btn" id="play-video-btn" style="display: none;">
-                            <i class="fas fa-play"></i>
-                        </button>
-                    </div>
-                    <div class="image-thumbnails" id="image-thumbnails">
-                        <!-- Les miniatures seront générées dynamiquement -->
-                    </div>
-                </div>
-                
-                <!-- Informations du produit -->
-                <div class="product-detail-info">
-                    <h1 id="detail-product-name"></h1>
-                    <div class="product-detail-rating" id="detail-product-rating"></div>
-                    <div class="product-detail-price" id="detail-product-price"></div>
-                    
-                    <div class="product-description">
-                        <h3>Description</h3>
-                        <p id="detail-product-description"></p>
-                    </div>
-                    
-                    <div class="product-features">
-                        <h3>Caractéristiques</h3>
-                        <ul id="detail-product-features">
-                            <!-- Les caractéristiques seront générées dynamiquement -->
-                        </ul>
-                    </div>
-                    
-                    <div class="detail-actions">
-                        <div class="quantity-selector">
-                            <label>Quantité:</label>
-                            <div class="quantity-controls">
-                                <button class="qty-btn minus" type="button">-</button>
-                                <input type="number" class="qty-input" value="1" min="1" max="99">
-                                <button class="qty-btn plus" type="button">+</button>
-                            </div>
-                        </div>
-                        
-                        <button class="btn btn-primary" id="add-to-cart-detail">
-                            <i class="fas fa-cart-plus"></i> Ajouter au panier
-                        </button>
-                        
-                        <button class="btn btn-success" id="buy-now">
-                            <i class="fas fa-bolt"></i> Acheter maintenant
-                        </button>
-                    </div>
-                    
-                    <div class="product-meta">
-                        <div class="meta-item">
-                            <i class="fas fa-shipping-fast"></i>
-                            <span>Livraison gratuite à partir de 50,000 FCFA</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-undo"></i>
-                            <span>Retour gratuit sous 14 jours</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Garantie 1 an</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Les produits seront injectés ici par JavaScript -->
             </div>
-        </div>
-    </div>
-    
-    <!-- Modal vidéo -->
-    <div class="video-modal" id="video-modal">
-        <div class="video-modal-content">
-            <button class="close-video" id="close-video">&times;</button>
-            <video id="product-video" controls>
-                Votre navigateur ne supporte pas la lecture de vidéos.
-            </video>
-        </div>
-    </div>
-
-    <!-- Newsletter -->
-    <section class="newsletter">
-        <div class="container">
-            <h2>Inscrivez-vous à notre newsletter</h2>
-            <p>Recevez en avant-première nos offres exclusives et nos nouveautés</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Votre adresse email" required>
-                <button type="submit">S'inscrire</button>
-            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-column">
+                <div class="footer-section">
                     <h3>KWAD</h3>
-                    <p>Votre boutique en ligne préférée pour tous vos besoins. Qualité, prix et service au rendez-vous.</p>
-                    <!-- Dans votre footer -->
-                    <div class="social-icons">
-                        <!-- Facebook -->
-                        <a href="https://www.facebook.com/profile.php?id=61581847724857" 
-                           class="social-link"
-                           data-platform="facebook">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        
-                        <!-- Instagram (remplacez par votre vrai lien) -->
-                        <a href="https://www.instagram.com/" 
-                           class="social-link"
-                           data-platform="instagram">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        
-                        <!-- Email -->
-                        <a href="mailto:frediadaniella@gmail.com?subject=Demande%20d'information%20KWAD&body=Bonjour%20KWAD,%20je%20suis%20intéressé(e)%20par%20vos%20produits."
-                           class="social-link"
-                           data-platform="email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        
-                        <!--  WhatsApp -->
-                        <!-- <a href="https://wa.me/242068448698?text=Bonjour%20KWAD,%20je%20suis%20intéressé%20par%20vos%20produits" 
-                           class="social-link"
-                           data-platform="whatsapp">
-                            <i class="fab fa-whatsapp"></i>
-                        </a> -->
-                        
-                        <!-- Twitter (optionnel) -->
-                        <!-- <a href="https://twitter.com/" 
-                           class="social-link"
-                           data-platform="twitter">
-                            <i class="fab fa-twitter"></i> --> -->
-                        </a>
-                    </div>
+                    <p>Votre destination shopping préférée</p>
                 </div>
-                <div class="footer-column">
-                    <h3>Informations</h3>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
                     <ul>
-                        <li><a href="#" onclick="showAbout(); return false;">À propos de nous</a></li>
-                        <li><a href="#" onclick="showDeliveryInfo(); return false;">Livraison</a></li>
-                        <li><a href="#" onclick="showTerms(); return false;">Conditions générales</a></li>
-                        <li><a href="#" onclick="showPrivacyPolicy(); return false;">Politique de confidentialité</a></li>
+                        <li><a href="#categories">Catégories</a></li>
+                        <li><a href="#produits">Produits</a></li>
+                        <li><a href="admin.html">Administration</a></li>
                     </ul>
                 </div>
-                <!--<div class="footer-column">
-                    <h3>Mon compte</h3>
-                    <ul>
-                        <li><a href="#">Mon compte</a></li>
-                        <li><a href="#">Historique de commandes</a></li>
-                        <li><a href="#">Liste de souhaits</a></li>
-                        <li><a href="#">Newsletter</a></li>
-                    </ul>
-                </div>-->
-                <div class="footer-column">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li><i class="fas fa-phone"></i> +242 06 844 86 98</li>
-                        <li><i class="fas fa-phone"></i> +242 05 380 99 46</li>
-                        <li><i class="fas fa-envelope"></i> frediadaniella@gmail.com</li>
-                        <li><i class="fas fa-map-marker-alt"></i> Pointe-Noire, Congo</li>
-                    </ul>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p><i class="fab fa-whatsapp"></i> Commandez sur WhatsApp</p>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 KWAD. Tous droits réservés.</p>
+            <div class="footer-bottom">
+                <p>&copy; 2026 KWAD. Tous droits réservés.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Panier Modal -->
-    <div class="cart-modal" id="cart-modal">
-        <div class="cart-content">
-            <div class="cart-header">
-                <h2 class="cart-title">Votre Panier</h2>
-                <button class="close-cart" id="close-cart">&times;</button>
-            </div>
-            <div class="cart-items" id="cart-items">
-                <!-- Les articles du panier seront générés par JavaScript -->
-            </div>
-            <div class="cart-summary">
-                <div class="summary-row">
-                    <span>Sous-total:</span>
-                    <span id="cart-subtotal">0 FCFA</span>
-                </div>
-                <div class="summary-row">
-                    <span>Livraison:</span>
-                    <span id="cart-shipping">1000 FCFA</span>
-                </div>
-                <div class="summary-row summary-total">
-                    <span>Total:</span>
-                    <span id="cart-total">1000 FCFA</span>
-                </div>
-                
-               <div class="payment-options">
-                    <div class="payment-title">Méthode de paiement:</div>
-                    <div class="payment-methods">
-                        <div class="payment-method momo selected" data-method="momo">
-                            <i class="fas fa-mobile-alt" style="color: #FFCC00;"></i>
-                            <div>Mobile Money</div>
-                        </div>
-                        <div class="payment-method om" data-method="om">
-                            <i class="fas fa-mobile-alt" style="color: #E40521;"></i>
-                            <div>Airtel Money</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <button class="btn btn-success checkout-btn" id="checkout-btn">
-                    <i class="fab fa-whatsapp"></i> Commander sur WhatsApp
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/242068448698?text=Bonjour%20KWAD,%20je%20suis%20intéressé%20par%20vos%20produits" class="whatsapp-btn" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-    <!-- D'abord les données et configurations -->
-    <script src="js/config/constants.js"></script>
-    <script src="js/data/categories.js"></script>
-    <script src="js/data/products.js"></script>
-    <script src="js/data/admin-data.js"></script>
-    <script src="js/data/product-manager.js"></script>
-
-    <!-- INITIALISATION PRIORITAIRE - NOUVEAU -->
-    <script src="js/init.js"></script>
-
-    <!-- Ensuite les utilitaires -->
-    <script src="js/utils/helpers.js"></script>
-    <script src="js/utils/notifications.js"></script>
-    <script src="js/utils/styles.js"></script>
-
-    <!-- Puis le core -->
-    <script src="js/core/cart.js"></script>
-    <script src="js/core/products.js"></script>
-    <script src="js/core/categories.js"></script>
-    <script src="js/core/navigation.js"></script>
-
-    <!-- Les pages -->
-    <script src="js/pages/home.js"></script>
-    <script src="js/pages/about.js"></script>
-    <script src="js/pages/contact.js"></script>
-    <script src="js/pages/info-pages.js"></script>
-    <script src="js/pages/account.js"></script>
-
-    <!-- Les fonctionnalités -->
-    <script src="js/features/search.js"></script>
-    <script src="js/features/social.js"></script>
-    <script src="js/features/detail.js"></script>
-
-    <!-- L'admin -->
-    <script src="js/admin/admin-auth.js"></script>
-    <script src="js/admin/admin-dashboard.js"></script>
-    <script src="js/admin/admin-products.js"></script>
-    <script src="js/admin/admin-categories.js"></script>
-
-    <!-- Enfin le main -->
+    <!-- Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
     <script src="js/main.js"></script>
-
 </body>
 </html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KWAD - Catégorie</title>
+    <meta name="description" content="Découvrez tous les produits de cette catégorie">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <!-- Même header que index.html -->
+    </header>
+
+    <main>
+        <!-- Bannière catégorie -->
+        <section class="category-banner" id="categoryBanner">
+            <div class="container">
+                <h1 id="categoryTitle">Catégorie</h1>
+                <p id="categoryCount">X produits disponibles</p>
+            </div>
+        </section>
+
+        <!-- Filtres et tri -->
+        <section class="category-controls container">
+            <div class="filters">
+                <select id="sortBy">
+                    <option value="default">Trier par</option>
+                    <option value="rating">Note</option>
+                    <option value="name">Nom</option>
+                </select>
+                <select id="filterBadge">
+                    <option value="all">Tous les badges</option>
+                    <option value="Top Vente">Top Vente</option>
+                    <option value="Nouveau">Nouveau</option>
+                    <option value="Promo">Promo</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- Grille produits -->
+        <section class="category-products container">
+            <div class="products-grid" id="categoryProducts">
+                <!-- Produits injectés par JS -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <!-- Même footer que index.html -->
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

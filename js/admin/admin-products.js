@@ -27,11 +27,6 @@ function showAddProductForm(productToEdit = null) {
                     </div>
 
                     <div class="form-group">
-                        <label>Prix (FCFA) *</label>
-                        <input type="number" id="product-price" value="${product.price || ''}" min="0" required>
-                    </div>
-
-                    <div class="form-group">
                         <label>Catégorie *</label>
                         <select id="product-category" required>
                             <option value="">Sélectionner une catégorie</option>
@@ -309,7 +304,7 @@ function setupProductPreview() {
 
     function updatePreview() {
         const name = document.getElementById('product-name').value || 'Nom du produit';
-        const price = document.getElementById('product-price').value || '0';
+//        const price = document.getElementById('product-price').value || '0';
         const rating = document.getElementById('product-rating').value || '4';
         const badge = document.getElementById('product-badge').value;
         const image = document.getElementById('product-image').value || 'https://via.placeholder.com/200';
@@ -323,14 +318,13 @@ function setupProductPreview() {
                 <div class="product-info">
                     <h3 class="product-title">${name}</h3>
                     <div class="product-rating">${'★'.repeat(parseInt(rating))}${'☆'.repeat(5-parseInt(rating))}</div>
-                    <div class="product-price">${parseInt(price).toLocaleString()} FCFA</div>
                 </div>
             </div>
         `;
     }
 
     // Mettre à jour à chaque changement
-    ['product-name', 'product-price', 'product-rating', 'product-badge', 'product-image'].forEach(id => {
+    ['product-name', 'product-rating', 'product-badge', 'product-image'].forEach(id => {
         const element = document.getElementById(id);
         if (element) {
             element.addEventListener('input', updatePreview);
@@ -381,7 +375,7 @@ function saveProduct() {
 
     const productData = {
         name: document.getElementById('product-name').value,
-        price: parseInt(document.getElementById('product-price').value),
+//        price: parseInt(document.getElementById('product-price').value),
         category: document.getElementById('product-category').value,
         rating: parseInt(document.getElementById('product-rating').value) || 4,
         badge: document.getElementById('product-badge').value || null,

@@ -166,7 +166,6 @@ function renderAdminProductsList(productsList) {
                     <strong>${product.name}</strong>
                     ${isCustom ? '<span class="badge-custom">Personnalisé</span>' : ''}
                 </td>
-                <td>${product.price.toLocaleString()} FCFA</td>
                 <td>${category.name}</td>
                 <td>
                     <span class="status-badge ${product.badge ? 'active' : 'inactive'}">

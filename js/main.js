@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavigation();
     initFooterLinks();
     initSocialLinks();
+    initCategoryManagement();
     setupDetailPageEvents();
 
     // Initialiser l'admin
@@ -42,6 +43,13 @@ document.addEventListener('DOMContentLoaded', function() {
     startCarousel();
     enableSwipe();
     addCarouselPauseEvents();
+
+
+    // Initialiser le gestionnaire d'URL pour le partage
+    if (typeof URLHandler !== 'undefined') {
+        URLHandler.init();
+        console.log('🔗 Gestionnaire d\'URL initialisé');
+    }
 
     console.log('✅ KWAD - Initialisation terminée');
 });
@@ -76,6 +84,29 @@ function initEventListeners() {
         });
     }
 }
+
+// Dans main.js, après le chargement des données
+function initCategoryManagement() {
+    // Mettre à jour les compteurs au démarrage
+    updateCategoriesCount();
+
+    // Écouter les modifications de produits
+    document.addEventListener('productsUpdated', function() {
+        updateCategoriesCount();
+        saveCategoriesToStorage();
+    });
+}
+
+// Déclencher l'événement après chaque modification de produit
+function triggerProductsUpdated() {
+    const event = new CustomEvent('productsUpdated');
+    document.dispatchEvent(event);
+}
+
+// Appeler cette fonction dans les fonctions de modification de produit
+// Exemple dans saveProduct() :
+// triggerProductsUpdated();
+
 
 // Exporter les fonctions globales nécessaires
 window.showHomePage = showHomePage;

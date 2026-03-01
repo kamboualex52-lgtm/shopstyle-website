@@ -17,6 +17,7 @@
 @import url('components/carousel.css');
 @import url('components/forms.css');
 @import url('components/modals.css');
+@import url('components/share.css');
 
 /* Admin */
 @import url('admin/admin.css');

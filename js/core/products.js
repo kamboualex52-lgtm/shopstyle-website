@@ -31,13 +31,12 @@ function createProductCard(product) {
             <div class="product-actions">
                 <button class="add-to-cart" data-id="${product.id}"><i class="fas fa-cart-plus"></i></button>
                 <button class="view-detail" data-id="${product.id}"><i class="fas fa-eye"></i></button>
-                <button><i class="fas fa-heart"></i></button>
+                <button class="share-product" data-id="${product.id}"><i class="fas fa-share-alt"></i></button>
             </div>
         </div>
         <div class="product-info">
             <h3 class="product-title">${product.name}</h3>
             <div class="product-rating">${'★'.repeat(product.rating)}${'☆'.repeat(5-product.rating)}</div>
-            <div class="product-price">${product.price.toLocaleString()} FCFA</div>
             <button class="btn add-to-cart-btn" data-id="${product.id}">Ajouter au panier</button>
         </div>
     `;
@@ -73,6 +72,23 @@ function attachProductEvents() {
             }
         });
     });
+
+    // Dans attachProductEvents
+    document.querySelectorAll('.share-product').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const productId = parseInt(this.getAttribute('data-id'));
+            const product = ProductManager.getById(productId);
+            if (product && typeof ShareManager !== 'undefined') {
+                const shareUrl = URLHandler.generateShareUrl(productId);
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    showNotification('Lien de partage copié !', 'success');
+                });
+            }
+        });
+    });
+
+
 }
 
 // Afficher les produits filtrés

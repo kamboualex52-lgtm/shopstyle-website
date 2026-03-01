@@ -325,3 +325,50 @@
 .close-video:hover {
     color: var(--accent);
 }
+
+/* ==================== BADGE DANS LA VUE DÉTAILLÉE ==================== */
+.product-detail-badge {
+    margin-bottom: 15px;
+}
+
+.product-detail-badge span {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--gradient-1);
+    color: var(--text-primary);
+    box-shadow: var(--glow-primary);
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Styles spécifiques pour différents types de badges */
+.badge-top-vente {
+    background: linear-gradient(135deg, #ff7b89 0%, #ff9a9e 100%) !important;
+}
+
+.badge-nouveau {
+    background: linear-gradient(135deg, #4ecdc4 0%, #6ee7e0 100%) !important;
+}
+
+.badge-populaire {
+    background: linear-gradient(135deg, #9b87f5 0%, #7c6ac7 100%) !important;
+}
+
+.badge-offre-spéciale {
+    background: linear-gradient(135deg, #ff9f1a 0%, #ffb347 100%) !important;
+}
+
+.badge-best-seller {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%) !important;
+}
+
+/* Animation pour le badge */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+    100% { transform: translateY(0px); }
+}

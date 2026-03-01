@@ -69,7 +69,6 @@ function updateCartDisplay() {
             </div>
             <div class="cart-item-details">
                 <div class="cart-item-title">${item.name}</div>
-                <div class="cart-item-price">${item.price.toLocaleString()} FCFA</div>
                 <div class="cart-item-quantity">
                     <button class="quantity-btn decrease" data-id="${item.id}">-</button>
                     <input type="number" class="quantity-input" value="${item.quantity}" min="1" data-id="${item.id}">
@@ -86,8 +85,8 @@ function updateCartDisplay() {
     const shipping = 1500;
     const total = subtotal + shipping;
 
-    subtotalElement.textContent = `${subtotal.toLocaleString()} FCFA`;
-    totalElement.textContent = `${total.toLocaleString()} FCFA`;
+//    subtotalElement.textContent = `${subtotal.toLocaleString()} FCFA`;
+//    totalElement.textContent = `${total.toLocaleString()} FCFA`;
 
     attachCartEventListeners();
 }
@@ -197,18 +196,18 @@ function checkout() {
         const itemTotal = item.price * item.quantity;
         message += `*${index + 1}. ${item.name}*%0A`;
         message += `   Qté: ${item.quantity}%0A`;
-        message += `   Prix: ${item.price.toLocaleString()} FCFA%0A`;
-        message += `   Total: ${itemTotal.toLocaleString()} FCFA%0A%0A`;
+//        message += `   Prix: ${item.price.toLocaleString()} FCFA%0A`;
+//        message += `   Total: ${itemTotal.toLocaleString()} FCFA%0A%0A`;
     });
 
     const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-    const shipping = 1500;
-    const total = subtotal + shipping;
+//    const shipping = 1500;
+//    const total = subtotal + shipping;
 
-    message += `*TOTAL:*%0A═════════════════════%0A`;
-    message += `Sous-total: ${subtotal.toLocaleString()} FCFA%0A`;
-    message += `Livraison: ${shipping.toLocaleString()} FCFA%0A`;
-    message += `*TOTAL: ${total.toLocaleString()} FCFA*%0A%0A`;
+//    message += `*TOTAL:*%0A═════════════════════%0A`;
+//    message += `Sous-total: ${subtotal.toLocaleString()} FCFA%0A`;
+//    message += `Livraison: ${shipping.toLocaleString()} FCFA%0A`;
+//    message += `*TOTAL: ${total.toLocaleString()} FCFA*%0A%0A`;
 
     message += `*Paiement:* ${methodName}%0A%0A`;
     message += `_Merci de confirmer ma commande._%0A%0A`;

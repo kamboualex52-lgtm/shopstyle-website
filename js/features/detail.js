@@ -70,9 +70,40 @@ function showProductDetail(productId) {
     currentProduct = ProductManager.getById(productId);
     if (!currentProduct) return;
 
+    // === CORRECTION: Gestion du badge ===
+    // Supprimer l'ancien badge s'il existe pour éviter les doublons
+    const existingBadge = document.querySelector('.product-detail-badge');
+    if (existingBadge) {
+        existingBadge.remove();
+    }
+
+     // Ajouter le badge si le produit en a un
+    if (currentProduct.badge) {
+        const badgeContainer = document.createElement('div');
+        badgeContainer.className = 'product-detail-badge';
+
+        // Créer une classe CSS sécurisée à partir du nom du badge
+        const badgeClass = currentProduct.badge
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-|-$/g, '');
+
+        badgeContainer.innerHTML = `<span class="badge-${badgeClass}">${currentProduct.badge}</span>`;
+
+        // Insérer le badge avant le titre
+        const titleElement = document.getElementById('detail-product-name');
+        if (titleElement) {
+            titleElement.parentNode.insertBefore(badgeContainer, titleElement);
+        }
+    }
+
     document.getElementById('detail-product-name').textContent = currentProduct.name;
-    document.getElementById('detail-product-rating').innerHTML = '★'.repeat(currentProduct.rating) + '☆'.repeat(5-currentProduct.rating);
-    document.getElementById('detail-product-price').textContent = currentProduct.price.toLocaleString() + ' FCFA';
+
+    // Utiliser la fonction generateFloatStars pour les notes décimales
+    const rating = currentProduct.rating || 0;
+    document.getElementById('detail-product-rating').innerHTML = generateFloatStars(rating);
+
+//    document.getElementById('detail-product-price').textContent = currentProduct.price.toLocaleString() + ' FCFA';
     document.getElementById('detail-product-description').textContent = currentProduct.description || 'Description non disponible.';
 
     const featuresList = document.getElementById('detail-product-features');
@@ -89,6 +120,9 @@ function showProductDetail(productId) {
 
     updateProductGallery();
 
+    // AJOUTER LES BOUTONS DE PARTAGE
+    ShareManager.addShareButtons(currentProduct);
+
     document.querySelector('.qty-input').value = 1;
 
     document.getElementById('product-detail-modal').style.display = 'block';
@@ -99,36 +133,60 @@ function updateProductGallery() {
     const mainImage = document.getElementById('detail-main-image');
     const thumbnailsContainer = document.getElementById('image-thumbnails');
     const playVideoBtn = document.getElementById('play-video-btn');
+    const videoModal = document.getElementById('video-modal');
+    const productVideo = document.getElementById('product-video');
 
     if (!mainImage || !thumbnailsContainer) return;
 
     thumbnailsContainer.innerHTML = '';
     currentMediaIndex = 0;
 
+    // Utiliser media array ou créer un tableau par défaut
     const mediaItems = currentProduct.media || [{ type: 'image', src: currentProduct.image }];
 
-    mainImage.src = mediaItems[0].src;
-    mainImage.alt = currentProduct.name;
-
-    if (playVideoBtn) {
-        playVideoBtn.style.display = mediaItems[0].type === 'video' ? 'block' : 'none';
+    // Afficher la première image/vidéo
+    if (mediaItems[0].type === 'video') {
+        mainImage.src = mediaItems[0].thumbnail || 'https://via.placeholder.com/600x600?text=Video';
+        playVideoBtn.style.display = 'flex';
+        playVideoBtn.onclick = () => {
+            productVideo.src = mediaItems[0].src;
+            videoModal.style.display = 'flex';
+        };
+    } else {
+        mainImage.src = mediaItems[0].src;
+        playVideoBtn.style.display = 'none';
     }
 
+    // Créer les miniatures
     mediaItems.forEach((media, index) => {
         const thumbnail = document.createElement('div');
         thumbnail.className = `thumbnail ${index === 0 ? 'active' : ''}`;
 
-        thumbnail.innerHTML = `<img src="${media.thumbnail || media.src}" alt="" onerror="this.src='https://via.placeholder.com/80'">`;
+        if (media.type === 'video') {
+            thumbnail.innerHTML = `
+                <div class="thumbnail-video-indicator">
+                    <img src="${media.thumbnail || 'https://via.placeholder.com/80'}" alt="">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+            `;
+        } else {
+            thumbnail.innerHTML = `<img src="${media.src}" alt="" onerror="handleImageError(this)">`;
+        }
 
         thumbnail.addEventListener('click', () => {
-            mainImage.src = media.type === 'video' ? (media.thumbnail || media.src) : media.src;
-
-            if (playVideoBtn) {
-                playVideoBtn.style.display = media.type === 'video' ? 'block' : 'none';
+            if (media.type === 'video') {
+                mainImage.src = media.thumbnail || 'https://via.placeholder.com/600x600?text=Video';
+                playVideoBtn.style.display = 'flex';
+                playVideoBtn.onclick = () => {
+                    productVideo.src = media.src;
+                    videoModal.style.display = 'flex';
+                };
+            } else {
+                mainImage.src = media.src;
+                playVideoBtn.style.display = 'none';
             }
 
             currentMediaIndex = index;
-
             document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
             thumbnail.classList.add('active');
         });
@@ -137,10 +195,38 @@ function updateProductGallery() {
     });
 }
 
+
+
 function closeProductDetail() {
     const detailModal = document.getElementById('product-detail-modal');
     if (detailModal) {
         detailModal.style.display = 'none';
     }
     document.body.style.overflow = 'auto';
+}
+
+// === CORRECTION: Fonction pour générer des étoiles avec demi-étoiles ===
+function generateFloatStars(rating) {
+    let stars = '';
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 >= 0.5;
+    const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+
+    // Étoiles pleines
+    for (let i = 1; i <= fullStars; i++) {
+        stars += '<i class="fas fa-star"></i>';
+    }
+
+    // Demi-étoile si nécessaire
+    if (hasHalfStar) {
+        stars += '<i class="fas fa-star-half-alt"></i>';
+    }
+
+    // Étoiles vides
+    for (let i = 1; i <= emptyStars; i++) {
+        stars += '<i class="far fa-star"></i>';
+    }
+
+    // Ajouter la valeur numérique entre parenthèses
+    return stars + ` <span class="rating-value">(${rating.toFixed(1)})</span>`;
 }

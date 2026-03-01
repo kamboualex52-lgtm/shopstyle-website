@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ajouter la navigation du carousel
     addCarouselNavigation();
 
-    // Démarrer le carousel automatique
-    startCarousel();
-    enableSwipe();
-    addCarouselPauseEvents();
+//    // Démarrer le carousel automatique
+//    startCarousel();
+//    enableSwipe();
+//    addCarouselPauseEvents();
 
 
     // Initialiser le gestionnaire d'URL pour le partage
